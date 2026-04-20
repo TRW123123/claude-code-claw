@@ -32,18 +32,17 @@ function log(msg) {
     try { fs.appendFileSync(LOG_PATH, `[${new Date().toISOString()}] ${msg}\n`); } catch {}
 }
 
-async function getActivePromise() {
-    // stdin payload enthält session_id (Claude Code injiziert das bei Hooks)
-    let sessionId = null;
+// stdin einmalig lesen + cachen (stdin kann nur 1x gelesen werden)
+function readHookPayload() {
     try {
         const payload = fs.readFileSync(0, 'utf-8').trim();
-        if (payload) {
-            const data = JSON.parse(payload);
-            sessionId = data.session_id || data.sessionId || null;
-        }
-    } catch {}
-    if (!sessionId) return null;
+        if (!payload) return null;
+        return JSON.parse(payload);
+    } catch { return null; }
+}
 
+async function getActivePromise(sessionId) {
+    if (!sessionId) return null;
     try {
         const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/claw_get_active_promise`, {
             method: 'POST',
@@ -63,9 +62,12 @@ async function getActivePromise() {
 async function main() {
     if (!SUPABASE_URL || !SUPABASE_ANON) { process.exit(0); return; }
 
+    const hookPayload = readHookPayload();
+    const currentSessionId = hookPayload?.session_id || hookPayload?.sessionId || null;
+
     // ─── Completion-Promise Check (Ralph-Wiggum-Pattern) ───
     // Hat diese Session eine aktive Promise? Wenn ja UND nicht erfüllt → block mit Fortschritts-Message
-    const promise = await getActivePromise();
+    const promise = await getActivePromise(currentSessionId);
     if (promise && promise.remaining > 0 && promise.iterations_used < promise.max_iterations) {
         const reason = [
             `🔄 Completion-Promise aktiv — noch ${promise.remaining} von ${promise.target} offen.`,
@@ -84,24 +86,50 @@ async function main() {
         process.exit(2);
     }
 
-    // ─── Open-Items Check (original Ralph-Loop-Back) ───
+    // ─── Open-Items-Check DEAKTIVIERT (2026-04-20) ───
+    // Historisch: Hook blockte bei >=3 unadressierten open_items. In der Praxis:
+    // - Jede Session produziert "offene Punkte" (Routine-Weekly-Reviews, Outreach, etc.)
+    // - User musste jedes Mal "verschoben" markieren → Nagging ohne Wert
+    // - SessionStart-Hook zeigt eh stale opens (v_open_work View, >3 Tage alt)
+    // - Weekly-Reviews aggregieren ohnehin pro Domain
+    // → Deaktiviert. Nur Completion-Promise-Block bleibt (opt-in vom Agent).
+    process.exit(0);
+    return;
+
+    /* LEGACY — falls wieder nötig, un-commenten:
     const since = new Date(Date.now() - WINDOW_MINUTES * 60 * 1000).toISOString();
 
     try {
         const res = await fetch(
-            `${SUPABASE_URL}/rest/v1/claw_activity_log?created_at=gte.${since}&order=created_at.desc&limit=20`,
+            `${SUPABASE_URL}/rest/v1/claw_activity_log?session_id=eq.${currentSessionId}&created_at=gte.${since}&order=created_at.desc&limit=20`,
             { headers: { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${SUPABASE_ANON}` } }
         );
         if (!res.ok) { log('activity_log fetch failed'); process.exit(0); return; }
         const rows = await res.json();
 
-        // Filter: Items mit Status-Prefix gelten als bereits adressiert
-        // Routing-Prefixe die der Agent setzt wenn er Items NICHT selbst abarbeitet:
-        //   [VERSCHOBEN ...], [USER ACTION], [SPAWNED TASK], [ARCHIVIERT],
-        //   [GELÖST], [NICHT MEHR RELEVANT], [BLOCKIERT], [DELEGIERT]
-        const ADDRESSED_PREFIX = /^\s*\[(VERSCHOBEN|USER\s+ACTION|SPAWNED\s+TASK|ARCHIVIERT|GEL(Ö|OE)ST|NICHT\s+MEHR\s+RELEVANT|BLOCKIERT|DELEGIERT)\b/i;
+        // Filter: Items mit explizitem Status-Marker gelten als bereits adressiert.
+        // Akzeptiert BEIDE Formate:
+        //   Prefix eckig: "[VERSCHOBEN → Daily Loop] GSC-Check"
+        //   Suffix rund:  "GSC-Check (verschoben auf Daily Loop)"
+        // Status-Wörter (de/en, case-insensitive):
+        //   verschoben/deferred/postponed, user action/user-action, spawned/spawned task,
+        //   archiviert/archived, gelöst/resolved, nicht mehr relevant/obsolete,
+        //   blockiert/blocked, delegiert/delegated, daily loop
+        const ADDRESSED_PATTERN = new RegExp(
+            '(' +
+              // Prefix-Variante: [WORT ...] am Anfang
+              '^\\s*\\[(verschoben|deferred|postponed|user[\\s_-]*action|spawned|archiviert|archived|' +
+                'gel(ö|oe)st|resolved|obsolete|nicht\\s+mehr\\s+relevant|blockiert|blocked|' +
+                'delegiert|delegated|daily\\s+loop)\\b' +
+              '|' +
+              // Suffix-Variante: (WORT ...) oder — WORT ... oder "status: WORT" irgendwo im Item
+              '\\((verschoben|deferred|postponed|user[\\s_-]*action|spawned|archiviert|archived|' +
+                'gel(ö|oe)st|resolved|obsolete|nicht\\s+mehr\\s+relevant|blockiert|blocked|' +
+                'delegiert|delegated|daily\\s+loop)[^)]*\\)[\\s.!?;,]*$' +
+            ')', 'i'
+        );
         const openItems = rows.flatMap(r => (r.open_items || [])
-            .filter(item => !ADDRESSED_PREFIX.test(item))
+            .filter(item => !ADDRESSED_PATTERN.test(item))
             .map(item => ({
                 item,
                 domain: r.domain,
@@ -141,6 +169,7 @@ async function main() {
         log(`Error: ${err.message}`);
         process.exit(0);
     }
+    */
 }
 
 main();

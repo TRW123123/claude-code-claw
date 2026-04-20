@@ -119,6 +119,39 @@ try {
     if (tpRes.ok) taskPatterns = await tpRes.json();
 } catch {}
 
+// ─── 2b8. Agent-Inbox (Build #2 Inter-Agent-Messaging) ──────
+// Interaktive Sessions = Agent 'safak' / 'claude-main'. Scheduled Tasks haben eigene Agent-Namen.
+// Hier in der interaktiven Session: liest Nachrichten an '*' (Broadcast) und 'safak'.
+let inboxMessages = [];
+try {
+    const inbRes = await fetch(`${SUPABASE_URL}/rest/v1/rpc/claw_get_agent_inbox`, {
+        method: 'POST',
+        headers: { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${SUPABASE_ANON}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_agent_name: 'safak', p_limit: 10 })
+    });
+    if (inbRes.ok) inboxMessages = await inbRes.json();
+} catch {}
+
+// ─── 2b7. Memory-Relations (Build #1 Obsolete + Konflikte) ──
+let obsoleteMemories = [];
+let memoryConflicts = [];
+try {
+    const [obsRes, confRes] = await Promise.all([
+        fetch(`${SUPABASE_URL}/rest/v1/rpc/claw_get_obsolete_memories`, {
+            method: 'POST',
+            headers: { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${SUPABASE_ANON}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ p_limit: 5 })
+        }),
+        fetch(`${SUPABASE_URL}/rest/v1/rpc/claw_get_memory_conflicts`, {
+            method: 'POST',
+            headers: { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${SUPABASE_ANON}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ p_limit: 5 })
+        })
+    ]);
+    if (obsRes.ok) obsoleteMemories = await obsRes.json();
+    if (confRes.ok) memoryConflicts = await confRes.json();
+} catch {}
+
 // ─── 2c. Letzter Handoff (Gap #12) ──────────────────────────
 let handoffText = null;
 try {
@@ -158,6 +191,25 @@ if (taskPatterns && taskPatterns.length > 0) {
         return `  • ${p.task_type}${dom} — ${p.total_runs}x, ${p.success_rate ?? '?'}% success\n      Skills: ${seq}`;
     }).join('\n');
     parts.push(`🧠 TASK-PATTERNS (häufigste strukturierte Tasks der letzten 30 Tage):\n${lines}\n\nWenn der aktuelle Task einem dieser Patterns ähnelt: erprobte Skill-Sequenz als Startpunkt nutzen. Bei Abweichung bewusst entscheiden, nicht zufällig.`);
+}
+
+if (inboxMessages && inboxMessages.length > 0) {
+    const severityIcon = { urgent: '🔴', warning: '🟡', hint: '💡', info: 'ℹ️' };
+    const lines = inboxMessages.map(m =>
+        `  ${severityIcon[m.severity] || 'ℹ️'} [${m.from_agent} → dir] ${m.subject}\n    ${m.body.slice(0, 200)}`
+    ).join('\n\n');
+    parts.push(`📬 AGENT-INBOX (${inboxMessages.length} ungelesen):\n${lines}\n\nAcknowledge via SELECT claw_ack_agent_message(<msg_id>, 'read'|'acted'|'dismissed').`);
+}
+
+if (memoryConflicts && memoryConflicts.length > 0) {
+    const lines = memoryConflicts.map(c =>
+        `  A: "${c.memory_a_content.slice(0, 80)}"\n  B: "${c.memory_b_content.slice(0, 80)}"\n    Evidenz: ${c.evidence || 'n/a'} (conf ${c.confidence})`
+    ).join('\n\n');
+    parts.push(`⚡ MEMORY-KONFLIKTE (Review nötig):\n${lines}\n\nDiese Memories widersprechen sich. Entscheide welche gilt, markiere die andere als obsolet via claw_link_memories(relation='replaces').`);
+}
+
+if (obsoleteMemories && obsoleteMemories.length > 0) {
+    parts.push(`🗂 OBSOLETE MEMORIES (${obsoleteMemories.length} entdeckt, replaced-Relation gesetzt):\nDiese können via UPDATE claw.memories_user SET archived=true archiviert werden. Beispiel: "${obsoleteMemories[0].obsolete_content.slice(0, 80)}" ersetzt durch "${obsoleteMemories[0].replaced_by_content.slice(0, 80)}"`);
 }
 
 if (activities && activities.length > 0) {

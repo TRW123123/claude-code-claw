@@ -73,6 +73,38 @@ Nach den catchup-Schritten (auch wenn alle Tasks erledigt waren):
 6. **KEINE automatische Skill-Änderung** — Failures sind Logs für späteres manuelles Review.
 7. Falls Script fehlschlägt (Env-Var fehlt, Pfad falsch): NICHT den ganzen morning-catchup abbrechen. Nur im Log vermerken und weiter.
 
+## SCHRITT 7 — Heartbeat-Sync für alle Scheduled Tasks (zentral)
+
+Aktuell schreiben die einzelnen Scheduled Tasks NICHT selbst in `claw_agent_heartbeat`. Dieser Morning-Catchup übernimmt das zentral:
+
+1. Rufe `list_scheduled_tasks` auf.
+2. Für jeden Task mit `lastRunAt` >= heute (00:00):
+   ```sql
+   SELECT claw_heartbeat(
+       p_agent_name := '<task.taskId>',
+       p_status := 'ok',
+       p_summary := 'lastRunAt: <ISO-Zeit>, nextRunAt: <ISO-Zeit>'
+   );
+   ```
+3. Für Tasks mit `lastRunAt` älter als erwartet (z.B. daily-Task mit lastRunAt > 26h alt):
+   ```sql
+   SELECT claw_heartbeat(
+       p_agent_name := '<task.taskId>',
+       p_status := 'warning',
+       p_summary := 'Overdue: last run <X>h ago'
+   );
+   ```
+4. Für Tasks ohne `lastRunAt` (nie gelaufen seit Registrierung):
+   ```sql
+   SELECT claw_heartbeat(
+       p_agent_name := '<task.taskId>',
+       p_status := 'dormant',
+       p_summary := 'Never ran, nextRunAt: <ISO>'
+   );
+   ```
+
+Damit ist das Heartbeat-Dashboard jeden Morgen um 09:36+ vollständig populiert. Der `claw-heartbeat-report`-Task um 09:45 liest die frischen Daten und schickt den Telegram-Report.
+
 ## HARD RULES
 - Kein Task doppelt ausführen
 - Jede Domain nur von ihrem zuständigen Agent bearbeiten (keine Kontextvermischung)

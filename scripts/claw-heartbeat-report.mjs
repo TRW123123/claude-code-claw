@@ -25,6 +25,10 @@ if (!SUPABASE_URL || !SUPABASE_ANON || !TG_TOKEN || !TG_CHAT) {
     process.exit(1);
 }
 
+function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 async function main() {
     const res = await fetch(
         `${SUPABASE_URL}/rest/v1/claw_heartbeat_dashboard?order=health,last_run_at.desc`,
@@ -42,24 +46,24 @@ async function main() {
         .map(([h, arr]) => `${h} ${arr.length}`)
         .join(' · ');
 
-    let msg = `*CLAW Daily Heartbeat* — ${today}\n`;
-    msg += `${totals}\n\n`;
+    let msg = `<b>CLAW Daily Heartbeat</b> — ${today}\n`;
+    msg += `${escapeHtml(totals)}\n\n`;
 
     const order = ['🔴 error', '🟡 warning', '⚪ stale', '⚫ dormant', '🟢 healthy'];
     for (const health of order) {
         const arr = byHealth[health];
         if (!arr || arr.length === 0) continue;
-        msg += `*${health}*\n`;
+        msg += `<b>${escapeHtml(health)}</b>\n`;
         for (const r of arr.slice(0, 8)) {
             const hoursAgo = r.hours_since_run ? Math.round(r.hours_since_run) + 'h' : '?';
-            const summary = r.summary_preview ? ` — ${r.summary_preview.slice(0, 80)}` : '';
-            msg += `  • ${r.agent_name} (${hoursAgo} ago)${summary}\n`;
+            const summary = r.summary_preview ? ` — ${escapeHtml(r.summary_preview.slice(0, 80))}` : '';
+            msg += `  • ${escapeHtml(r.agent_name)} (${hoursAgo} ago)${summary}\n`;
         }
         msg += '\n';
     }
 
     if (rows.length === 0) {
-        msg += '_Keine Heartbeats registriert. Agents müssen `claw_heartbeat(name,status,summary)` RPC aufrufen._';
+        msg += '<i>Keine Heartbeats registriert. Agents müssen claw_heartbeat(name,status,summary) RPC aufrufen.</i>';
     }
 
     const tgRes = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
@@ -68,7 +72,7 @@ async function main() {
         body: JSON.stringify({
             chat_id: TG_CHAT,
             text: msg,
-            parse_mode: 'Markdown'
+            parse_mode: 'HTML'
         })
     });
 
