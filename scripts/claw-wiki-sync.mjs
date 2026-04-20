@@ -24,7 +24,10 @@ import { join, relative, basename, dirname } from 'path';
 import { createHash } from 'crypto';
 
 // ─── Config ─────────────────────────────────────────────────
-const VAULT_PATH = 'C:\\Users\\User\\obsidian-claw-vault\\wikis';
+// Kuratierte Wissensquellen (ausschließen: chatgpt/, sessions/, antigravity/, projects/ — Raw-Dumps)
+const VAULT_ROOT = 'C:\\Users\\User\\obsidian-claw-vault';
+const VAULT_SUBDIRS = ['wikis', 'concepts', 'kling-3.0', 'seedance-2.0'];
+const VAULT_PATH = VAULT_ROOT; // für Pfad-relative Logs
 const GEMINI_KEY = process.env.GEMINI_API_KEY;
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON = process.env.SUPABASE_ANON_KEY;
@@ -91,7 +94,7 @@ function scopeFromDomain(domain) {
         'st-automatisierung': 'domain:st-automatisierung',
         'ki-automatisieren': 'domain:ki-automatisieren',
         'profilfoto-ki': 'domain:profilfoto-ki',
-        '<BUSINESS_EXAMPLE>': 'domain:<BUSINESS_EXAMPLE>',
+        'apexx-bau': 'domain:apexx-bau',
     };
     return domainMap[domain] || 'global';
 }
@@ -257,13 +260,20 @@ async function main() {
         }
         files = [SINGLE_FILE];
     } else {
-        const allFiles = collectFiles(VAULT_PATH);
+        // Mehrere kuratierte Subdirs sammeln
+        const allFiles = [];
+        for (const subdir of VAULT_SUBDIRS) {
+            const fullDir = join(VAULT_ROOT, subdir);
+            if (existsSync(fullDir)) {
+                allFiles.push(...collectFiles(fullDir));
+            }
+        }
         // Filter by modification time (incremental sync)
         files = allFiles.filter(f => {
             const mtime = statSync(f).mtime;
             return mtime > lastSync;
         });
-        console.log(`   Found ${allFiles.length} wiki files, ${files.length} modified since last sync`);
+        console.log(`   Scanned ${VAULT_SUBDIRS.join(', ')} — ${allFiles.length} total files, ${files.length} modified since last sync`);
 
         if (files.length === 0 && !FULL_SYNC) {
             console.log('   ✅ No changes detected. Nothing to sync.');
