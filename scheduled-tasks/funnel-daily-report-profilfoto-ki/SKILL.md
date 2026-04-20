@@ -5,7 +5,7 @@ description: Tägliche Funnel-Übersicht für profilfoto-ki.de via Telegram
 
 Täglicher Funnel-Report für profilfoto-ki.de.
 
-Schritt 1: Query Supabase (project_id: lxfghshqgjptgrdorhfp) mit execute_sql:
+Schritt 1: Query Supabase (project_id: <SUPABASE_PROJECT_ID_PROFILFOTO>) mit execute_sql:
 
 ```sql
 SELECT * FROM public.funnel_daily WHERE day >= CURRENT_DATE - INTERVAL '7 days' ORDER BY day DESC;

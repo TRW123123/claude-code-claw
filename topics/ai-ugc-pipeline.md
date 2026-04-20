@@ -52,7 +52,7 @@ Für die aktive Bewirtschaftung des Vaults wurde das Open-Source-Framework **`nv
 - **PATH B (Talking Head Pipeline):** Nutzt `gemini-3.1-flash-image-preview` für Anchor-Frames, `ElevenLabs` für Voiceover und `OmniHuman 1.5` für die Video-Generierung.
 
 ### Modelle (Hard Rules)
-- **Hard Rule:** Der Autor/Inhaber ist immer "<USER_NAME>", niemals "Savaş Topçu".
+- **Hard Rule:** Der Autor/Inhaber ist immer "Safak Tepecik", niemals "Savaş Topçu".
 - **Hard Rule:** Der Standard-Booking-Link ist `https://calendly.com/st-automatisierung-info/30min`, niemals `cal.com`.
 - **Hard Rule (Marketing-Sprache):** Jede Marketing-Kommunikation muss extrem einfach, direkt und nutzenorientiert sein (z.B. "Wir bauen Websites, die Kunden bringen."). Marketing-Jargon ("konversionsstark", "strategisch konzipiert") und zu komplexe Formulierungen sind verboten. Der "Grundschüler-Test" gilt.
 - **Hard Rule (Prompt-Interpretation):** Wenn ein Beispiel zur Veranschaulichung einer Zielgruppe gegeben wird (z.B. "Handwerker"), muss das zugrundeliegende Prinzip (z.B. einfache Sprache) verstanden werden, anstatt das Beispiel wörtlich in den Output zu übernehmen.
@@ -111,7 +111,7 @@ Für die aktive Bewirtschaftung des Vaults wurde das Open-Source-Framework **`nv
     - **Backend:** Eine Supabase Edge Function (`st-lead-submit`) empfängt die Formulardaten, validiert sie und schreibt sie in eine zentrale `st_leads`-Tabelle.
     - **Notification:** Ein Supabase-Webhook auf `INSERT` in der `st_leads`-Tabelle triggert einen n8n-Workflow, der eine sofortige Benachrichtigung via Telegram an den User sendet.
 - **Deployment Preflight Skill (Release-Gate):** Vor jedem `git push` wird ein dedizierter `/deployment` Skill ausgeführt. Dieser agiert als Release-Gate und führt eine standardisierte Checkliste aus (z.B. `git status`, `npm run build`, Netlify-spezifische Header- und Redirect-Prüfungen). Ein Deploy darf nur erfolgen, wenn dieser Preflight-Check erfolgreich ist.
-- **Wiederverwendbare Build-Skripte:** Für skalierbare Content-Erstellung (z.B. pSEO-Seiten) wird ein Muster aus wiederverwendbaren Node.js-Skripten (`build_pages.mjs`) etabliert. Diese Skripte nehmen rohe Content-Dateien als Input und generieren vollständige, deploybare HTML-Seiten, indem sie diese mit Templates (Nav, Footer, JSON-LD etc.) wrappen.
+- **Wiederverwendbare Build-Skripte:** Für skalierbare Content-Erstellung (z.B. pSEO-Seiten) wird ein Muster aus wiederverwendbaren Node.js-Skripten (build_pages.mjs — projekt-lokal pro Domain, nicht unter `C:/Users/User/Claude/scripts`) etabliert. Diese Skripte nehmen rohe Content-Dateien als Input und generieren vollständige, deploybare HTML-Seiten, indem sie diese mit Templates (Nav, Footer, JSON-LD etc.) wrappen.
 - **AI UGC Reel-Workflow (profilfoto-ki):**
     - Der gesamte Prozess ist im globalen, produktionsbereiten **`ai-ugc` Skill** gekapselt.
     - **7-Phasen-Workflow:** RAG Boot → Ideation → Nano Banana (Frames) → Veo / OmniHuman (Video) → Whisper (Captions) → Remotion (Compositing) → Metrics (Feedback Loop).
@@ -138,7 +138,7 @@ Für die aktive Bewirtschaftung des Vaults wurde das Open-Source-Framework **`nv
 - **Hook-Regel:** Darf die implizite Frage nicht selbst beantworten (Curiosity Gap). Ein "Vergiss X, hier ist Y"-Hook ist eine Werbeformel und führt zum sofortigen Abbruch.
 - **Overlay-Regel:** Kein Fullscreen-Overlay in den ersten 3 Sekunden. Die Person muss ab Frame 0 voll sichtbar sein.
 - **Sprachniveau:** Skripte müssen maximal einfach und verständlich sein ("Grundschüler-Test").
-- **Hard Rule:** Wenn Safak Tepecik exakte Formulierung vorgibt → 1:1 übernehmen, nicht umschreiben.
+- **Hard Rule:** Wenn Şafak exakte Formulierung vorgibt → 1:1 übernehmen, nicht umschreiben.
 - **Hard Rule:** LinkedIn-Content wird vermieden (passt nicht zur Reel-Energie).
 - **Content-Fokus:** Themen-Content, nicht Produkt-Content.
 
@@ -150,7 +150,7 @@ Für die aktive Bewirtschaftung des Vaults wurde das Open-Source-Framework **`nv
 - **[st-automatisierung]** Beheben der Keyword-Kannibalisierung (4 nicht-indexierte Seiten im AI Act & BAFA Cluster durch gezielte Content-Schärfung und ggf. 301-Redirects).
 - **[st-automatisierung]** Backlink-Strategien (Recherchescout, AI Stock Photo Hack) umsetzen.
 - **Befüllen der 8 verbleibenden leeren `SKILL.md`-Dateien** für die registrierten Scheduled Tasks (LinkedIn, SEO-Loops).
-- Erstellen der fehlenden Scheduled Tasks (`seo-loop-profilfoto-ki`, `seo-loop-<BUSINESS_EXAMPLE>`, `ai-ugc-pipeline`).
+- Erstellen der fehlenden Scheduled Tasks (~~seo-loop-apexx-bau~~ (obsolet 2026-04-20, Projekt apexx-bau inaktiv), ai-ugc-pipeline). seo-loop-profilfoto-ki ist inzwischen aktiv.
 - Manueller Test und Aktivierung des `morning-catchup` Agenten im `Open Claw` Workspace.
 - **[profilfoto-ki]** Echte AGB-Seite (`/agb`) erstellen und veröffentlichen (Voraussetzung für TikTok Production-Review).
 - **[profilfoto-ki]** 11 fehlende, spezialisierte Hero-Bilder für pSEO-Seiten generieren (Prompts sind in `hero-image-prompts.md` vorbereitet) und im Code einbinden.
@@ -201,7 +201,7 @@ Für die aktive Bewirtschaftung des Vaults wurde das Open-Source-Framework **`nv
 - Prompt-Methodiken wie 'Spin up sub-agents and fact-check the research', 'Text download on all sources' und 'Lead with metaphors when designed' können direkt in die 'Generate'-Phase von Design-Skills integriert werden, um Qualität und Transparenz zu erhöhen.
 
 ### Session Update (2026-04-17)
-- Die Integration von `Granola` (Meeting-Transkripte), `Gmail/Calendar` und `NotebookLM` als kontextuelle Recherche-Quellen wurde als Erweiterung für `linkedin-content` und Outreach-Skills identifiziert, um relevantere und personalisierte Inhalte zu generieren.
+- Die Integration von `Granola` (Meeting-Transkripte), `Gmail/Calendar` und `NotebookLM` als kontextuelle Recherche-Quellen wurde als Erweiterung für den Skill linkedin-content (Skill, kein Scheduled Task) und Outreach-Skills identifiziert, um relevantere und personalisierte Inhalte zu generieren.
 
 ### Session Update (2026-04-16)
 - Die Nutzung von Google Maps/Street View-Bildern für KI-Generierung oder -Bearbeitung ist durch die Google Maps Platform Terms untersagt.

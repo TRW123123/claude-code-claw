@@ -139,6 +139,28 @@ ORDER BY impressions DESC;
 
 Für jedes Keyword eine konkrete Empfehlung als Task für den Daily Agent.
 
+## Schritt 5b: Research-Briefs in Supabase schreiben (Content-Pipeline)
+
+Für die Top 3 Striking-Distance-Opportunities (Schritt 5):
+
+Via Supabase-MCP `execute_sql`:
+```sql
+SELECT claw_create_research_brief(
+    p_domain := 'profilfoto-ki.de',
+    p_target_keyword := '<keyword>',
+    p_created_by := 'seo-weekly-profilfoto-ki',
+    p_target_page_path := '/<slug>/',
+    p_search_intent := 'informational|commercial|transactional',
+    p_serp_gaps := ARRAY['gap1', 'gap2'],
+    p_target_wordcount := 2200,
+    p_outline := '{"h2": ["Section 1","Section 2"]}'::jsonb
+);
+```
+
+Wird vom `seo-loop-profilfoto-ki` Agent abgearbeitet (`claw.v_research_briefs_pending`).
+
+Nur 3-5 Briefs pro Woche. Keine Briefs bei leerer Striking-Distance-Liste.
+
 ## Schritt 6: Agent-Log schreiben
 
 `C:\Users\User\Claude\sessions\agent-log-YYYY-MM-DD.md` erweitern:
