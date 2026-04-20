@@ -46,9 +46,9 @@ const TOPIC_FILES = {
     'pSEO':            'ki-automatisieren.md',
     'profilfoto':      'profilfoto-ki.md',
     'profilfoto-ki':   'profilfoto-ki.md',
-    'apexx':           '<BUSINESS_EXAMPLE>.md',
-    '<BUSINESS_EXAMPLE>':       '<BUSINESS_EXAMPLE>.md',
-    'bauelemente':     '<BUSINESS_EXAMPLE>.md',
+    'apexx':           'apexx-bau.md',
+    'apexx-bau':       'apexx-bau.md',
+    'bauelemente':     'apexx-bau.md',
     'st-automatisierung': 'st-automatisierung.md',
     'bafa':            'st-automatisierung.md',
     'beratung':        'st-automatisierung.md',
@@ -199,7 +199,7 @@ async function saveActivities(activities, sessionId, projectDir) {
 
 async function analyzeSession(messages, touchedTopics) {
     const conversationText = messages
-        .map(m => `${m.role === 'user' ? 'Safak Tepecik' : 'CLAW'}: ${m.text}`)
+        .map(m => `${m.role === 'user' ? 'Şafak' : 'CLAW'}: ${m.text}`)
         .join('\n\n');
 
     const topicList = touchedTopics.length > 0
@@ -211,7 +211,7 @@ async function analyzeSession(messages, touchedTopics) {
 EXTRAHIERE 3 DINGE:
 
 ═══ 1. LEARNINGS ═══
-Korrekturen: Safak Tepecik korrigiert CLAW explizit ("nein", "falsch", "nicht so", "stopp").
+Korrekturen: Şafak korrigiert CLAW explizit ("nein", "falsch", "nicht so", "stopp").
 Hard Rules: Verbindliche Regeln ("immer", "niemals", "Hard Rule") oder 2x wiederholte Korrektur.
 Nur echte Korrekturen und Regeln — keine allgemeinen Infos.
 
@@ -228,11 +228,32 @@ Wenn mehrere Domains betroffen: ein Objekt pro Domain.
 Für jedes berührte Topic: Was ist NEU? Kurze Bullet Points die zum Projektstatus hinzugefügt werden sollten.
 Nur wirklich neue, relevante Informationen — keine Wiederholungen.
 
+═══ 4. SKILL-OUTCOMES ═══
+Welche CLAW-Skills/Scheduled-Tasks wurden in dieser Session eingesetzt? Für jeden:
+- skill_name: exakter Name (z.B. "deployment", "pseo", "site-review", "test-coverage-loop")
+- success: true/false — hat der Skill das Ziel erreicht?
+- note: optional 1-Satz-Grund warum fail/success
+Ignorieren: allgemeine Tools wie Read/Write/Bash (nur explizite CLAW-Skills).
+
+═══ 5. TASK-PATTERNS ═══
+Wurde in dieser Session ein strukturierter Task erledigt? (z.B. "neue pSEO-Seite gebaut", "CTR-Fix", "Outreach-Sequenz erstellt", "Bug gefixt")
+Wenn ja:
+- task_type: Kurz-Label (snake_case, 2-3 Wörter max, z.B. "pseo_new_page", "seo_ctr_fix", "outreach_sequence", "bug_fix", "site_review")
+- task_context: Was genau wurde gemacht (1 Satz)
+- skills_used: Welche CLAW-Skills in welcher Reihenfolge (Array, chronologisch!)
+- domain: Welche Domain betroffen (z.B. "ki-automatisieren.de", "claw-system", null)
+- outcome: "success" | "partial" | "fail"
+- duration_minutes: grobe Schätzung (int)
+- evidence: messbares Ergebnis falls vorhanden (z.B. "CTR von 1.2% auf 3.8%", "3 Seiten deployed")
+Wenn reines Chat/Diskussion ohne strukturierten Task: leeres Array.
+
 FORMAT — Gib exakt dieses JSON zurück:
 {
   "learnings": [{"content": "Regel in max 2 Sätzen", "signal_type": "correction|hard-rules", "namespace": "corrections|hard-rules", "scope": "global|project:name"}],
   "activities": [{"domain": "...", "activities": [], "decisions": [], "open_items": [], "summary": "..."}],
-  "topic_updates": {"dateiname.md": "- Bullet 1\\n- Bullet 2"}
+  "topic_updates": {"dateiname.md": "- Bullet 1\\n- Bullet 2"},
+  "skill_outcomes": [{"skill_name": "...", "success": true, "note": "..."}],
+  "task_patterns": [{"task_type": "...", "task_context": "...", "skills_used": ["skill_a","skill_b"], "domain": "...", "outcome": "success", "duration_minutes": 15, "evidence": "..."}]
 }
 Wenn ein Bereich leer: leeres Array/Objekt. Kein Markdown, nur JSON.`;
 
@@ -269,7 +290,7 @@ Wenn ein Bereich leer: leeres Array/Objekt. Kein Markdown, nur JSON.`;
     } catch {
         const match = raw.match(/\{[\s\S]*\}/);
         if (match) return JSON.parse(match[0]);
-        return { learnings: [], activities: [], topic_updates: {} };
+        return { learnings: [], activities: [], topic_updates: {}, skill_outcomes: [], task_patterns: [] };
     }
 }
 
@@ -443,6 +464,66 @@ async function processSession(jsonlPath, projectDir) {
         applyTopicDeltas(topicUpdates);
     } catch (err) {
         log(`[CLAW] Topic-Update Fehler: ${err.message}`);
+    }
+
+    // ─── Skill-Outcomes persistieren (Self-Repair Signal) ───
+    const skillOutcomes = result.skill_outcomes || [];
+    for (const outcome of skillOutcomes) {
+        if (!outcome.skill_name) continue;
+        try {
+            await fetch(`${SUPABASE_URL}/rest/v1/rpc/claw_record_skill_outcome`, {
+                method: 'POST',
+                headers: {
+                    'apikey': SUPABASE_ANON,
+                    'Authorization': `Bearer ${SUPABASE_ANON}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    p_skill_name: outcome.skill_name,
+                    p_success: !!outcome.success,
+                    p_note: outcome.note || null
+                })
+            });
+            log(`[CLAW] Skill-Outcome: ${outcome.skill_name} = ${outcome.success ? 'OK' : 'FAIL'}`);
+        } catch (err) {
+            log(`[CLAW] Skill-Outcome Fehler: ${err.message}`);
+        }
+    }
+
+    // ─── Task-Patterns persistieren (Pattern-Learning Layer) ──
+    const taskPatterns = result.task_patterns || [];
+    for (const pat of taskPatterns) {
+        if (!pat.task_type || !Array.isArray(pat.skills_used) || pat.skills_used.length === 0) continue;
+        if (!pat.outcome || !['success', 'partial', 'fail'].includes(pat.outcome)) continue;
+        try {
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/task_patterns`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_ANON,
+                    'Authorization': `Bearer ${SUPABASE_ANON}`,
+                    'Content-Profile': 'claw',
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify({
+                    task_type: pat.task_type,
+                    task_context: pat.task_context || null,
+                    skills_used: pat.skills_used,
+                    domain: pat.domain || null,
+                    outcome: pat.outcome,
+                    duration_minutes: Number.isFinite(pat.duration_minutes) ? pat.duration_minutes : null,
+                    session_id: sessionId,
+                    evidence: pat.evidence || null
+                })
+            });
+            if (!res.ok) {
+                log(`[CLAW] Task-Pattern Fehler: ${await res.text()}`);
+            } else {
+                log(`[CLAW] ✓ Task-Pattern: ${pat.task_type} [${pat.outcome}] → ${pat.skills_used.join('→')}`);
+            }
+        } catch (err) {
+            log(`[CLAW] Task-Pattern Exception: ${err.message}`);
+        }
     }
 
     const topicNames = Object.keys(topicUpdates).filter(k => topicUpdates[k]?.trim());

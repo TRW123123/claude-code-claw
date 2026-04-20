@@ -122,6 +122,29 @@ Nur ausfuehren wenn:
 
 Bei Fehler: Im Agent-Log vermerken, weitermachen.
 
+## Schritt 7b: Research-Briefs in Supabase schreiben (Content-Pipeline)
+
+Für die Top 3 identifizierten Content-Chancen aus Stage 1 SERP-Gap + Content-Gap-Analyse:
+
+Via Supabase-MCP `execute_sql`:
+```sql
+SELECT claw_create_research_brief(
+    p_domain := 'st-automatisierung.de',
+    p_target_keyword := '<keyword>',
+    p_created_by := 'seo-gsc-weekly-review-st',
+    p_target_page_path := '/<slug>/',
+    p_search_intent := 'informational|commercial|transactional',
+    p_serp_gaps := ARRAY['gap1', 'gap2'],
+    p_target_wordcount := 2500,
+    p_outline := '{"h2": ["Section 1","Section 2"]}'::jsonb,
+    p_cluster := 1
+);
+```
+
+Briefs werden vom `seo-loop-st-automatisierung` Agent abgearbeitet (liest `claw.v_research_briefs_pending`).
+
+Nur 3-5 Briefs pro Woche. Bei leerem SERP-Gap: keine Briefs schreiben.
+
 ## Schritt 8: SEO-PLAN-2026.md aktualisieren
 
 Im Repo `C:\Users\User\Projects\strategie-beratung\SEO-PLAN-2026.md`:

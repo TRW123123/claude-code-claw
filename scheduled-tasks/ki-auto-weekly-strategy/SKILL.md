@@ -100,6 +100,29 @@ git commit -m "strategy: weekly SEO update YYYY-MM-DD"
 git push origin master
 ```
 
+## Schritt 6b — Research-Briefs in Supabase schreiben (Content-Pipeline)
+
+Für die Top 3 identifizierten Content-Chancen (aus Schritt 4 Content-Gap + Schritt 5 Striking-Distance):
+
+Rufe via Supabase-MCP `execute_sql` auf:
+```sql
+SELECT claw_create_research_brief(
+    p_domain := 'ki-automatisieren.de',
+    p_target_keyword := '<keyword>',
+    p_created_by := 'ki-auto-weekly-strategy',
+    p_target_page_path := '/<slug>/',            -- bei neuer Seite: Slug-Vorschlag
+    p_search_intent := 'informational|commercial|transactional',
+    p_serp_gaps := ARRAY['gap1', 'gap2'],        -- Was fehlt in Top-3-Competitor-Content?
+    p_target_wordcount := 2500,                  -- Median-Competitor +20%
+    p_outline := '{"h2": ["Section 1","Section 2"]}'::jsonb,
+    p_cluster := 1                                -- Content-Cluster-ID optional
+);
+```
+
+Diese Briefs werden dann vom `ki-auto-daily-execution` Agent abgearbeitet (prüft `claw.v_research_briefs_pending` am Session-Start).
+
+**Nur 3-5 Briefs pro Lauf** — Qualität > Quantität. Bei leerem Lauf (keine echten Gaps) nichts schreiben.
+
 ## Schritt 7 — Agent-Log schreiben
 
 In `C:\Users\User\Claude\sessions\agent-log-YYYY-MM-DD.md`:

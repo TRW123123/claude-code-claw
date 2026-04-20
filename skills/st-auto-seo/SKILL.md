@@ -70,7 +70,7 @@ Jede Stage hat eine eigene Datei mit detailliertem Workflow:
 
 Der Daily Agent entscheidet so:
 
-1. Gibt es pending CTR-Fixes in `claw.webhook_queue`? → **Stage 2** (schnellster ROI)
+1. Gibt es pending CTR-Fixes? → **Stage 2** (schnellster ROI) — Hinweis: `claw.webhook_queue` wurde 2026-04-19 gedroppt (Legacy). Direkt-Aufruf statt Queue nutzen.
 2. Gibt es pending Link-Building Tasks? → **Stage 0b** (Authority aufbauen)
 3. Gibt es pending Seiten-Vorschlaege? → **Stage 1** (neue Seite bauen)
 4. Nichts pending? → **Eigenstaendig analysieren** (GSC CTR-Scan, dann entscheiden)
@@ -84,9 +84,9 @@ Der Daily Agent entscheidet so:
 | `gsc_queries` | Keywords pro Seite/Tag |
 | `claw.changelog` | Alle SEO-Aenderungen mit old/new + Grund |
 | `claw.keyword_research` | 18 Keywords, 5 Cluster, Volume + Intent |
-| `claw.domain_authority` | DA-Score, Referring Domains, Backlink-Trend |
+| ~~`claw.domain_authority`~~ | **PAUSIERT** — 2026-04-19 gedroppt (DataForSEO Backlinks-Abo nicht aktiv). Neu bauen wenn Abo vorhanden. |
 | `claw.link_building_queue` | Directory Submissions Tracking |
-| `claw.webhook_queue` | Task-Queue fuer Ausfuehrung |
+| ~~`claw.webhook_queue`~~ | **GEDROPPT 2026-04-19** (Legacy). Direkt-Aufruf statt Queue nutzen. |
 | `claw.site_audits` | Audit-Ergebnisse |
 
 ## Supabase-Funktionen
@@ -118,7 +118,7 @@ Bei JEDEM Content-Output (neue Seite, Title-Fix, Meta-Update):
 2. **Kein Keyword-Overlap** mit ki-automatisieren.de — vor jeder neuen Seite pruefen
 3. **Changelog-Pflicht** — JEDE Aenderung (Title, Meta, Content) muss in `claw.changelog` geloggt werden
 4. **Pinecone = READ ONLY** — niemals autonom schreiben
-5. **Deploy-Regel:** Title/Meta autonom erlaubt, Code-Aenderungen/neue Seiten NUR mit Safak Tepecik-OK
+5. **Deploy-Regel:** Title/Meta autonom erlaubt, Code-Aenderungen/neue Seiten NUR mit Safak-OK
 6. **Natives Deutsch** — keine AI-Floskeln, keine Anglizismen, kein Bro-Marketing
 7. **Anti-AI Blacklist** — vollstaendige Liste in `references/anti-ai-writing-de.md` (15 Verben, 14 Adjektive, 7 Uebergaenge, 8 Opening Phrases, 22 Filler Words, 12 Academic Tells, 16 Bro-Marketing Buzzwords)
 8. **Em-Dash Count = 0** — st-auto B2B Beratung erlaubt KEINE Em-Dashes

@@ -53,11 +53,11 @@ Stage 3: Conversions         → Free-Credits → Stripe Kaeufe
 
 Der Daily Agent entscheidet so:
 
-1. Gibt es pending CTR-Fixes in `claw.webhook_queue`? → **Stage 2** (schnellster ROI)
+1. Gibt es pending CTR-Fixes? → **Stage 2** (schnellster ROI) — Hinweis: `claw.webhook_queue` wurde 2026-04-19 gedroppt (Legacy). Direkt-Aufruf statt Queue nutzen.
 2. Gibt es pending Seiten-Vorschlaege? → **Stage 1** (neue pSEO-Seite bauen)
 3. Nichts pending? → **Eigenstaendig analysieren** (CTR-Scan via `stage-2-clicks.md`, dann entscheiden)
 
-**Stage 0b und Stage 3** werden nur aktiv wenn Safak Tepecik explizit triggert oder die Aktivierungs-Kriterien (siehe Stage-Dateien) erfuellt sind.
+**Stage 0b und Stage 3** werden nur aktiv wenn Safak explizit triggert oder die Aktivierungs-Kriterien (siehe Stage-Dateien) erfuellt sind.
 
 ## Supabase-Tabellen (gemeinsam mit anderen Domains)
 
@@ -68,9 +68,9 @@ Der Daily Agent entscheidet so:
 | `gsc_queries` | Keywords pro Seite/Tag |
 | `claw.changelog` | Alle SEO-Aenderungen (39 Eintraege Stand 2026-04-07) |
 | `claw.keyword_research` | 15 Keywords fuer profilfoto-ki.de |
-| `claw.domain_authority` | DA-Tracking (Stage 0a befuellt das) |
+| ~~`claw.domain_authority`~~ | **PAUSIERT** — 2026-04-19 gedroppt (DataForSEO Backlinks-Abo nicht aktiv). Neu bauen wenn Abo vorhanden. |
 | `claw.link_building_queue` | Directory Submissions (Stage 0b inaktiv) |
-| `claw.webhook_queue` | Task-Queue fuer Stage 1 + Stage 2 |
+| ~~`claw.webhook_queue`~~ | **GEDROPPT 2026-04-19** (Legacy). Direkt-Aufruf statt Queue nutzen. |
 | `claw.site_audits` | Audit-Ergebnisse (Stand: 2 Homepage Audits) |
 
 ## Supabase-Funktionen
@@ -88,7 +88,7 @@ Der Daily Agent entscheidet so:
 3. **Bilder sind Pflicht** — Jede pSEO-Seite braucht ein themenspezifisches Hero-Bild (kein generisches Reuse)
 4. **Changelog-Pflicht** — JEDE Aenderung (Title, Meta, Content, Bild, Schema) muss in `claw.changelog` geloggt werden
 5. **Pinecone = READ ONLY** — niemals autonom schreiben
-6. **Deploy-Regel:** Title/Meta autonom erlaubt, Code-Aenderungen + neue Seiten NUR mit Safak Tepecik-OK
+6. **Deploy-Regel:** Title/Meta autonom erlaubt, Code-Aenderungen + neue Seiten NUR mit Safak-OK
 7. **Natives Deutsch** — keine AI-Floskeln, kein Bro-Marketing, keine englischen Anglizismen wenn deutscher Begriff existiert
 8. **Anti-AI Blacklist:** "nahtlos", "revolutionaer", "massgeschneidert", "entfesseln", "im heutigen digitalen Zeitalter", "faszinierende Welt", "tauche ein", "Schluessel zu" verboten
 9. **Trailing Slash** auf ALLEN internen Links und Canonical URLs
