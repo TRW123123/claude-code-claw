@@ -1,0 +1,40 @@
+# --- Secrets & local config ---
+settings.json
+settings.local.json
+.env
+.env.local
+.env.*.local
+
+# --- Session artifacts (contain conversation transcripts) ---
+sessions/
+agent-log-*
+handoffs/
+last-handoff.md
+
+# --- Logs ---
+*.log
+logs/
+
+# --- Node ---
+node_modules/
+package-lock.json
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Editor ---
+.vscode/
+.idea/
+*.swp
+
+# --- Temp / generated ---
+tmp/
+*.tmp
+.cache/
