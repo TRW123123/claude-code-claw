@@ -43,31 +43,53 @@ Cron (OS-level)    →  Claude Code + SKILL.md       → executes a scheduled ta
 
 ---
 
-## Setup
+## Setup — The Claude-Code-native way
 
-1. **Clone.**
-   ```bash
-   git clone <this-repo> claw
-   cd claw
-   ```
+**CLAW setzt sich selbst auf.** Du brauchst kein `install.sh`, kein `npm install`, kein Docker. Du brauchst nur Claude Code und diesen Prompt.
 
-2. **Install script deps.**
-   ```bash
-   cd scripts && npm install
-   ```
+### In 3 Schritten zum laufenden System
 
-3. **Env vars.** Copy `.env.example` → `.env`, fill in keys. You'll need at minimum a Supabase project and a Gemini API key.
+**1. Clone und öffne Claude Code im Repo-Root:**
+```bash
+git clone https://github.com/TRW123123/claude-code-claw.git claw
+cd claw
+claude
+```
 
-4. **Supabase schema.** Create tables `activity_log`, `task_queue`, `learnings`. (Schema migration file forthcoming — for now inspect the scripts to derive the shape.)
+**2. Kopiere diesen Prompt in Claude Code:**
 
-5. **Register hooks.** Point your Claude Code `settings.json` hooks at the scripts in `scripts/`. Example entry for `Stop`:
-   ```json
-   "hooks": {
-     "Stop": [{ "hooks": [{ "type": "command", "command": "node /abs/path/scripts/claw-session-processor.mjs" }] }]
-   }
-   ```
+> Du bist mein Setup-Assistent für das CLAW-System. Lies `SETUP.md` in diesem Repo und führe mich Schritt für Schritt durch die 8 Phasen.
+>
+> Für jede Phase:
+> 1. Frage mich die nötigen Inputs (Projekt-Namen, API-Keys, Pfade)
+> 2. Führe die Aktion aus (Files kopieren, Migrations applyen, Tasks registrieren)
+> 3. Verifiziere dass der Schritt funktioniert hat
+> 4. Zeige mir was du gemacht hast bevor du zur nächsten Phase gehst
+>
+> Hard Rules: Frag bevor du schreibst. Nichts destruktives ohne explizites OK. Wenn du einen API-Key brauchst den ich nicht habe: sag mir wo ich ihn bekomme und stoppe bis ich ihn habe.
+>
+> Starte mit Phase 1 (Voraussetzungen prüfen).
 
-6. **Register scheduled tasks.** Use `scripts/register-daily-task.ps1` (Windows Task Scheduler) or adapt to cron/launchd. Each task in `scheduled-tasks/` has its own `SKILL.md`.
+**3. Folge Claude Code's Anleitung.** Der Setup dauert ~30-60 Minuten je nach deinen Vorkenntnissen.
+
+---
+
+### Was Claude Code für dich macht
+
+| Phase | Was passiert |
+|---|---|
+| 1. Prerequisites | Check ob Node/Python/gh CLI installiert, Hilft bei Fehlendem |
+| 2. Supabase | Führt dich durch Projekt-Anlage, notiert sich Credentials |
+| 3. Schema | Applyed alle Migrations via Supabase-MCP (wenn installiert) ODER gibt dir SQL zum Copy-Paste |
+| 4. Files | Kopiert `skills/`, `scheduled-tasks/`, `scripts/`, `topics/` in dein `~/.claude/` |
+| 5. Env Vars | Hilft `settings.json` zu erstellen, fragt nach deinen Keys |
+| 6. MCPs | Installiert + konfiguriert die benötigten MCP-Server |
+| 7. Tasks | Registriert alle Scheduled Tasks via `create_scheduled_task` |
+| 8. Validation | Macht einen Test-Run und zeigt dir dass alles läuft |
+
+### Manueller Setup
+
+Wenn du lieber selbst Hand anlegen willst: alle Schritte sind in [`SETUP.md`](SETUP.md) detailliert mit SQL-Snippets und File-Pfaden dokumentiert.
 
 ---
 
