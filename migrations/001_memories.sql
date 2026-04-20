@@ -1,6 +1,17 @@
 -- 001_memories.sql
 -- Memory tables + activity log + session/heartbeat tracking.
 -- Idempotent via CREATE TABLE IF NOT EXISTS.
+--
+-- ═══════════════════════════════════════════════════════════
+-- ⚠  EMBEDDING DIMENSION — BEFORE APPLYING
+-- ═══════════════════════════════════════════════════════════
+-- Default: VECTOR(768) matches Google Gemini gemini-embedding-001 (CLAW default).
+-- If you use OpenAI text-embedding-3-small → change to VECTOR(1536).
+-- If you use OpenAI text-embedding-3-large → change to VECTOR(3072).
+-- If you use Cohere embed-v3 → change to VECTOR(1024).
+--
+-- You MUST match your embedder's dimension here. Mismatched inserts will fail.
+-- ═══════════════════════════════════════════════════════════
 
 -- ============================================================
 -- claw.memories_user  (persistent long-term memory)
@@ -8,7 +19,7 @@
 CREATE TABLE IF NOT EXISTS claw.memories_user (
     id                UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     content           TEXT NOT NULL,
-    embedding         VECTOR(1536),
+    embedding         VECTOR(768)   -- Gemini default; see top of file for other models,
     namespace         TEXT NOT NULL DEFAULT 'general',
     source            TEXT,
     importance        DOUBLE PRECISION DEFAULT 0.55
@@ -36,7 +47,7 @@ CREATE TABLE IF NOT EXISTS claw.memories_session (
     id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     session_id  TEXT NOT NULL,
     content     TEXT NOT NULL,
-    embedding   VECTOR(1536),
+    embedding   VECTOR(768)   -- Gemini default; see top of file for other models,
     role        TEXT DEFAULT 'context',
     created_at  TIMESTAMPTZ DEFAULT NOW()
 );
