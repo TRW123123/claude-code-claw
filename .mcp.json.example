@@ -1,0 +1,65 @@
+{
+  "_comment": "Copy to ~/.claude/.mcp.json and fill in your tokens. Only supabase is strictly required; others are optional per domain.",
+
+  "mcpServers": {
+    "supabase": {
+      "command": "npx",
+      "args": ["-y", "@supabase/mcp-server-supabase"],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "sbp_YOUR_MANAGEMENT_TOKEN"
+      },
+      "type": "stdio",
+      "_required": true,
+      "_why": "Apply migrations, run SQL queries, inspect schema. Core CLAW dependency."
+    },
+
+    "code-graph": {
+      "command": "code-graph-mcp",
+      "args": [],
+      "type": "stdio",
+      "_optional": true,
+      "_why": "Code navigation (impact_of, who_calls). Install: pip install code-graph-mcp.",
+      "_install": "pip install code-graph-mcp"
+    },
+
+    "dataforseo": {
+      "command": "npx",
+      "args": ["-y", "dataforseo-mcp-server"],
+      "env": {
+        "DATAFORSEO_USERNAME": "",
+        "DATAFORSEO_PASSWORD": "",
+        "DATAFORSEO_FULL_RESPONSE": "false"
+      },
+      "type": "stdio",
+      "_optional": true,
+      "_why": "Keyword research, SERP data, backlinks. Needed if you run SEO agents. Requires paid DataForSEO account."
+    },
+
+    "analytics-mcp": {
+      "command": "analytics-mcp",
+      "args": [],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "C:/path/to/ga4-service-account.json",
+        "GOOGLE_PROJECT_ID": ""
+      },
+      "type": "stdio",
+      "_optional": true,
+      "_why": "Google Analytics 4 reports. Needed for conversion-funnel analysis. Requires GA4 service account."
+    },
+
+    "serpapi": {
+      "type": "http",
+      "url": "https://mcp.serpapi.com/YOUR_API_KEY/mcp",
+      "_optional": true,
+      "_why": "Live SERP data for content-gap analysis. Requires SerpApi account."
+    },
+
+    "notebooklm": {
+      "command": "notebooklm-mcp",
+      "args": [],
+      "type": "stdio",
+      "_optional": true,
+      "_why": "Google NotebookLM API access. Only if you use NotebookLM for research."
+    }
+  }
+}

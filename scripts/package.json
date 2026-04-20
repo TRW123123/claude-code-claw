@@ -1,0 +1,25 @@
+{
+  "name": "claw-scripts",
+  "version": "1.0.0",
+  "description": "CLAW system scripts — hooks, session processor, wiki sync, heartbeat report, and utilities.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "test-supabase": "node claw-flush.mjs --test",
+    "wiki-sync": "node claw-wiki-sync.mjs",
+    "wiki-sync-full": "node claw-wiki-sync.mjs --full",
+    "regenerate-lib-docs": "node claw-generate-lib-docs.mjs",
+    "search-scripts": "node claw-search-scripts.mjs",
+    "topic-audit": "node claw-topic-audit.mjs"
+  },
+  "dependencies": {
+    "puppeteer-core": "^23.0.0"
+  },
+  "notes": {
+    "puppeteer-core": "Only needed for gsc-submit (runs against a user-launched Chrome). Safe to remove if you don't use the GSC automation.",
+    "all-other-scripts": "Use only Node built-ins (fs, path, os, crypto, child_process) + global fetch (Node 18+). No install needed for those."
+  }
+}

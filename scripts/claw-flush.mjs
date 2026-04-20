@@ -14,7 +14,10 @@
  *   GEMINI_API_KEY, SUPABASE_URL, SUPABASE_ANON_KEY
  */
 
-const text        = process.argv[2];
+// Mode detection
+const IS_TEST = process.argv.includes('--test');
+
+const text        = IS_TEST ? null : process.argv[2];
 const signalType  = process.argv[3] || 'general';
 const namespace   = process.argv[4] || 'general';
 const source      = process.argv[5] || 'claw-session';
@@ -23,6 +26,24 @@ const scope       = process.argv[6] || 'global';  // 'global' | 'domain:X' | 'pr
 const GEMINI_KEY      = process.env.GEMINI_API_KEY;
 const SUPABASE_URL    = process.env.SUPABASE_URL;
 const SUPABASE_ANON   = process.env.SUPABASE_ANON_KEY;
+
+// ─── Test-Mode: Prüft Env + Connectivity, ohne DB-Write ───
+if (IS_TEST) {
+    const r = { gemini_key: !!GEMINI_KEY, supabase_url: !!SUPABASE_URL, supabase_anon: !!SUPABASE_ANON, supabase_reachable: false, gemini_reachable: false };
+    if (r.gemini_key && r.supabase_url && r.supabase_anon) {
+        try {
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/`, { headers: { apikey: SUPABASE_ANON } });
+            r.supabase_reachable = res.ok || res.status === 404;
+        } catch {}
+        try {
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${GEMINI_KEY}`);
+            r.gemini_reachable = res.ok;
+        } catch {}
+    }
+    const allOk = Object.values(r).every(v => v === true);
+    console.log(JSON.stringify({ status: allOk ? 'OK' : 'FAIL', details: r }, null, 2));
+    process.exit(allOk ? 0 : 1);
+}
 
 // ─── Validierung ────────────────────────────────────────────
 if (!text || text.trim().length < 30) {

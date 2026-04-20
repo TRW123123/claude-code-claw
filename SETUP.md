@@ -66,9 +66,43 @@ Notiere dir:
 
 ## Phase 3 — Schema-Migrations applyen
 
-CLAW braucht diese Tabellen und Functions in Supabase. **Claude Code kann die via `mcp__supabase__apply_migration` automatisch anlegen** wenn du das Supabase-MCP installierst (Phase 6).
+**Vollständige SQL-Migrations liegen in `migrations/` im Repo-Root.** 8 nummerierte Files (000 bis 007). Applyen auf 3 Wegen:
 
-Alternativ manuell via Supabase SQL-Editor. Die Kernschemas:
+### Option A — Supabase-MCP (empfohlen, Claude Code automatisiert)
+Wenn du Phase 6 (MCP-Install) vorziehst, dann sagst du Claude:
+> "Wende alle Migrations aus `./migrations/` in Reihenfolge auf das Supabase-Projekt `<projekt-id>` an."
+
+Claude nutzt `apply_migration` pro File.
+
+### Option B — Supabase-CLI
+```bash
+npm install -g supabase
+supabase link --project-ref <project-id>
+supabase db push
+```
+(Setzt voraus dass du Migrations in `supabase/migrations/` ablegst — ggf. symlinken/kopieren.)
+
+### Option C — SQL-Editor (manuell)
+Im Supabase-Dashboard → SQL Editor → jedes File in Reihenfolge (000 → 007) einfügen und ausführen.
+
+### Migration-Reihenfolge + Inhalt
+
+| # | File | Inhalt |
+|---|---|---|
+| 000 | `extensions.sql` | vector, pg_trgm, pgcrypto, pg_cron + `claw` Schema |
+| 001 | `memories.sql` | memories_user/session, activity_log, heartbeat, processed_sessions |
+| 002 | `skill_system.sql` | skill_metrics, skill_failures, skill_repair_proposals, cross_domain_learnings, memory_relations, task_patterns, completion_promises, agent_messages, agent_tasks |
+| 003 | `seo_system.sql` | projects, domains, changelog, research_briefs, keyword_research, link_building_queue, site_audits |
+| 004 | `social_system.sql` | linkedin_posts, reel_posts, conversations |
+| 005 | `functions.sql` | Alle ~30 `claw_*` RPCs + internal functions (detect_context, jaccard_similarity, run_decay, upsert_memory) |
+| 006 | `views.sql` | v_research_*, v_open_work, claw_heartbeat_dashboard |
+| 007 | `cron_jobs.sql` | pg_cron: täglicher Memory-Decay um 03:00 UTC |
+
+Nach Apply: Verifikation via
+```sql
+SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='claw';  -- erwartet: 22
+SELECT COUNT(*) FROM pg_proc p JOIN pg_namespace n ON p.pronamespace=n.oid WHERE n.nspname='public' AND p.proname LIKE 'claw%';  -- erwartet: ~30
+```
 
 ### 3.1 — Schema `claw`
 ```sql
@@ -174,27 +208,25 @@ Erstelle `~/.claude/settings.json` basierend auf `.env.example` aus diesem Repo:
 
 ## Phase 6 — MCPs installieren
 
-CLAW nutzt diese MCP-Server. In `~/.claude/.mcp.json`:
+CLAW nutzt diese MCP-Server. **Kopiere `.mcp.json.example` → `~/.claude/.mcp.json`** und fülle Tokens ein.
 
-```json
-{
-  "mcpServers": {
-    "supabase": {
-      "command": "npx",
-      "args": ["-y", "@supabase/mcp-server-supabase"],
-      "env": { "SUPABASE_ACCESS_TOKEN": "dein-supabase-access-token" }
-    },
-    "scheduled-tasks": { ... },
-    "code-graph": {
-      "command": "code-graph-mcp",
-      "args": []
-    }
-  }
-}
-```
+**Pflicht-MCP:**
+- `supabase` — für Schema-Migrations + SQL-Queries
+  Install: `npx -y @supabase/mcp-server-supabase` läuft automatisch on-demand
+  Braucht: `SUPABASE_ACCESS_TOKEN` (aus https://supabase.com/dashboard/account/tokens)
 
-**Pflicht-MCPs:** `supabase`, `scheduled-tasks` (built-in in Claude Code)
-**Optional:** `code-graph`, `dataforseo`, `analytics-mcp`, `serpapi`, `apify` (je nach deinen Projekten)
+**Built-in in Claude Code (keine Installation nötig):**
+- `scheduled-tasks` — für Task-Registrierung (`create_scheduled_task` etc.)
+
+**Optional — je nach deinen Projekten:**
+- `code-graph` — Code-Navigation (impact_of, who_calls)
+  Install: `pip install code-graph-mcp`
+- `dataforseo` — Keyword/Backlinks (SEO-Agents). Braucht DataForSEO-Account.
+- `analytics-mcp` — Google Analytics 4. Braucht GA4-Service-Account.
+- `serpapi` — Live-SERP-Daten. Braucht SerpApi-Account.
+- `notebooklm` — Google NotebookLM.
+
+Vollständiges Template mit Kommentaren: siehe `.mcp.json.example` im Repo-Root.
 
 ---
 
@@ -224,10 +256,12 @@ Plus deine domain-spezifischen Tasks (SEO-Agents etc.) — die passt du an deine
 Nach Setup:
 
 ```bash
-# Test Supabase-Verbindung
+# Test Env + Supabase + Gemini Connectivity (kein Write)
 node ~/Claude/scripts/claw-flush.mjs --test
+# Erwartete Ausgabe:
+# { "status": "OK", "details": { "gemini_key": true, "supabase_url": true, ... } }
 
-# Test Gemini-Embeddings
+# Test Wiki-Sync im Dry-Run (zeigt was synched würde, schreibt nicht)
 node ~/Claude/scripts/claw-wiki-sync.mjs --dry-run
 
 # Öffne Claude Code

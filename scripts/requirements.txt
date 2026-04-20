@@ -1,0 +1,10 @@
+# CLAW Python scripts — dependencies
+# Only for jsonl-to-obsidian.py (converts Claude Code session JSONL → Obsidian markdown).
+# No external packages required — Python 3.12+ built-ins only.
+#
+# If you copy the examples/scripts/antigravity-to-obsidian.py, you additionally need:
+# - antigravity_history (internal package, not on PyPI — only relevant for Gemini Antigravity dual-setup)
+#
+# Standard requirement for most CLAW scripts:
+#   Python 3.12+
+#   No pip install needed.
