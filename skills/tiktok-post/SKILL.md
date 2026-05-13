@@ -22,18 +22,18 @@ Fertige Reels (MP4) landen in deiner TikTok-Mobile-App-Inbox. Parallel bekommst 
 
 ## Dateien und Scripts
 
-**Auth-Server (einmalig pro User):**
-- `C:/Users/User/Projects/profilfoto-ki-static/tiktok-auth-server.mjs` (veraltet — nutzt localhost, funktioniert nicht mehr)
-- Stattdessen: Auth-URL manuell aufrufen, Code aus Callback-Seite holen, per `tiktok-post.mjs auth <code>` tauschen
+**Upload-Script (PFLICHT — das nehmen):**
+- `~/Projects/profilfoto-ki-static/tiktok-upload.mjs` — funktionierendes FILE_UPLOAD an Inbox-Endpoint. Refresht Token automatisch. **Das ist das Script für jeden Reel-Upload.**
 
-**Post-Script:**
-- `C:/Users/User/Projects/profilfoto-ki-static/tiktok-post.mjs` — enthält auth/post/status. Nutzt aktuell noch den falschen Endpoint für `video.upload` Scope, muss für Inbox-Upload inline gepatcht werden (siehe unten).
+**Auth-Helper (nur einmalig bei Token-Regeneration):**
+- `~/Projects/profilfoto-ki-static/tiktok-post.mjs` — enthält Auth-Code-Tausch. NIEMALS für Upload nutzen (alter `video.publish` Endpoint).
+- Auth-URL manuell aufrufen, Code aus Callback-Seite holen, dann `node tiktok-post.mjs auth <code>` zum Token-Tausch.
 
 **Token-Datei:**
-- `C:/Users/User/Projects/profilfoto-ki-static/.tiktok-token.json`
+- `~/Projects/profilfoto-ki-static/.tiktok-token.json`
 
 **Telegram:**
-- Credentials in `C:/Users/User/Projects/AI UGC/remotion-app/.env` (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`)
+- Credentials in `~/Projects/AI UGC/remotion-app/.env` (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`)
 
 ## Referenz-Werte
 
@@ -48,40 +48,11 @@ Fertige Reels (MP4) landen in deiner TikTok-Mobile-App-Inbox. Parallel bekommst 
 
 ```bash
 # 1. Upload via FILE_UPLOAD an Inbox
-cd "C:/Users/User/Projects/profilfoto-ki-static" && node -e "
-const fs = require('fs');
-const path = 'PFAD/ZUM/REEL.mp4';
-const t = JSON.parse(fs.readFileSync('.tiktok-token.json','utf-8'));
-const size = fs.statSync(path).size;
-const initBody = { source_info: { source: 'FILE_UPLOAD', video_size: size, chunk_size: size, total_chunk_count: 1 } };
-fetch('https://open.tiktokapis.com/v2/post/publish/inbox/video/init/', {
-  method:'POST',
-  headers:{'Authorization':'Bearer '+t.access_token,'Content-Type':'application/json; charset=UTF-8'},
-  body: JSON.stringify(initBody)
-}).then(r=>r.json()).then(d=>{
-  if (!d.data?.upload_url) { console.error(d); process.exit(1); }
-  const buf = fs.readFileSync(path);
-  return fetch(d.data.upload_url, {
-    method:'PUT',
-    headers:{'Content-Type':'video/mp4','Content-Length':size.toString(),'Content-Range':'bytes 0-'+(size-1)+'/'+size},
-    body: buf
-  }).then(()=>console.log('UPLOAD OK publish_id='+d.data.publish_id));
-});
-"
+node "~/Projects/profilfoto-ki-static/tiktok-upload.mjs" "<video-path>" "<caption-text>"
 
-# 2. Caption via Telegram — NUR copy-paste-ready Text
-# WICHTIG: curl hat UTF-8-Probleme mit Sonderzeichen (em-dash, ß, Umlaute je nach Shell).
-# IMMER über Node.js + JSON-POST senden. Caption in Temp-Datei schreiben, dann:
-node -e "
-const env = require('fs').readFileSync('C:/Users/User/Projects/AI UGC/remotion-app/.env','utf-8');
-const get = k => env.match(new RegExp('^'+k+'=(.*)','m'))[1].trim();
-const text = require('fs').readFileSync('C:/Users/User/AppData/Local/Temp/tg-caption.txt','utf-8');
-fetch('https://api.telegram.org/bot'+get('TELEGRAM_BOT_TOKEN')+'/sendMessage', {
-  method:'POST',
-  headers:{'Content-Type':'application/json'},
-  body: JSON.stringify({chat_id: get('TELEGRAM_CHAT_ID'), text})
-}).then(r=>r.json()).then(d=>console.log(d.ok ? 'OK '+d.result.message_id : JSON.stringify(d)));
-"
+# 2. Caption via Telegram (parallel — Şafak postet manuell in TikTok-App)
+# Üblicher Pfad: tg_caption_0XX.mjs im remotion-app Ordner anlegen, basierend auf tg_caption_041.mjs
+cd "~/Projects/AI UGC/remotion-app" && node tg_caption_0XX.mjs
 ```
 
 ## Caption-Schema

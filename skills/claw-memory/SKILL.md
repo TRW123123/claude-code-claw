@@ -4,7 +4,7 @@
 
 ## INFRASTRUKTUR
 
-- **Supabase Projekt:** NanoBanana (`<SUPABASE_PROJECT_ID>`)
+- **Supabase Projekt:** NanoBanana (`[your-supabase-project-id]`)
 - **Schema:** `claw`
 - **Tabellen:** `claw.memories_user` (permanent) | `claw.memories_session` (temporär)
 - **Embedding:** Google `gemini-embedding-001` (768 Dims via outputDimensionality, Free Tier: 1.000 req/Tag)
@@ -14,7 +14,7 @@
 
 ## PINECONE REGEL (KRITISCH)
 - ✅ Pinecone LESEN erlaubt
-- ❌ Pinecone SCHREIBEN verboten — nur Safak Tepecik manuell
+- ❌ Pinecone SCHREIBEN verboten — nur Şafak manuell
 
 ---
 
@@ -22,7 +22,7 @@
 
 | signal_type | Score | Wann |
 |-------------|-------|------|
-| `explicit-remember` | 0.92 | Safak Tepecik sagt "speicher das / remember" |
+| `explicit-remember` | 0.92 | Şafak sagt "speicher das / remember" |
 | `deadline-critical` | 0.90 | Deadline + Dringlichkeit |
 | `emotional` | 0.85 | Persönliche Aussagen, Präferenzen mit Emotion |
 | `relationship` | 0.82 | Feedback zur Zusammenarbeit |
@@ -40,7 +40,7 @@
 ## WANN MEMORY SCHREIBEN
 
 **Automatisch (user-scope):**
-- Neue Korrektur oder Hard Rule von Safak Tepecik → `corrections` / `hard-rules`
+- Neue Korrektur oder Hard Rule von Şafak → `corrections` / `hard-rules`
 - Entscheidung getroffen → `decision` signal_type
 - Explizit: "speicher das", "remember this" → `explicit-remember`
 - Workflow abgeschlossen → `workflows`
@@ -134,7 +134,7 @@ Reinforcement Formel:
 | `workflows` | Abgeschlossene Workflows + Lösungen |
 | `technical` | Tech-spezifische Learnings |
 | `sales` | Sales/Outreach Learnings |
-| `corrections` | Korrekturen von Safak Tepecik |
+| `corrections` | Korrekturen von Şafak |
 | `general` | Default |
 
 ## AUTO-LEARNING LOOP — Correction Detection

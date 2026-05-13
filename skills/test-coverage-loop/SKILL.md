@@ -6,7 +6,7 @@ description: Dual-Agent Test-Loop für profilfoto-ki.de Payment/Credit-Flow. Wri
 # Test-Coverage-Loop Skill
 
 ## Scope-Lock (Hard Rule)
-Dieser Skill ist exklusiv für **profilfoto-ki.de** (Repo `C:/Users/User/Projects/profilfoto-ki-app-v2/`).
+Dieser Skill ist exklusiv für **profilfoto-ki.de** (Repo `~/Projects/profilfoto-ki-app-v2/`).
 Stack: **Vite + React + Supabase** (NICHT Next.js). Test-Runner: **Vitest + Playwright**.
 
 Andere Domains (ki-automatisieren, st-automatisierung, yapayzekapratik) brauchen eigene Adaption — kein Cross-Domain-Einsatz.
@@ -26,7 +26,7 @@ Blocker die VOR dem ersten Skill-Run geklärt sein müssen:
 2. **Edge-Functions lokal ziehen** via `mcp__supabase__get_edge_function` (Stripe-Webhook, Create-Checkout) → ablegen in `supabase/functions/<slug>/index.ts`
 3. **Test-Tooling installieren:**
    ```bash
-   cd C:/Users/User/Projects/profilfoto-ki-app-v2
+   cd ~/Projects/profilfoto-ki-app-v2
    npm i -D vitest @vitest/ui @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom playwright @playwright/test
    npx playwright install chromium
    ```
@@ -90,7 +90,7 @@ Wenn Reviewer `NEEDS_IMPROVEMENT` schreibt: Writer-Agent neu launchen mit dem RE
 
 ### Schritt 5 — TypeScript-Trockenlauf
 ```bash
-cd C:/Users/User/Projects/profilfoto-ki-app-v2
+cd ~/Projects/profilfoto-ki-app-v2
 npx tsc --noEmit
 ```
 Muss grün sein. Bei Fehler: Writer-Agent mit Errors nachbessern lassen.

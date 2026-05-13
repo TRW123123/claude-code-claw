@@ -16,10 +16,10 @@ description: SEO Full-Stack Plugin fuer profilfoto-ki.de. 4-Stufen-Funnel (Autho
 |---|---|
 | **Domain** | profilfoto-ki.de |
 | **GSC Property** | sc-domain:profilfoto-ki.de |
-| **Repo** | `C:\Users\User\Projects\profilfoto-ki-static` |
+| **Repo** | `~/Projects/profilfoto-ki-static` |
 | **Stack** | Vanilla HTML5, Tailwind CSS, **KEIN Build-Step** (`dist/` = `src/`) |
 | **Hosting** | Netlify (Workspace nanobanana, git push master → auto-deploy) |
-| **Supabase** | NanoBanana (`<SUPABASE_PROJECT_ID>`) |
+| **Supabase** | NanoBanana (`[your-supabase-project-id]`) |
 | **Intent** | B2C, visueller Content, transactional + informational mix |
 | **Sprache** | Deutsch (DACH-Markt) |
 | **Produkt** | Freemium (1 Free Credit watermarked → Stripe Credit-Pakete) |
@@ -157,7 +157,7 @@ Neue Tabelle (siehe `migrations/001_profilfoto_seo_schema.sql`). Nutzung:
 
 ## Migrations
 
-Applied auf NanoBanana (`<SUPABASE_PROJECT_ID>`) am 2026-04-08:
+Applied auf NanoBanana (`[your-supabase-project-id]`) am 2026-04-08:
 - `migrations/001_profilfoto_seo_schema.sql` — webhook_queue + site_audits + gsc_queries Erweiterungen, neue `claw.research_briefs` Tabelle, 4 Views, Trigger
 - `migrations/002_changelog_plugin_artifacts.sql` — 15 Changelog-Eintraege fuer Plugin-Artefakte
 
@@ -171,3 +171,7 @@ Siehe `image-briefs.md`. **Hard Rules:**
 4. **Quality Gate vor jedem Deploy:** Charakter-Konsistenz-Check, Label-Check, Aspect-Ratio 1:1, Datei <500KB, keine AI-Artefakte (6-Finger-Haende, glasige Augen).
 5. **Galerie-Bilder fuer `/ratgeber/coole-profilbilder/`:** 20+ separate Beispielbilder als Asset-Sammlung (offene Topic-File-Task).
 6. **Pipeline:** Persona-Master → Vorher → Nachher (mit Vorher als Reference-Lock) → Split-Layout zusammenbauen → in `dist/images/` ablegen.
+
+
+### KVP Update (2026-05-02)
+- [WIN] Analyse der bestehenden SEO-Performance und Keyword-Daten, um die Strategie von 'mehr Spokes bauen' zu 'Long-Tail-Pipeline skalieren' zu ändern. → Identifizierung von 1.437 Keyword-Gaps und 30 priorisierten Kandidaten mit einem Klick-Potenzial von +1.294/Mo.

@@ -41,9 +41,9 @@ Max 40 Zeichen, kebab-case, domain-scoped:
 
 ### 3. Files schreiben
 
-**Primary:** `C:/Users/User/Claude/sessions/teleport-<YYYY-MM-DD>-<kurztitel>.md`
+**Primary:** `~/Claude/sessions/teleport-<YYYY-MM-DD>-<kurztitel>.md`
 
-**Mirror:** `C:/Users/User/Claude/sessions/last-handoff.md` (überschreibt auto-Version)
+**Mirror:** `~/Claude/sessions/last-handoff.md` (überschreibt auto-Version)
 
 **Template:**
 
@@ -79,9 +79,9 @@ Max 40 Zeichen, kebab-case, domain-scoped:
 <Exakte erste 1-3 Schritte für Nachfolge-Session. Konkret, nicht vage.>
 
 ## Referenzen
-- Topic-Datei: `C:/Users/User/Claude/topics/<relevant>.md`
+- Topic-Datei: `~/Claude/topics/<relevant>.md`
 - Relevante Skills: <Liste>
-- Agent-Log: `C:/Users/User/Claude/sessions/agent-log-<datum>.md`
+- Agent-Log: `~/Claude/sessions/agent-log-<datum>.md`
 ```
 
 ### 4. User informieren
@@ -90,8 +90,8 @@ Exakt ausgeben (keine Prosa drum herum):
 
 ```
 Teleport gespeichert:
-- C:/Users/User/Claude/sessions/teleport-<datum>-<titel>.md
-- C:/Users/User/Claude/sessions/last-handoff.md (mirror)
+- ~/Claude/sessions/teleport-<datum>-<titel>.md
+- ~/Claude/sessions/last-handoff.md (mirror)
 
 Neue Session starten → SessionStart-Hook lädt last-handoff.md automatisch.
 ```
@@ -123,3 +123,7 @@ Bei Konflikt: manueller Teleport > Auto-Handoff (letzter Schreiber gewinnt, und 
 - ❌ Teleport ohne konkrete "Nächste Session — Einstieg"-Zeile → unbrauchbar
 - ❌ Vage Formulierungen ("wir haben an SEO gearbeitet") statt Fakten ("3 Pages in st-automatisierung.de/aios/ optimiert, Commit abc123")
 - ❌ Offene Punkte die schon erledigt wurden rein schreiben
+
+
+### KVP Update (2026-04-30)
+- [WIN] Durchführung eines manuellen Session-Handoffs, um den aktuellen Kontext, Learnings und nächste Schritte für eine neue Session zu speichern. → Handoff-Dateien 'teleport-2026-04-30-ai-ugc-reel039-lessons.md' und 'last-handoff.md' erstellt.

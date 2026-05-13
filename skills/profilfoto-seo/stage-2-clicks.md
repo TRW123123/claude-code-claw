@@ -59,9 +59,9 @@ LIMIT 5;
 **WICHTIG: Vanilla HTML, kein Frontmatter, kein Astro!**
 
 Datei im Repo oeffnen:
-- Homepage: `C:\Users\User\Projects\profilfoto-ki-static\src\index.html`
-- Unterseiten: `C:\Users\User\Projects\profilfoto-ki-static\src\[slug]\index.html`
-- Ratgeber: `C:\Users\User\Projects\profilfoto-ki-static\src\ratgeber\[slug]\index.html`
+- Homepage: `~/Projects/profilfoto-ki-static\src\index.html`
+- Unterseiten: `~/Projects/profilfoto-ki-static\src\[slug]\index.html`
+- Ratgeber: `~/Projects/profilfoto-ki-static\src\ratgeber\[slug]\index.html`
 
 Aus dem `<head>` extrahieren:
 - `<title>...</title>`
@@ -150,7 +150,7 @@ SELECT insert_changelog(
 7. Git Commit + Push (Title/Meta = autonom erlaubt, KEIN Build-Step):
 
 ```bash
-cd "C:/Users/User/Projects/profilfoto-ki-static"
+cd "~/Projects/profilfoto-ki-static"
 git add -A
 git commit -m "seo: CTR-Fix [seite] (Stage 2)"
 git push origin master

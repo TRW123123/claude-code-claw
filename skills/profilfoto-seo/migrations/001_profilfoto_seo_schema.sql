@@ -3,7 +3,7 @@
 -- Diese Datei NICHT erneut ausführen.
 -- =====================================================
 -- Migration: profilfoto-seo Plugin Schema Extensions
--- Target: Supabase NanoBanana (<SUPABASE_PROJECT_ID>)
+-- Target: Supabase NanoBanana ([your-supabase-project-id])
 -- Version: 001
 -- Date: 2026-04-07
 -- Reversible: ja (nur additive Änderungen)

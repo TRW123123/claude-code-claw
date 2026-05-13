@@ -6,7 +6,7 @@ allowed-tools: [Read, Write, WebSearch, Bash]
 
 # CLAW Debate Loop — Multi-Agent Autoresearch Protocol
 
-Equivalent zu: `C:\Users\User\.gemini\antigravity\playground\prograde-planetary\run_fundamental_pseo.py`
+Equivalent zu: `~/.gemini\antigravity\playground\prograde-planetary\run_fundamental_pseo.py`
 CLAW-Version: Laeuft vollstaendig in Claude Code, kein externes Python/Gemini noetig.
 
 ---
@@ -27,7 +27,7 @@ Wenn der User sagt:
 
 ### Setup
 1. **Thema** vom User entgegennehmen
-2. **Output-Verzeichnis** anlegen: `C:\Users\User\Claude\debates\[thema-slug]\`
+2. **Output-Verzeichnis** anlegen: `~/Claude/debates\[thema-slug]\`
 3. **3 Runden** durchfuehren, jede Runde mit allen 3 Agenten
 
 ---
@@ -126,7 +126,7 @@ JUDGE (nach Runde 3):
 ## Output-Dateien (werden automatisch gespeichert)
 
 ```
-C:\Users\User\Claude\debates\[thema-slug]\
+~/Claude/debates\[thema-slug]\
 ├── debate_transcript.md      ← Vollstaendiges Transkript aller Runden
 ├── master_ruleset.md         ← Finales Regelwerk (menschenlesbar)
 └── architecture_rules.json   ← Maschinenlesbare Regeln fuer Build-Prozesse
@@ -169,7 +169,7 @@ Score >= 8 = "APPROVED" → Regeln in relevantes SKILL.md integrieren.
 
 Nach Abschluss einer Debate:
 ```bash
-node C:/Users/User/Claude/scripts/claw-flush.mjs \
+node ~/Claude/scripts/claw-flush.mjs \
   "[Thema]: [Kern-Erkenntnis]" \
   "explicit-remember" \
   "autoresearch-logs" \
