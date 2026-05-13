@@ -283,3 +283,61 @@ Prueft beide und erstellt vergleichenden Report.
 4. **Screenshots zeigen:** Relevante Screenshots im Chat zeigen wenn Probleme gefunden werden
 5. **DACH-Kontext:** Bewertung immer im Kontext des deutschen Mittelstand-Marktes
 6. **Mobile ist Pflicht:** Desktop-only Review ist kein vollstaendiger Review
+
+
+### KVP Update (2026-04-26)
+- [WIN] Überprüfung der Datenschutzbestimmungen und AGB für profilfoto-ki im Hinblick auf geplante Lifecycle-Mails und Double Opt-In. → Detaillierte Status-Checks und rechtliche Einschätzungen geliefert.
+
+
+### KVP Update (2026-04-27)
+- [WIN] Implementierung eines Double Opt-In (DOI) E-Mail/Passwort-Anmelde-Flows parallel zum Google-Login, inklusive Lifecycle-Mails und DSE-Anpassungen. → DOI-Sign-up mit Email/Passwort und Google-Login parallel live; Drei Lifecycle-Mails rechtssicher implementiert; DSE aktualisiert; Supabase-Konfiguration abgeschlossen; Test-Mail erfolgreich versandt.
+
+
+### KVP Update (2026-04-27)
+- [WIN] Behebung von Lokalisierungsfehlern und visuellen Bugs auf der türkischen Landingpage 'oto-galeri-video.netlify.app' basierend auf einem visuellen Site Review. → Hero-Stats-Layout korrigiert, Slab-2- und Slab-4-SVGs lokalisiert, FAQ-Antwort korrigiert, alle deutschen Sektions-IDs in türkische umbenannt, mehrere Deployments erfolgreich durchgeführt.
+
+
+### KVP Update (2026-04-27)
+- [WIN] Behebung eines HTML-Layout-Bugs auf der Homepage und eines CSS-Schriftgrößen-Bugs im Footer. → Homepage-Layout und Footer-Schriftgröße visuell korrigiert.
+
+
+### KVP Update (2026-05-02)
+- [WIN] Vier neue Bilder und ein neuer Tile-Titel wurden in den Code integriert und auf Netlify deployed. → 4 Bilder und 1 Tile-Titel live auf ki-automatisieren.de
+- [WIN] Der 'Entdecke mehr' Button auf der Hero-Sektion wurde hinsichtlich Lesbarkeit und Animation auf Desktop und Mobile optimiert. → Button 'ENTDECKE MEHR' ist konstant voll lesbar, keine Fade-Animation mehr, verbesserte Textdarstellung und sanfter Pfeil-Bounce.
+
+
+### KVP Update (2026-05-05)
+- [WIN] Erstellung und Optimierung von 5 pSEO-Seiten (6-10) mit spezifischen Layout-Identitäten und anschließender Humanizer-Optimierung, Build und visueller Verifikation. → 5 neue pSEO-Seiten deployed, 9/10 Humanizer-Scores ≥82, alle 10 Pages visuell verifiziert.
+
+
+### KVP Update (2026-05-05)
+- [WIN] Visueller Audit der pSEO-Seiten 1-5 von profilfoto-ki.de, inklusive DOM-Inspektion und Screenshot-Analyse, sowie Identifizierung eines kritischen UX-Bugs. → Site-Review-Report erstellt, kritischer UX-Bug identifiziert, 5 Pages visuell verifiziert.
+
+
+### KVP Update (2026-05-06)
+- [WIN] Eine bestehende Webseite wurde komplett überarbeitet, um visuelle Fehler zu beheben, die Benutzerfreundlichkeit zu verbessern und Inhalte für Laien verständlicher zu machen. → Use-Case-Atlas v3 fertiggestellt und verifiziert (Desktop + Mobile + alle 8 Sektionen).
+
+
+### KVP Update (2026-05-06)
+- [WIN] Ein vollständiges paranoides Audit der Website profilfoto-ki.de wurde durchgeführt, um Sicherheitslücken, rechtliche Risiken und Marketing-Claims zu überprüfen. → Detaillierter Audit-Bericht mit kritischen und unkritischen Befunden.
+
+
+### KVP Update (2026-05-08)
+- [WIN] Mehrere kleine Textanpassungen (Klammer entfernen, Autorennamen, Endzeit) auf der toolfestival.de Website wurden umgesetzt und deployed. → 3 Deploys live: `69fa4a73`, `69fa4bc3`, `69fa4c5a` mit verifizierten Änderungen.
+
+
+### KVP Update (2026-05-08)
+- [WIN] Analyse der Impressionen und Klicks, Identifizierung von Seiten mit hohem Optimierungspotenzial (hohe Impressionen, 0 Klicks) und Anpassung von Title/Meta-Descriptions, um die CTR zu verbessern. → CTR-Fixes für 16 Seiten implementiert und deployed, Preis aus Meta-Descriptions entfernt, Keywords und Freemium-Hooks hinzugefügt.
+- [WIN] Identifizierung von nicht-indexierten Seiten durch Vergleich von Repo und GSC-Daten und Einreichung dieser Seiten zur Indexierung über Google Indexing API und manuell über GSC URL-Prüfung. → 13 URLs erfolgreich via API und manuell in GSC zur Indexierung eingereicht.
+
+
+### KVP Update (2026-05-08)
+- [WIN] Verbesserung der Content-Tiefe und interner Verlinkung für die Seite `/ratgeber/coole-profilbilder-whatsapp/`. → Wortzahl von 1342 auf 1557 erhöht, 2 interne Links hinzugefügt
+
+
+### KVP Update (2026-05-08)
+- [WIN] Paranoides Audit der autohaus-video.de Website gegen Google for Startups Guidelines, inklusive Fehlerbehebung für Hero-Sichtbarkeit. → Audit-Ergebnis: PASS, Hero-Content sofort sichtbar, alle Google-Anforderungen erfüllt.
+
+
+### KVP Update (2026-05-11)
+- [WIN] Identified and fixed mobile layout issues on the `tolga.html` pitch page for Urcu Grup, then deployed and verified the changes. → Mobile renders perfectly on 390px viewport (iPhone), with single-column hero, 2-column stats bar, single-column jump nav, and clean project sections. No horizontal overflow or clipped text.

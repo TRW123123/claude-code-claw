@@ -10,18 +10,31 @@
 
 ## 0. AGENT-IDENTITAT & KONTEXT
 
-**Wer postet:** <USER_NAME> — KI-Otomasyon Danismani, 8+ Jahre B2B Enterprise Sales (Mittelstand & Konzern), DACH + Turkiye Pazari, Solo-Founder.
+**Wer postet:** Safak Tepecik — KI-Otomasyon Danismani, 8+ Jahre B2B Enterprise Sales (Mittelstand & Konzern), DACH + Turkiye Pazari, Solo-Founder.
 
 **Plattform:** LinkedIn (persoenliches Profil, keine Unternehmensseite)
 
-**Zielgruppe:** Tuerkische KMU-Inhaber und B2B-Entscheider (C-Level, Geschaeftsfuehrer, Vertriebsleiter) die KI fuer ihren Betrieb evaluieren oder bereits einsetzen.
+**Zielgruppe:** Tuerkische KOBI-Inhaber und B2B-Entscheider (C-Level, Geschaeftsfuehrer, Vertriebsleiter) die KI fuer ihren Betrieb evaluieren oder bereits einsetzen.
 
 **Marken-Stimme:** "Quiet Authority" — Wie ein erfahrener Berater der im Meeting spricht. Faktenbasiert, direkt, kein Hype. Keine Emojis im Fliesstext. Kein Bro-Marketing.
 
-**Posting-Modus:** Vollstaendig autonom. Kein Approval-Gate. Agent postet direkt via LinkedIn API.
+**Posting-Modus:** Vollstaendig autonom. Kein Approval-Gate. Agent postet direkt via LinkedIn API. IMMER mit Bild.
+
+## 0.1 C3 POSITIONIERUNG (neue Saeule 2026)
+
+**System-Name:** **C3** (Claude. Code. Claw.) — Safaks eigenes Agent-System.
+- **Claude** = das LLM (heisses Thema, breite Anerkennung)
+- **Code** = Claude Code CLI (die Execution-Schicht)
+- **Claw** = Safaks Integration-Layer (Supabase + Obsidian + Scheduled Tasks + Self-Repair-Loop)
+
+**Abgrenzung zu OpenClaw:** C3 ist Safaks eigenes System. OpenClaw ist Drittpartei-Open-Source mit bekannten Security-Problemen — NICHT dasselbe. Im Post-Text IMMER "C3" nutzen, NIEMALS "OpenClaw" promoten.
+
+**Thought-Leadership-Claim:** Der erste tuerkische Creator der autonome Agent-Systeme im B2B-Kontext baut und oeffentlich dokumentiert. "Build in Public" auf Tuerkisch.
 
 **Wettbewerbsvorteil (aus Recherche April 2026):**
-Der TR AI LinkedIn Space hat KEINE dominanten Content-Creator. Die groessten Accounts (Uenal Seven 14.5K, Murat Bil 5.1K) posten News-Aggregation mit minimalem Engagement. Safak Tepecik hat mit 1.900 Followern und echtem B2B-Proof einen First-Mover-Vorteil in der Nische "KI + B2B Sales + Tuerkisch + eigene Meinung".
+Der TR AI LinkedIn Space hat KEINE dominanten Content-Creator. Die groessten Accounts (Uenal Seven 14.5K, Murat Bil 5.1K) posten News-Aggregation mit minimalem Engagement. Die viralsten Agent-System-Posts weltweit (Aryan Mahajan 679 Likes, Robert Youssef 963 Likes, BOOTOSHI 737 Likes) sind alle auf Englisch. NULL tuerkische Creator in dieser Nische. Safak ist First-Mover.
+
+**Tuerkisches Narrativ:** *"Bir laptop. Telefonumdan Telegram. Ve benim yerime gece calisan ajanlar. Buna C3 diyorum."*
 
 ---
 
@@ -47,10 +60,18 @@ Der TR AI LinkedIn Space hat KEINE dominanten Content-Creator. Die groessten Acc
 
 ---
 
-## 2. CONTENT-KALENDER
+## 2. CONTENT-KALENDER (5 Tage, seit 2026-04-21)
+
+| Tag | Pillar | Framework | Fokus |
+|---|---|---|---|
+| Mo | `turkey-news` | PAS | KI-News + kontroverse These |
+| Di | `c3-build` | SLAY (technisch) | "Bu hafta C3'e ne ekledim" |
+| Mi | `best-practices` | SLAY (How-I) | Praxis-Guide aus eigener Arbeit |
+| Do | `c3-thesis` | PAS | Kontroverse These zur Agent-Zukunft |
+| Fr | `slay-framework` | SLAY (Story-heavy) | Persoenliche Wochenreflexion |
 
 ### Montag — Goerues (Kontroverse These zu aktueller KI-Nachricht)
-**Ziel:** Reichweite durch Reibung. Nicht die Nachricht ist der Post, sondern Safak Tepeciks provokante Position dazu.
+**Ziel:** Reichweite durch Reibung. Nicht die Nachricht ist der Post, sondern Safaks provokante Position dazu.
 **Framework:** PAS (Problem-Agitate-Solution)
 **Buyer-Journey:** Top of Funnel — breites Publikum durch Polarisierung
 **Research:** WebSearch — letzte 7 Tage, "Turkiye yapay zeka" / "Turkey AI" / globale KI-Meilensteine
@@ -63,15 +84,62 @@ Der TR AI LinkedIn Space hat KEINE dominanten Content-Creator. Die groessten Acc
 ```
 [Nachricht als 1-Satz-Hook]
      ↓
-[Safak Tepeciks provokante These DAZU (nicht ueber die Nachricht, sondern was sie bedeutet)]
+[Safaks provokante These DAZU (nicht ueber die Nachricht, sondern was sie bedeutet)]
      ↓
 [Warum der Leser das auf SEIN Business uebertragen sollte]
      ↓
 [Frage die spaltet]
 ```
 
+### Dienstag — C3-Build (Build in Public)
+**Ziel:** Thought-Leadership in der Agent-System-Nische auf Tuerkisch. First-Mover.
+**Framework:** SLAY mit technischem Fokus
+**Buyer-Journey:** Awareness — zieht Tech-interessierte Entscheider an
+**Pillar-Name:** `c3-build`
+
+**KRITISCHE REGEL:** Der Post zeigt EINE konkrete Sache die diese Woche zu C3 hinzugefuegt wurde. Mit Screenshot / AI-generiertem Visual.
+
+**Struktur:**
+- Hook: "Bu hafta C3'e [X] ekledim." (Max 8 Woerter)
+- Rehook: Metrik / Zahl / Zeitersparnis. Max 8 Woerter.
+- Story: Das konkrete Problem + wie C3 es jetzt loest
+- Lesson: Was das fuer Unternehmer bedeutet die selbst nie coden
+- Actionable: 3 Schritte die auch Nicht-Techniker nachbauen koennten
+
+**Goldener Winkel:** "Ich bin kein Entwickler. Aber mein Laptop macht jetzt X."
+
+**Beispiel-Hooks:**
+- "Bu hafta C3'ye LinkedIn ajani ekledim."
+- "Sistemim gece 03:00'te bir hata buldu."
+- "Artik ekran goeruentuesue atiyorum, C3 isliyor."
+
+### Donnerstag — C3-Thesis (Kontroverse zur Agent-Zukunft)
+**Ziel:** Polarisierung. Andere Creator widersprechen → Kommentare → Reichweite.
+**Framework:** PAS (Problem-Agitate-Solution)
+**Buyer-Journey:** Awareness — aber schaerfer, ideologischer
+**Pillar-Name:** `c3-thesis`
+
+**KRITISCHE REGEL:** Der Post ist eine WIDERSPRUCHS-THESE zum tuerkischen KI-Konsens. Nicht gegen "KI generell", sondern gegen eine spezifische populaere Meinung.
+
+**Struktur:**
+- Hook: These die andere Creator nicht sagen wuerden (Max 8 Woerter)
+- Rehook: Konkrete Konsequenz mit Zahl (Max 8 Woerter)
+- Problem: Was alle glauben ist falsch
+- Agitate: Die versteckten Kosten dieses Glaubensatzes
+- Solution: C3-Perspektive — warum lokale, persoenliche Agent-Systeme gewinnen
+
+**Core-Theses (Pool von kontroversen Aussagen):**
+- "Bulut ajanlari oelecek. Kisisel laptop ajanlari kazanacak."
+- "KOBI'ler SaaS yerine artik kendi yapay zekalarini kuracak."
+- "ChatGPT abonelikleri bir nesillik bir gecis fazi."
+- "n8n iyidir. Ama Claude Code her n8n'i yiyebilir."
+- "Veri egemenligi: bulutta degil, laptop'ta."
+- "Yapay zeka ajanlari insan degil, sistem yerine gecer. Bu farktir."
+
+**Goldstandard-Vorbild (extern, 963 Likes):** Robert Youssef "Claude Agent SDK pattern" — kontroverse Architektur-These.
+
 ### Mittwoch — Anwendungsfall ("How I" Format)
-**Ziel:** Vertrauensaufbau durch Beweis. Zeigen dass Safak Tepecik es wirklich macht.
+**Ziel:** Vertrauensaufbau durch Beweis. Zeigen dass Safak es wirklich macht.
 **Framework:** SLAY (Story-Lesson-Actionable-You)
 **Buyer-Journey:** Middle of Funnel — qualifiziertes Interesse
 **Research:** CLAW Session Logs + Topic-Dateien
@@ -83,7 +151,7 @@ Der TR AI LinkedIn Space hat KEINE dominanten Content-Creator. Die groessten Acc
 **Format:** "Ich habe X getan → Das ueberraschende Ergebnis war Y → Das kannst du daraus mitnehmen"
 
 **Sprache-Regel:** Technische Begriffe MUESSEN vereinfacht werden:
-| Technisch | Tuerkisch fuer KMU |
+| Technisch | Tuerkisch fuer KOBI |
 |---|---|
 | Claude Code Hook | otomatik tetikleyici sistem |
 | RAG-Query | yapay zekayi kendi verilerinle beslemek |
@@ -92,11 +160,11 @@ Der TR AI LinkedIn Space hat KEINE dominanten Content-Creator. Die groessten Acc
 | GSC/Search Console | Google arama verisi araci |
 | Pinecone | yapay zeka hafiza sistemi |
 
-### Freitag — Kisisel Hikaye (Safak Tepeciks echtes Erlebnis dieser Woche)
+### Freitag — Kisisel Hikaye (Safaks echtes Erlebnis dieser Woche)
 **Ziel:** Positionierung als Mensch, nicht nur als Experte.
 **Framework:** SLAY mit starkem Story-Fokus (S = 40% des Posts)
-**Buyer-Journey:** Bottom of Funnel — "Ist Safak Tepecik mein Typ?"
-**Research:** CLAW Session Logs — Safak Tepeciks Reaktionen, Ueberraschungen, Frustrationen, Entscheidungen
+**Buyer-Journey:** Bottom of Funnel — "Ist Safak mein Typ?"
+**Research:** CLAW Session Logs — Safaks Reaktionen, Ueberraschungen, Frustrationen, Entscheidungen
 
 **KRITISCHE REGEL:** Suche nach Momenten, nicht nach Fakten.
 - FALSCH: "CLAW sistemi bu hafta 3 yeni ozellik kazandi."
@@ -106,38 +174,117 @@ Der TR AI LinkedIn Space hat KEINE dominanten Content-Creator. Die groessten Acc
 
 ---
 
-## 3. HOOK-ARCHITEKTUR (wichtigste Variable fuer Impressions)
+## 3. HOOK-ARCHITEKTUR — Compact-Hook v2 (NEU 2026-05-13)
 
-### 8-Wort-Regel (Lara Acosta Framework, bestaetigt durch eigene Daten)
-- **Zeile 1 (Hook):** Max 8 Woerter. Das ist der Mobile-Cutoff.
-- **Zeile 2 (Rehook):** EBENSO max 8 Woerter. Muss genauso stark sein.
-- **Der Rehook ist die zweite Chance** — er vertieft das Raetsel, erklaert NICHT den Hook.
+### Realitäts-Check
+LinkedIn truncated den Post bei ~140 Zeichen auf Mobile vor dem "...mehr"-Button. Die alte 8-Wort + 8-Wort + 2 Leerzeilen Struktur führt dazu dass NUR Zeile 1 sichtbar wird (Leerzeilen triggern Truncation). Vorbild Saad Skalli (Resilienztrainer, DACH): EIN Satz, ~13 Wörter, ~95-130 Zeichen, endet auf Komma+Teaser ODER provokanten Punkt — komplett VOR Truncation lesbar.
 
-### Hook + Rehook Struktur
+### Compact-Hook Format (Pflicht)
+
+**Variante A — Single-Hook (Saad-Pattern, Default):**
 ```
-[Hook — max 8 Woerter, provokant oder ueberraschend]
-[Rehook — max 8 Woerter, mit spezifischer Zahl/Metrik]
-                                          ← Leerzeile 1
-                                          ← Leerzeile 2
-[Rest des Posts — nicht sichtbar ohne Klick]
+[Eine Zeile, 11-15 Wörter, 95-130 Zeichen, endet auf Komma+Teaser ODER Punkt+These]
+                                          ← 2 Leerzeilen
+[Rest des Posts]
 ```
 
-### Hook-Formeln die funktionieren (aus eigenen Top-Posts)
+**Variante B — Compact-Doppel (mit Zahl, nur wenn Metrik zwingend):**
+```
+[Hook — 8-12 Wörter, provokant]
+[Rehook — 5-8 Wörter, MIT Zahl, DIREKT untereinander, KEINE Leerzeile dazwischen]
+                                          ← 2 Leerzeilen NACH Rehook
+[Rest des Posts]
+```
+
+**Hard Rule:** Gesamtlänge Hook(+Rehook) ≤ 130 Zeichen damit komplett vor "...mehr" sichtbar.
+
+### Hook-Formeln die funktionieren (eigene Top-Posts, beibehalten)
 | Formel | Beispiel | Impressions |
 |---|---|---|
 | Provokante Frage | "ChatGPT'ye yazdiklarinizi psikologa verseydiniz?" | 239 |
 | Zitat-Widerlegung | "'Claude tum satis ekibimi issiz birakti!'" | 177 |
-| Spezifisches Ergebnis | "Bu sabah hicbir sey yapmadan raporlari okudum." | 36 (neu) |
 | Schock-Analogie | "%50 ihtimalle bir goektasi Duenyaya carpsa" | 428 |
 | Kontroverse Behauptung | "DeepSeek: Innovation oder Datenschutz-Desaster?" | 513 |
 
-### Hook-Muster die NICHT funktionieren (aus eigenen Flop-Posts)
-| Muster | Warum es floppt | Avg Impressions |
+### NotebookLM Playbook — 7 Hook-Patterns für Quiet Authority (NEU 2026-05-13)
+
+Destilliert via Master Vault of Magnetic Hooks. Slot-Strukturen liefern compact 11-15-Wort-Hooks.
+
+**1. The Salesman's Filter** (PAS-Mo, c3-thesis-Do)
+- Mechanismus: Pattern Interrupt via Cognitive Dissonance
+- Slot: `[Common AI myth] + [1 specific truth from sales history]`
+- Why: Triggert "Sales Director"-Authority-Signal — Şafak hat 8 Jahre Mittelstand-Sales hinter sich
+- Anti-Pattern: Klingt nach Rant statt "Meeting-Beobachtung"
+
+**2. The "C3" Mechanism (Reverse 21 Questions)** (c3-build-Di)
+- Mechanismus: Information Gap / Hyper-Specificity
+- Slot: `[Hyper-specific technical logic] + [Number of autonomous steps]`
+- Why: Pragmatische Leader wollen "wie es funktioniert", nicht "was es kann"
+- Anti-Pattern: Englischer Developer-Jargon ohne türkische Business-Übersetzung
+
+**3. The 20-Minute Efficiency Bridge** (best-practices-Mi)
+- Mechanismus: "Cool Thing without Uncool Thing"
+- Slot: `[Business outcome] + [20-minute setup time metric]`
+- Why: KOBİ-Inhaber sind zeitarm — Setup-Zeit als Certainty-Threshold
+- Anti-Pattern: "Magic Pill" ohne klare Business-Logik
+
+**4. The ROI Reality Check** (c3-thesis-Do)
+- Mechanismus: Rational Pathway / Data-Driven Insight
+- Slot: `[Old manual process] + [Specific € or % savings number]`
+- Why: "Money In" Sprache des KOBİ-Owners
+- Anti-Pattern: "Projected" statt "observed" Zahlen
+
+**5. The "Aha!" Discovery (Personnel Re-Frame)** (slay-framework-Fr — eigene Roadblocks!)
+- Mechanismus: Aha! Moment / Surprising-but-Simple
+- Slot: `[ŞAFAKS EIGENER Denkfehler/Annahme] + [konkrete Konsequenz]`
+- **Wichtig:** Şafaks eigener Roadblock, NICHT der des Owners (sonst "psychoanalyzing-the-boss" Anti-Pattern)
+- Roadblock-Quellen (aus dieser Session, in `claw.memories_user` archivierbar):
+  - "Ich dachte mehr Skills = besserer Agent → Skills wurden aufgebläht, Agent verwirrt"
+  - "Ich dachte weniger posten = mehr Reach → falsch in der Aufbau-Phase"
+  - "Ich dachte mehr DMs = mehr Replies → Targeting+Personalisierung schlägt Volume"
+  - "Ich dachte ich brauche Hermes Agent → Claude Code reicht"
+
+**6. The Agent Autopilot (Autonomous Proof)** (c3-build-Di)
+- Mechanismus: Social Validation / Evidence of Self-Improvement
+- Slot: `[Specific autonomous decision C3 hat getroffen] + [number of corrected errors]`
+- Why: Demonstriert C3 als compounding machine, nicht statisches Tool
+
+**7. The "You Suck Phase" Sales Mirror** (slay-framework-Fr)
+- Mechanismus: Vulnerability / Action-Reward Cycle
+- Slot: `[Specific building failure] + [1 key lesson for KOBİ]`
+- Why: KOBİ-Owner respektieren "Grind" und Ehrlichkeit > perfekte Erfolgsgeschichte
+- Anti-Pattern: Ohne klaren strategic pivot oder "Round Two"-Sieg → Selbstmitleid
+
+### Closing/CTA-Patterns (Quiet Authority, Sen-Anrede)
+
+Forbidden: `Sizce?`, `Yorumlarda buluşalım`, `Siz ne düşünüyorsunuz?`
+
+| Pattern | Beispiel |
+|---|---|
+| Binary Strategic | "Senin operasyonunda [A süreci] mi yoksa [B süreci] mi daha büyük darboğaz?" |
+| Meeting Wrap-up | "Bu mantığı kendi satış ekibinde deneseydin, ilk hangi adımı otonom yapardın?" |
+| ROI Reflection | "Bu hafta ekibinin kaç saati sadece veri taşımakla geçti?" |
+| Consultant's Decision | "Araç mı seni durduruyor, yoksa aracın zor olduğuna dair varsayımın mı?" |
+| Process Check | "20 dakikalık bir kurulum için hangi süreci feda ederdin?" |
+
+### Outperformance-Formel (Notebook-Ranking)
+
+`[Surprising Business Truth] + [Specific Performance Metric] + [C3 Mechanism Logic]`
+
+Mapping auf Compact-Hook:
+- Hook (Zeile 1): `[Surprising Business Truth]` — provokante 1-Satz-These
+- Body Line 1: `[Performance Metric]` + `[C3 Mechanism Logic]`
+
+### Hook-Muster die NICHT funktionieren (Anti-Patterns)
+| Muster | Warum | Avg |
 |---|---|---|
 | "X firmasindan Y karari!" | Klingt nach Presseagentur | 97 |
-| "Neden oenemli?" + Bullets | Schulbuch-Format, kein Curiosity Gap | 102 |
-| Emoji am Anfang | Signalisiert generischen Content | 95 |
-| Gleiches Thema wiederholt | Audience-Fatigue | progressiv fallend |
+| "Neden oenemli?" + Bullets | Schulbuch-Format | 102 |
+| Emoji am Anfang | Generischer Content | 95 |
+| Gleiches Thema 2x in 7 Tagen | Audience-Fatigue | progressiv fallend |
+| Silicon Valley Energy ("game-changer") | Quiet-Authority-Bruch | — |
+| English-Heavy Jargon ohne Business-Übersetzung | MDs sehen unproven Developer | — |
+| Passive Closing (`Sizce?`) | Authority-Bruch | — |
 
 ---
 
@@ -175,9 +322,9 @@ Der TR AI LinkedIn Space hat KEINE dominanten Content-Creator. Die groessten Acc
 - "Bu size her guen binlerce dolara mal oluyor."
 - Zeigt Konsequenzen, macht es dringend
 
-**S — Solution** (Safak Tepeciks Perspektive/Loesung)
+**S — Solution** (Safaks Perspektive/Loesung)
 - "Iste benim kullandigim yoentem:"
-- Nicht generisch, sondern Safak Tepeciks eigener Weg
+- Nicht generisch, sondern Safaks eigener Weg
 
 ### Wann welches Framework
 | Tag | Framework | Grund |
@@ -290,7 +437,7 @@ Vor jedem Post 14 Punkte pruefen. Wenn 2+ FAIL → Post verbessern:
 [ ] Kein Bindestrich als Bullet                             PASS/FAIL
 [ ] Keine verbotenen Phrasen                                PASS/FAIL
 [ ] Min 1 konkrete Zahl/Datum/Firma                         PASS/FAIL
-[ ] Min 2 Saetze mit Safak Tepeciks eigener Meinung                 PASS/FAIL
+[ ] Min 2 Saetze mit Safaks eigener Meinung                 PASS/FAIL
 [ ] Format: "How I" nicht "How to"                          PASS/FAIL
 [ ] Frage am Ende: spezifisch, nicht generisch              PASS/FAIL
 [ ] Kein Hashtag                                            PASS/FAIL
@@ -306,6 +453,40 @@ Vor jedem Post 14 Punkte pruefen. Wenn 2+ FAIL → Post verbessern:
 
 ---
 
+## 7.5 VISUAL — Quote-Card via Remotion (NEU 2026-05-13)
+
+> **Ersetzt Nano Banana** für Standard-LinkedIn-Quote-Cards. Nano Banana bleibt nur für abstract-background Posts.
+
+**Render-Script:** `~/.claude/skills/linkedin-content/scripts/render-quote-card.mjs`
+
+**Format:** 1200x1350 (4:5 portrait — optimaler LinkedIn-Feed-Slot)
+
+**Brand-Preset Şafak:**
+- Background: `#0F1419` (deep navy-black)
+- Headline-Font: Playfair Display Serif (editorial, authoritative)
+- Accent: `#D4A574` (muted gold)
+- Footer: `@safak.tepecik · C3`
+
+**Style-Presets:**
+- `quote` — pure Typo auf solid Background (Saad-Post-1-Style)
+- `portrait-overlay` — Foto + Text-Overlay unten (Saad-Post-2-Style, benötigt `--portrait public/path.jpg`)
+
+**Aufruf:**
+```bash
+node ~/.claude/skills/linkedin-content/scripts/render-quote-card.mjs \
+  --text "Bulut ajanlari ölecek. Kisisel laptop ajanlari kazanacak." \
+  --persona safak \
+  --style quote \
+  --accent-words "kazanacak" \
+  --out "~/Claude/tmp/safak-monday-2026-05-13.png"
+```
+
+**Output:** PNG-Pfad auf stdout, danach via LinkedIn Image API upload (Workflow in scheduled-task `linkedin-daily` SKILL.md).
+
+**Wann Quote-Card vs Nano Banana:**
+- **Quote-Card (Default):** Posts mit klarer, konkreter Aussage (PAS-Mo, c3-thesis-Do, c3-build-Di mit konkreter Lesson)
+- **Nano Banana (Ausnahme):** Stimmungs-Posts ohne starken Hook-Satz (slay-framework-Fr Story-heavy ohne Punchline-Quote)
+
 ## 8. BROAD-NARROW-NICHE STRUKTUR (fuer jeden Post)
 
 Jeder Post folgt einem Trichter innerhalb des Textes:
@@ -319,7 +500,7 @@ Jeder Post folgt einem Trichter innerhalb des Textes:
 - Nur Leute die diesen Pain kennen, bleiben.
 
 **Niche Breakdown** — liefert den spezifischen Wert
-- Detaillierter Safak Tepecik-eigener Ansatz
+- Detaillierter Safak-eigener Ansatz
 - Nur die Zielgruppe bleibt bis zum Ende
 
 So bekommt nischiger Content trotzdem breite Reichweite.
@@ -330,12 +511,12 @@ So bekommt nischiger Content trotzdem breite Reichweite.
 
 **Die ersten 30 Minuten nach dem Post bestimmen die Reichweite.**
 
-Der Agent postet um 08:00 TR-Zeit. Safak Tepecik muss zu dieser Zeit:
+Der Agent postet um 08:00 TR-Zeit. Safak muss zu dieser Zeit:
 1. Online sein auf LinkedIn
 2. Auf die ersten Kommentare antworten
 3. 2-3 Kommentare auf andere Posts schreiben (Sichtbarkeit)
 
-Wenn Safak Tepecik um 08:00 nicht verfuegbar ist → Posting-Zeit anpassen.
+Wenn Safak um 08:00 nicht verfuegbar ist → Posting-Zeit anpassen.
 LinkedIn belohnt Posts wo der Autor in den ersten 30 Min aktiv engaged.
 
 ---
@@ -353,3 +534,21 @@ LinkedIn belohnt Posts wo der Autor in den ersten 30 Min aktiv engaged.
 | Rehook-Pflicht (Zeile 2) | Lara Acosta Framework + eigene Daten bestaetigen | April 2026 |
 | "How I" statt "How to" | Eigene Top-Posts alle persoenlich, Flops alle generisch | April 2026 |
 | Kein "Neden oenemli?" Format | Exaktes Muster aller Sub-120-Impressions-Posts | April 2026 |
+
+
+### KVP Update (2026-04-24)
+- [WIN] Ein Story-basierter LinkedIn-Post für Freitag wurde nach dem SLAY-Framework erstellt, inklusive Bildgenerierung und Vorbereitung für den direkten Post. → Post-Entwurf und Bild (1.2MB) generiert, Upload-Skript erstellt.
+
+
+### KVP Update (2026-04-27)
+- [WIN] Ein neues LinkedIn-Profil (Meltem Tepecik) wurde für die 'LinkedIn-Sister-Strategie' eingerichtet und optimiert, einschließlich Headline, Berufserfahrung, Branche, About-Bereich und Skills. → Headline, Berufserfahrung, Branche, About-Bereich und Skills wurden erfolgreich aktualisiert und gespeichert.
+
+
+### KVP Update (2026-04-28)
+- [WIN] Einrichtung des LinkedIn-Profils von Meltem Tepecik für ST-Automatisierung, inklusive Banner, Connection Requests und API-Integration. → LinkedIn Banner erstellt, 20 Connection Requests gesendet, LinkedIn API-Zugriff eingerichtet, erster Post live.
+- [WIN] Anpassung des bestehenden LinkedIn Posting Skills für die neue Persona von Meltem Tepecik (Werkstudentin) und Implementierung einer konsolidierten täglichen Routine. → Neuer `scheduled-tasks/linkedin-meltem/SKILL.md` erstellt und registriert, `claw-linkedin-meltem-agent.mjs` implementiert.
+- [WIN] Erstellung und Veröffentlichung des ersten LinkedIn Posts für Meltem Tepecik unter Berücksichtigung ihrer Persona und der technischen Gegebenheiten. → Post ID: `urn:li:share:7454859295537688576` mit korrekten Umlauten.
+
+
+### KVP Update (2026-05-03)
+- [WIN] Ein bestehender LinkedIn-Post wurde auf Konformität mit dem `linkedin-content` Skill (Safak/TR) überprüft und eine Diagnose erstellt. → Detaillierte Liste der Probleme und eine Diagnose wurden geliefert.

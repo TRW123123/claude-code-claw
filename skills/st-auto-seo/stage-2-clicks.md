@@ -80,7 +80,7 @@ LIMIT 5;
 
 ### Schritt 4: Aktuellen Title + Meta lesen
 
-Datei oeffnen: `C:\Users\User\Projects\strategie-beratung\src\pages\l\[slug]\index.astro`
+Datei oeffnen: `~/Projects/strategie-beratung\src\pages\l\[slug]\index.astro`
 Frontmatter `title` und `description` extrahieren.
 
 ### Schritt 5: SERP Analyse fuer den Top-Query

@@ -4,7 +4,7 @@
 
 ## INFRASTRUKTUR
 
-- **Bot:** grammY (Node.js) — `C:\Users\User\Claude\telegram\`
+- **Bot:** grammY (Node.js) — `~/Claude/telegram\`
 - **History:** Supabase `claw.conversations` (letzte 20 Messages als Kontext)
 - **Security:** Nur TELEGRAM_AUTHORIZED_ID kann interagieren
 - **Claude-Aufruf:** `claude -p "..."` (non-interactive mode)
@@ -12,7 +12,7 @@
 ## STARTEN
 
 ```bash
-cd C:\Users\User\Claude\telegram
+cd ~/Claude/telegram
 npm install       # einmalig
 npm start         # Bot läuft, wartet auf Nachrichten
 ```
@@ -31,11 +31,11 @@ npm start         # Bot läuft, wartet auf Nachrichten
 
 Letzte 20 Nachrichten werden als Kontext injiziert:
 ```
-Safak Tepecik: erste Nachricht
+Şafak: erste Nachricht
 CLAW: erste Antwort
-Safak Tepecik: zweite Nachricht
+Şafak: zweite Nachricht
 ...
-Safak Tepecik: [aktuelle Nachricht]
+Şafak: [aktuelle Nachricht]
 ```
 
 ## STARTUP-POLLER

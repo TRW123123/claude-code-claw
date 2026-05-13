@@ -15,8 +15,8 @@ allowed-tools: [Read, Glob, Grep]
 
 ### Schritt 1: Alle Skills inventarisieren
 Scanne diese Verzeichnisse:
-- `C:\Users\User\.claude\skills\*\SKILL.md` (globale Skills)
-- `C:\Users\User\.claude\scheduled-tasks\*\SKILL.md` (Scheduled Tasks)
+- `~/.claude/skills\*\SKILL.md` (globale Skills)
+- `~/.claude/scheduled-tasks\*\SKILL.md` (Scheduled Tasks)
 
 Fuer jeden Skill auslesen:
 - `name` aus Frontmatter

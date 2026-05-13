@@ -19,7 +19,7 @@ Wenn der User sagt:
 |---|---|---|
 | `domain` | meinedomain.de | ✅ |
 | `projektName` | mein-projekt | ✅ (kebab-case, wird für Ordner/Dateien verwendet) |
-| `repo` | C:\Users\User\Projects\mein-repo | ✅ |
+| `repo` | ~/Projects/mein-repo | ✅ |
 | `stack` | Astro 4, Tailwind 3, Netlify | ✅ |
 | `branch` | master | ✅ (Default: master) |
 | `beschreibung` | Was die Seite ist, Zielgruppe, USP | ✅ (1-2 Sätze) |
@@ -31,15 +31,15 @@ Wenn Infos fehlen → fragen, nicht raten.
 
 ### Schritt 1: Workspace-Ordner + CLAUDE.md erstellen
 
-Erstelle `C:\Users\User\Claude\{projektName}\CLAUDE.md`:
+Erstelle `~/Claude/{projektName}\CLAUDE.md`:
 
 ```markdown
 # {domain} — Projekt-Kontext
 
 ## Boot-Sequenz
-1. Lies zuerst die globale Config: `C:\Users\User\Claude\MASTER.md`
-2. Lies `C:\Users\User\Claude\SOUL.md`
-3. Lies die Topic-Datei: `C:\Users\User\Claude\topics\{projektName}.md`
+1. Lies zuerst die globale Config: `~/Claude/MASTER.md`
+2. Lies `~/Claude/SOUL.md`
+3. Lies die Topic-Datei: `~/Claude/topics\{projektName}.md`
 
 ## Projekt
 - **Domain:** {domain}
@@ -64,7 +64,7 @@ Siehe ki-automatisieren CLAUDE.md für Ablauf-Dokumentation — gleiches Pattern
 
 ### Schritt 2: Topic-Datei erstellen
 
-Erstelle `C:\Users\User\Claude\topics\{projektName}.md`:
+Erstelle `~/Claude/topics\{projektName}.md`:
 
 ```markdown
 # {domain}
@@ -93,12 +93,12 @@ Erstelle `C:\Users\User\Claude\topics\{projektName}.md`:
 
 Kopiere das Pattern von `claw-agent-st-automatisierung.mjs` und passe an:
 
-Erstelle `C:\Users\User\Claude\scripts\claw-agent-{projektName}.mjs`:
+Erstelle `~/Claude/scripts\claw-agent-{projektName}.mjs`:
 
 Wichtige Anpassungen:
 - `DOMAIN = '{domain}'`
-- `TOPIC_FILE = 'C:/Users/User/Claude/topics/{projektName}.md'`
-- `LOG_FILE = 'C:/Users/User/Claude/scripts/claw-agent-{projektName}.log'`
+- `TOPIC_FILE = '~/Claude/topics/{projektName}.md'`
+- `LOG_FILE = '~/Claude/scripts/claw-agent-{projektName}.log'`
 - `SESSIONS_DIR` Summary-Prefix: `daily-{projektName}-`
 - Prompt-Positionierung anpassen basierend auf `beschreibung`
 - KEYWORD_FILE nur wenn vorhanden, sonst weglassen
@@ -117,7 +117,7 @@ ON CONFLICT (name) DO UPDATE SET active = true, updated_at = now();
 
 ### Schritt 5: Session Processor Pfad hinzufügen
 
-In `C:\Users\User\Claude\scripts\claw-session-processor.mjs`:
+In `~/Claude/scripts\claw-session-processor.mjs`:
 - `PROJECT_DIRS` Array um `'C--Users-User-Claude-{projektName}'` erweitern
 - `TOPIC_FILES` Mapping um relevante Keywords erweitern
 
@@ -139,7 +139,7 @@ CLAW kann das NICHT automatisch — der User muss:
 1. Task Scheduler öffnen
 2. Neuen Task erstellen: `CLAW-Agent-{projektName}`
 3. Trigger: Täglich {schedulerZeit}
-4. Aktion: `node C:\Users\User\Claude\scripts\claw-agent-{projektName}.mjs`
+4. Aktion: `node ~/Claude/scripts\claw-agent-{projektName}.mjs`
 5. "Aufgabe bei verpasstem Start nachholen" aktivieren
 
 Ausgabe: Klare Schritt-für-Schritt Instruktion.
@@ -149,7 +149,7 @@ Ausgabe: Klare Schritt-für-Schritt Instruktion.
 Checkliste für den User ausgeben:
 
 ```
-✅ Workspace erstellt: C:\Users\User\Claude\{projektName}\
+✅ Workspace erstellt: ~/Claude/{projektName}\
 ✅ CLAUDE.md erstellt
 ✅ Topic-Datei erstellt: topics/{projektName}.md
 ✅ Agent-Script erstellt: scripts/claw-agent-{projektName}.mjs
@@ -162,13 +162,13 @@ Checkliste für den User ausgeben:
   3. GSC: Domain als Property verifizieren (falls nicht schon geschehen)
   4. GSC: Sitemap einreichen
 
-Danach: `cd C:\Users\User\Claude\{projektName} && claude` → Chat hat sofort Kontext.
+Danach: `cd ~/Claude/{projektName} && claude` → Chat hat sofort Kontext.
 ```
 
 ## Qualitäts-Check
 
 Nach dem Bootstrap einmal testen:
 ```bash
-node C:\Users\User\Claude\scripts\claw-agent-{projektName}.mjs
+node ~/Claude/scripts\claw-agent-{projektName}.mjs
 ```
 Output muss JSON mit `summary` + `actions` enthalten. Wenn Fehler → sofort fixen.

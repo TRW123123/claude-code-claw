@@ -27,7 +27,15 @@ allowed-tools: [Read, Write, Bash]
 | 15 | **Negative Prompt: Kein separates Feld** | Constraints INLINE im Hauptprompt als "avoid X" / "no X" |
 | 16 | **Wasser/Fluessigkeit: Slow-Mo + 1 Aktion + Physik-Keywords** | Wasser funktioniert GUT wenn: Slow-Mo, eine Fluid-Aktion pro Shot, "realistic physics"/"surface tension" als Anker, Backlighting, stabile Kamera. Wasser SCHEITERT wenn: mehrere Fluid-Aktionen gleichzeitig, schnelle Kamera + Wasser kombiniert, "durch Wasser fliegen" als Kamera-Pfad, Clips >8s. Wet Surfaces > Airborne Fluid |
 | 17 | **Multi-Shot Storytelling > Impossible Camera Move** | Comedy/Punchline-Konzepte ("Es ist da") funktionieren zuverlaessiger als Macro-One-Takes durch physisch unmoegliche Raeume |
-| 18 | **Vor Prompt-Erstellung: Ratings checken** | `obsidian-claw-vault/seedance-2.0/examples/prompt-ratings.md` enthaelt getestete Ergebnisse. Patterns die ❌ sind NICHT wiederholen |
+| 18 | **Vor Prompt-Erstellung: Ratings checken** | `obsidian-claw-vault/seedance-2.0/examples/prompt-ratings.md` enthaelt getestete Ergebnisse. Patterns die ❌ sind NICHT wiederholen. ZUSAETZLICH: `SELECT prompt_text, safak_note, winner_pattern, anti_pattern FROM claw.seedance_prompts WHERE rating>=4 AND tags && ARRAY['<context>'] LIMIT 5` (Supabase NanoBanana, Projekt-ID `[your-supabase-project-id]`) |
+| 19 | **FOTO-FIRST RULE: Bei NEUEN Konzepten ohne bestehende Referenz IMMER zuerst Seedream-Bild generieren, dann I2V** | T2V-only liefert reproduzierbar unrealistische Details — falsche Familien-Konstellationen ("Mann mit zwei"), generische Bauten ohne Kontext, reine Beton-Boeden ohne Rasen, fehlende Architektur-Details. Workflow: (1) Seedream-Foto mit allen Realismus-Ankern (deutscher Garten = Beton+Rasen kombiniert, Familie explizit als "father, mother and child", Wintergarten erkennbar als modernes Glas-System), (2) Foto in Slot 1, (3) Seedance-Prompt beschreibt NUR Bewegung. Begruendet aus Apexx-Session 2026-04-26 (Items 45/46 T2V-Fails dokumentiert in claw.seedance_prompts ID #3, #4). |
+| 20 | **Familie/Personen explizit beschreiben** | NIE "family of two" oder unscharfe Konstellationen. IMMER explizit: "father, mother and one child" / "elderly couple" / "single woman in late 30s". Sonst halluziniert das Modell unklare Personen-Kombinationen. |
+| 21 | **ANTI-DEFAULT RULE: Detail-Prompts NUR fuer anti-default Patterns** | Validiert 2026-05-03 (claw.seedance_prompts ID #8 V1=5⭐, ID #9 V2=2⭐, ID #10 V3=5⭐). Lange Director-Cut Prompts lohnen sich NUR wenn sie Effekte erzwingen die Seedance ohne explizite Anweisung NICHT macht. **ANTI-DEFAULT (Detail lohnt):** Hard-Cut-Rhythm, Snap-Zoom, Whip-Pan, Match-Cut, Crash-Zoom, Speed-Ramp, Freeze-Frame, RGB-Split, Datamosh, Scanlines, VHS-Chromatic, Anamorphic-Flare, Dutch-Tilt, Studio-Isolation, Sci-Fi-UI-Overlay, POV-Subjective, Noir-Mono-Grade, Synthwave-Neon, Bullet-Time, Time-Freeze. **DEFAULT (kurzer Prompt reicht — Detail = Token-Verschwendung):** Cinematic-Slow, Push-In, Dolly-Arc, Golden-Hour, Soft-Light, Premium-Lifestyle, Smooth-Movement, Dissolve, Strings-Audio, Mono-Grade-without-pop. Faustregel: Wenn ein 5-Wort-Prompt ("15s premium luxury car video") dasselbe liefert — keinen Director-Cut schreiben. |
+| 22 | **Wischer-Suppression bei Regen + Auto** | Validiert 2026-05-04 (claw.seedance_prompts ID #14). Seedance aktiviert Scheibenwischer automatisch als Default-Reflex sobald Regen + Windschutzscheibe sichtbar sind. IMMER explizit sperren mit "windshield wipers stay completely still throughout — NO wiper motion, NO sweep, NO animation. Wipers parked in resting position only." Sonst halluzinierte Wisch-Bewegung. Im CONSTRAINTS-Block am Ende des Prompts wiederholen. |
+| 23 | **Prompt-Limit Runway-UI = 3500 Zeichen** | Director-Cut Prompts von Anfang an unter 3500 Zeichen schreiben — kein nachtraegliches Kuerzen. Strategie zur Compression: doppelte Zeitstempel-Headers vermeiden ("SHOT 3 — Camera..." statt "[Xs-Ys] SHOT 3 — Camera..."), redundante Subjekt-Wiederholungen kuerzen ("frozen suspended raindrops" → "frozen drops" beim 2.+3. Mal), Audio-Beschreibung in Pfeil-Notation komprimieren. Validierte 7 E63-Variants liegen alle bei 2100–3050 Zeichen. |
+| 24 | **DB-Eintraege muessen self-contained sein — VOLLTEXT in `prompt_text`, nie Reference-only** | Validiert 2026-05-04 nach Audit-Lesson (alle 7 Eintraege mussten nachtraeglich mit Volltext gefuellt werden). Bei jedem INSERT in `claw.seedance_prompts` MUSS der komplette Director-Cut-Prompt im `prompt_text`-Feld stehen — niemals nur Kurzbeschreibung wie "9-cut macro montage with snap-zooms". Sonst sind Eintraege wertlos sobald die Session weg ist. Reproduzierbarkeit > Schreibgeschwindigkeit. |
+| 25 | **Color-Anchor bei Multi-Reference I2V mit Style-Heavy Prompts** | Validiert 2026-05-04 (claw.seedance_prompts ID #16 V7v2). Wenn der Prompt viele Style/Effekt-Modifier traegt (teal-orange grade, rim lighting, anamorphic flares, glitch effects etc.), driftet die Lack-/Material-Farbe vom Reference-Bild weg. Seedance interpretiert die Farbe gemaess dem aktiven Color-Grade neu, ueberschreibt damit die Reference. IMMER explizit Color-Anchor in den Prompt einbauen: "Vehicle paint color: <exact color from reference, e.g. matt selenite grey> — preserve exactly, do not alter under any color grade." Im CONSTRAINTS-Block wiederholen. Analog fuer Lederfarbe Interior, Felgen-Finish, Karosserie-Lack-Textur (matt vs glossy). Default-Verhalten ist Color-Reinterpretation — das ist Anti-Default und muss erzwungen werden. |
+| 26 | **Slow-Motion alleine ist Default, NICHT Anti-Default** | Validiert 2026-05-04 (claw.seedance_prompts ID #17 V8 HYPER-SLO-MO Rating 2). Seedance macht Slow-Motion ohnehin gut von alleine. Detail-Prompts fuer Hyper-Slow-Mo lohnen sich NICHT — analog zu V2 CINE-LOW. Slow-Motion ist nur dann ein Anti-Default wenn ein Anti-Default-Subjekt verwendet wird (z.B. Time-Freeze + Bullet-Time, oder Slow-Motion + Glitch-Frame-Stutter). Reine Slow-Motion ohne anderen Anti-Default-Effekt = Token-Verschwendung. Bestaetigt Hard Rule #21. |
 
 ---
 
@@ -547,6 +555,8 @@ Cues: sidechain "duck BGM by ~3 dB" on collisions
 
 ## Prompt-Templates (Copy-Paste)
 
+> **Branchen-spezifische Hooks, Money-Shots & Color-Palettes:** siehe `templates/branchen-hooks.md` — destilliert aus higgsfield-claude-skills Repo, gemapped auf profilfoto-ki / ki-automatisieren / st-automatisierung / autohaus-video / friseur-pSEO mit fertigen Prompt-Shortcuts pro Branche.
+
 ### Template 1: Standard Cinematic Shot
 ```
 Medium close-up of a [SUBJECT DESCRIPTION], [ACTION in present tense].
@@ -714,7 +724,7 @@ Dieser Skill wurde destilliert aus:
 
 > Destilliert aus dem offiziellen Guide (`EvoLinkAI/awesome-seedance-2-guide`).
 > Komplette Integration in Vault: `obsidian-claw-vault/seedance-2.0/guide/_guide-index.md`
-> Alle Medien (289 Assets, 87 Videos, 435 Keyframes) lokal: `C:/Users/User/Videos/seedance-guide-media/`
+> Alle Medien (289 Assets, 87 Videos, 435 Keyframes) lokal: `~/Videos/seedance-guide-media/`
 > 51 offizielle Cases ueber 10 Capabilities — das ist die PROFESSIONELLE Referenz fuer Werbevideos mit echten Produkt-/Kunden-Referenzen.
 
 ## B.1 · Offizielle Limits (aus Seedance 2.0 Gateway)
@@ -963,7 +973,7 @@ No scene cuts throughout, one continuous shot.
 
 Alle 51 Cases als einzelne MDs mit Prompt + Referenzbildern + Keyframes:
 ```
-C:/Users/User/obsidian-claw-vault/seedance-2.0/guide/
+~/obsidian-claw-vault/seedance-2.0/guide/
 ├── _guide-index.md             ← Start hier
 ├── 01-consistency/             (6 cases + index)
 ├── 02-camera-movement/         (7 cases + index)
@@ -979,7 +989,7 @@ C:/Users/User/obsidian-claw-vault/seedance-2.0/guide/
 
 Jeder Case enthaelt: Prompt, Input-Spec, Reference-Asset-Pfade, Keyframe-Pfade (je 5 Frames pro Result-Video bei 10/30/50/70/90% Dauer), Source-URLs.
 
-Enriched inventory fuer programmatische Abfragen: `C:/Users/User/Videos/seedance-guide-media/inventory_enriched.json`
+Enriched inventory fuer programmatische Abfragen: `~/Videos/seedance-guide-media/inventory_enriched.json`
 
 ## B.6 · Workflow bei neuer Werbeanfrage (Decision Tree)
 
@@ -1077,6 +1087,6 @@ Source: Direkter Frame-by-Frame Review aller Ref-Assets + Result-Keyframes im Ev
 
 ---
 
-**Dokumentations-Trail:** Pro-Case Vision-Observations in `C:/Users/User/obsidian-claw-vault/seedance-2.0/guide/_learnings-per-case.md` (alle 51 Cases, Prompt-Claim vs. Frame-Realitaet).
+**Dokumentations-Trail:** Pro-Case Vision-Observations in `~/obsidian-claw-vault/seedance-2.0/guide/_learnings-per-case.md` (alle 51 Cases, Prompt-Claim vs. Frame-Realitaet).
 
-**Ref-Tagging Playbook + Pre-Generate Checklist:** `C:/Users/User/obsidian-claw-vault/seedance-2.0/guide/_ref-tagging-playbook.md` — bei jeder Prompt-Erstellung als Referenz laden.
+**Ref-Tagging Playbook + Pre-Generate Checklist:** `~/obsidian-claw-vault/seedance-2.0/guide/_ref-tagging-playbook.md` — bei jeder Prompt-Erstellung als Referenz laden.

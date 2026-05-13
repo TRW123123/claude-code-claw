@@ -5,7 +5,7 @@ description: Scannt das Skills-Verzeichnis, validiert alle SKILL.md Dateien und 
 
 # SKILL: Reload Skills (Skill Hot-Reload / Diff-Check)
 
-> **Technische Realität (2026-04-19):** Claude Code lädt die Skill-Registry **einmalig beim Session-Start** aus `C:/Users/User/.claude/skills/`. Die Skill-Liste, die im System-Reminder erscheint, ist für die aktuelle Session **fix**. Ein echter In-Session Hot-Reload ist nicht möglich — neue Skills werden erst in der **nächsten Session** verfügbar.
+> **Technische Realität (2026-04-19):** Claude Code lädt die Skill-Registry **einmalig beim Session-Start** aus `~/.claude/skills/`. Die Skill-Liste, die im System-Reminder erscheint, ist für die aktuelle Session **fix**. Ein echter In-Session Hot-Reload ist nicht möglich — neue Skills werden erst in der **nächsten Session** verfügbar.
 >
 > Dieser Skill ist deshalb ein **Diff + Validator**: er zeigt, was nach einem Restart geladen würde, und validiert dass alle SKILL.md Dateien well-formed sind.
 
@@ -25,7 +25,7 @@ description: Scannt das Skills-Verzeichnis, validiert alle SKILL.md Dateien und 
 ### 1. Scan Skills-Directory
 
 ```bash
-ls C:/Users/User/.claude/skills/
+ls ~/.claude/skills/
 ```
 
 Für jeden Unterordner: prüfe ob `SKILL.md` existiert.

@@ -89,3 +89,11 @@ und den Foerderantrag sauber aufzusetzen.
 |---|---|
 | `sales-experte` | Sales, Outreach, LinkedIn, Copywriting |
 | `trw-sales-playbooks` | Sales Playbooks & Scripts |
+
+
+### KVP Update (2026-05-04)
+- [WIN] DM #3 wurde an autoland_wuppertal gesendet und der Status im Sheet aktualisiert. → DM #3 an autoland_wuppertal erfolgreich gesendet
+
+
+### KVP Update (2026-05-05)
+- [WIN] Bearbeitung von 6 offenen Rows und 2 Retry-Rows im Sheet, inklusive dem Senden von 3 DMs. → 3 DMs gesendet (#2, #3, #4), Sheet aktualisiert.

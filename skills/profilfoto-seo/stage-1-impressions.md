@@ -13,7 +13,7 @@ Ziel: Mehr indexierte Seiten = mehr Impressions in Google.
 1. `claw.keyword_research` — 15 Keywords fuer profilfoto-ki.de
 2. DataForSEO Labs API — Live Keyword + SERP Daten
 3. GSC Queries aus Supabase — Was rankt bereits?
-4. Bestehende Seitenstruktur in `C:\Users\User\Projects\profilfoto-ki-static\src\`
+4. Bestehende Seitenstruktur in `~/Projects/profilfoto-ki-static\src\`
 
 ## Weekly Analyse-Workflow
 
@@ -110,7 +110,7 @@ LIMIT 1;
 
 ### Schritt 2: pSEO Skill laden
 
-`C:\Users\User\.claude\skills\pseo\SKILL.md` lesen fuer:
+`~/.claude/skills\pseo\SKILL.md` lesen fuer:
 - Deterministic Gates (Keyword in H1, 3-5% Dichte, 800-1200 Woerter)
 - Anti-AI Blacklist
 - Template-Struktur (FAQ, JSON-LD, interne Links)
@@ -163,7 +163,7 @@ Was MUSS angepasst werden:
 **KEIN Build-Step.** Direkt:
 
 ```bash
-cd "C:/Users/User/Projects/profilfoto-ki-static"
+cd "~/Projects/profilfoto-ki-static"
 git add -A
 git commit -m "feat: Neue pSEO-Seite [slug] (Stage 1)"
 git push origin master

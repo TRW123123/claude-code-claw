@@ -5,14 +5,14 @@
 -- Migration 002: Changelog-Eintraege fuer profilfoto-seo Plugin Artefakte
 -- =====================================================================
 -- Domain: profilfoto-ki.de
--- Project: NanoBanana (<SUPABASE_PROJECT_ID>)
+-- Project: NanoBanana ([your-supabase-project-id])
 -- Datum: 2026-04-07
 --
 -- Zweck: Dokumentiert das vollstaendige profilfoto-seo Plugin (Context Pack +
 -- Sub-Agenten + Schema-Migration) als 15 Eintraege in claw.changelog, damit
 -- Impact-Analyse und Audit-Trail vorhanden sind.
 --
--- Hinweis: Das Plugin lebt LOKAL in C:\Users\User\.claude\skills\profilfoto-seo\
+-- Hinweis: Das Plugin lebt LOKAL in ~/.claude/skills\profilfoto-seo\
 -- und beruehrt nicht das Repo selbst. Die Eintraege referenzieren die lokalen
 -- Pfade als page_path, change_type = 'technical'.
 --

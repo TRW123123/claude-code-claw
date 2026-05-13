@@ -30,9 +30,9 @@ Diese Dateien MUESSEN als erstes geladen werden — keine Ausnahme:
 |---|---|
 | **Domain** | st-automatisierung.de |
 | **GSC Property** | sc-domain:st-automatisierung.de |
-| **Repo** | `C:\Users\User\Projects\strategie-beratung` |
+| **Repo** | `~/Projects/strategie-beratung` |
 | **Stack** | Astro 5.1, Tailwind 3.4, Netlify |
-| **Supabase** | NanoBanana (`<SUPABASE_PROJECT_ID>`) |
+| **Supabase** | NanoBanana (`[your-supabase-project-id]`) |
 | **Intent** | Beratungs-Intent (Strategie, BAFA, Compliance) — NICHT Umsetzungs-Intent |
 | **Rechtsform** | UG (haftungsbeschraenkt) |
 | **Entitaets-Signale** | Google Business Profile, Creditreform, IHK, BAFA-Berater |
@@ -146,3 +146,11 @@ Was wir NICHT uebernommen haben (bewusst):
 - WordPress Yoast Integration (wir nutzen Astro)
 - /article 4-Phasen-Pipeline ist in stage-1-impressions.md adaptiert
 - Castos-spezifische Brand-Daten
+
+
+### KVP Update (2026-04-23)
+- [WIN] Optimierung von Title und Meta-Description für die Seite `/l/ki-richtlinie-unternehmen-erstellen-vorlage/` zur Verbesserung der Klickrate. → Title von 85Z auf 57Z gekürzt, Meta von 119Z auf 154Z erweitert, Composite Score 88/100, Build erfolgreich, Commit `e2b0aaa` deployed, 2 Changelog-Einträge.
+
+
+### KVP Update (2026-04-27)
+- [WIN] Erstellung eines AIOS-Hub-and-Spoke-Clusters mit einer Pillar-Seite und 5 Satelliten-Seiten auf st-automatisierung.de. → 1 Pillar-Seite und 5 Satelliten-Seiten deployed, 6 URLs bei GSC eingereicht.
