@@ -5,21 +5,21 @@
 ## Standard-Ablauf pro Lead
 
 1. **DM-Compose über Inbox** (NICHT vom Profil-Compact-Panel)
-   - Navigate `https://www.instagram.com/direct/inbox/`
-   - Click Bleistift-Icon bei `(372, 36)` — Compose-Modal öffnet
-   - URL `/direct/new/` funktioniert NICHT (redirect zur Inbox)
+ - Navigate `https://www.instagram.com/direct/inbox/`
+ - Click Bleistift-Icon bei `(372, 36)` — Compose-Modal öffnet
+ - URL `/direct/new/` funktioniert NICHT (redirect zur Inbox)
 2. **Suche + Auswahl**
-   - Click Search-Feld `(780, 196)` (alternative `(780, 188)` bei kompaktem Layout)
-   - Type Handle exakt
-   - Wait 3s für Suche
-   - Click Radio-Button erster Treffer `(945, 232)` oder `(945, 224)`
-   - Click „Chatten" `(777, 586)` oder `(777, 548)`
+ - Click Search-Feld `(780, 196)` (alternative `(780, 188)` bei kompaktem Layout)
+ - Type Handle exakt
+ - Wait 3s für Suche
+ - Click Radio-Button erster Treffer `(945, 232)` oder `(945, 224)`
+ - Click „Chatten" `(777, 586)` oder `(777, 548)`
 3. **Chat öffnen → Wait 6-8s**
 4. **Text einfügen** (Copy-Paste, NICHT tippen)
-   - DM aus Spalte K mit `||` als Trenner
-   - Vor Paste: PowerShell `Set-Clipboard` mit `||` durch echte Newlines (`\r\n\r\n`) ersetzt
-   - Click Textfeld `(900, 716)` oder `(900, 670)` (Layout-abhängig)
-   - `Ctrl+V`
+ - DM aus Spalte K mit `||` als Trenner
+ - Vor Paste: PowerShell `Set-Clipboard` mit `||` durch echte Newlines (`\r\n\r\n`) ersetzt
+ - Click Textfeld `(900, 716)` oder `(900, 670)` (Layout-abhängig)
+ - `Ctrl+V`
 5. **Senden-Button** `(1521, 715)` oder `(1521, 670)` — NICHT Return drücken
 6. **Sheet updaten**: F=`gesendet`, G=`YYYY-MM-DD`, H=`local-v6`
 7. **30-90 Sekunden Pause** zum nächsten Lead (Anti-Ban)

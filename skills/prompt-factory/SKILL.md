@@ -42,11 +42,11 @@ Kein Browser. Keine API-Calls. Keine DB-Writes. Nur Text-Output.
 ## TRIGGER
 
 ```
-/prompt-factory          → 5 Konzepte, gemischte Genres
-/prompt-factory 10       → 10 Konzepte
-/prompt-factory --focus=brand-superpower    → alle 5 im selben Genre-Cluster
-"generiere konzepte"     → 5 Standard
-"3 neue prompts für [genre]"   → genre-gefiltert
+/prompt-factory → 5 Konzepte, gemischte Genres
+/prompt-factory 10 → 10 Konzepte
+/prompt-factory --focus=brand-superpower → alle 5 im selben Genre-Cluster
+"generiere konzepte" → 5 Standard
+"3 neue prompts für [genre]" → genre-gefiltert
 ```
 
 ---
@@ -99,11 +99,11 @@ Priorisiere ungetestete Patterns aus dieser Liste. Jeder Run: max 2 Patterns aus
 Jedes Konzept braucht diesen Bogen — auch wenn er nur 5 Zeilen ist:
 
 ```
-Akt 1 [0-2s]  WORLD    — Wer/Was, welche Welt, welche Stimmung
-Akt 2 [2-5s]  BRUCH    — Was bricht die Welt auf? (Konflikt/Bedrohung/Trigger)
-Akt 3 [5-9s]  WANDEL   — Das Produkt/Brand interveniert, transformiert
-Akt 4 [9-13s] AKTION   — Der verwandelte Zustand in voller Kraft
-Akt 5 [13-15s] REVEAL  — Produkt-Close-Up, Brand-Moment, stille Schlusszeile
+Akt 1 [0-2s] WORLD — Wer/Was, welche Welt, welche Stimmung
+Akt 2 [2-5s] BRUCH — Was bricht die Welt auf? (Konflikt/Bedrohung/Trigger)
+Akt 3 [5-9s] WANDEL — Das Produkt/Brand interveniert, transformiert
+Akt 4 [9-13s] AKTION — Der verwandelte Zustand in voller Kraft
+Akt 5 [13-15s] REVEAL — Produkt-Close-Up, Brand-Moment, stille Schlusszeile
 ```
 
 **Story-Fails vermeiden:**
@@ -159,17 +159,17 @@ REFERENCE MAPPING:
 [OPTIONAL: Story-Kontext-Zeile — 1 Satz was passiert]
 
 [0-5s] SHOT 1 — [Beschreibung]
-  Camera: [EINE Bewegung + Speed-Wert wenn Anti-Default]
-  Subject: [was macht das Subjekt/Produkt]
-  SFX: [optional, kurz]
+ Camera: [EINE Bewegung + Speed-Wert wenn Anti-Default]
+ Subject: [was macht das Subjekt/Produkt]
+ SFX: [optional, kurz]
 
 [5-10s] SHOT 2 — [Beschreibung]
-  Camera: [EINE Bewegung]
-  Subject: [Aktion]
+ Camera: [EINE Bewegung]
+ Subject: [Aktion]
 
 [10-15s] SHOT 3 — [Beschreibung]
-  Camera: [finale Bewegung]
-  Subject: [Resolution/Reveal]
+ Camera: [finale Bewegung]
+ Subject: [Resolution/Reveal]
 
 Style: [Lighting kontinuierlich, Color Grade, Film-Stil]
 
@@ -191,11 +191,11 @@ Bevor die Konzepte generiert werden, führt CLAW intern folgende Kombinations-Ma
 1. **Pick Brand-Archetype** — aus Pool oben, rotiert, letzten Run's Cluster meiden
 2. **Pick Visual Pattern** — aus Anti-Default-Liste, Hohe-Surprise-Wirkung bevorzugen
 3. **Pick Cross-Domain-Twist** — unerwartetes Element aus einer anderen Welt:
-   - *Sport-Produkt trifft Unterwasser-Archäologie*
-   - *Luxusarmbanduhr trifft Tiefseevulkan*
-   - *Streetwear-Cap trifft mittelalterliche Rüstungsschmiedekunst*
-   - *Outdoor-Jacke trifft Quantenphysik-Labor*
-   - *Sneaker trifft verlassene Sowjet-Raumstation*
+ - *Sport-Produkt trifft Unterwasser-Archäologie*
+ - *Luxusarmbanduhr trifft Tiefseevulkan*
+ - *Streetwear-Cap trifft mittelalterliche Rüstungsschmiedekunst*
+ - *Outdoor-Jacke trifft Quantenphysik-Labor*
+ - *Sneaker trifft verlassene Sowjet-Raumstation*
 4. **Baue Story-Mechanik** — wende 5-Akt-Struktur auf die Cross-Domain-Kombination an
 5. **Validiere:** Ist das Konzept postbar als Marketing-Material? Ja → weiter. Nein → neu kombinieren
 
@@ -249,26 +249,26 @@ Bevor die Konzepte generiert werden, führt CLAW intern folgende Kombinations-Ma
 Beim ersten Run des Tages optional (beschleunigt Qualität):
 
 1. **DB-Top-Patterns** (Supabase `claw.runway_tests`):
-   ```sql
-   SELECT concept_title, pattern_genre, brand_archetype, winner_pattern, rating
-   FROM claw.runway_tests
-   WHERE rating >= 4
-   ORDER BY rating DESC, created_at DESC
-   LIMIT 10;
-   ```
-   → Welche Patterns haben funktioniert? Für Mechanik-Inspiration, NICHT zum Klonen.
+ ```sql
+ SELECT concept_title, pattern_genre, brand_archetype, winner_pattern, rating
+ FROM claw.runway_tests
+ WHERE rating >= 4
+ ORDER BY rating DESC, created_at DESC
+ LIMIT 10;
+ ```
+ → Welche Patterns haben funktioniert? Für Mechanik-Inspiration, NICHT zum Klonen.
 
 2. **Letzten Run** — was wurde zuletzt gespielt?
-   ```sql
-   SELECT pattern_genre, brand_archetype
-   FROM claw.runway_tests
-   WHERE created_at > NOW() - INTERVAL '3 days'
-   ORDER BY created_at DESC;
-   ```
-   → Ausschluss-Liste für Repetition-Avoidance.
+ ```sql
+ SELECT pattern_genre, brand_archetype
+ FROM claw.runway_tests
+ WHERE created_at > NOW() - INTERVAL '3 days'
+ ORDER BY created_at DESC;
+ ```
+ → Ausschluss-Liste für Repetition-Avoidance.
 
 3. **Vault Quick-Scan** — 2-3 zufällige Gold-Beispiele für frische Inspiration:
-   `~/obsidian-claw-vault\seedance-2.0\examples\`
+ `~/obsidian-claw-vault\seedance-2.0\examples\`
 
 ---
 
@@ -307,18 +307,18 @@ REFERENCE MAPPING:
 Archaeologist's wrist (wearing @image1) touches ancient sundial — time fractures outward.
 
 [0-5s] SHOT 1 — Time-Freeze Activation
-  Camera: Crash-zoom INTO watch face, 0.4x → 2.0x ramp on touch-moment, then full STOP
-  Subject: World freezes mid-motion. Sand particles hang suspended. Only watch crown begins rotating — slowly, deliberately. Golden dust ring expands from wrist contact point.
-  SFX: deep bass pulse, reverse suck, ticking amplifies to cathedral scale
+ Camera: Crash-zoom INTO watch face, 0.4x → 2.0x ramp on touch-moment, then full STOP
+ Subject: World freezes mid-motion. Sand particles hang suspended. Only watch crown begins rotating — slowly, deliberately. Golden dust ring expands from wrist contact point.
+ SFX: deep bass pulse, reverse suck, ticking amplifies to cathedral scale
 
 [5-10s] SHOT 2 — Mechanism Explosion Macro
-  Camera: Bullet-time orbit 0.15x speed, 180° arc around watch face, reference @image4
-  Subject: Gear teeth emerge from dial, scale up to architectural size. Ancient sundial shadow-lines materialize and interlock with modern escapement. Both ancient and modern time coexist mid-frame.
-  SFX: metal harmonic resonance, ancient stone grinding, glass bowl tone
+ Camera: Bullet-time orbit 0.15x speed, 180° arc around watch face, reference @image4
+ Subject: Gear teeth emerge from dial, scale up to architectural size. Ancient sundial shadow-lines materialize and interlock with modern escapement. Both ancient and modern time coexist mid-frame.
+ SFX: metal harmonic resonance, ancient stone grinding, glass bowl tone
 
 [10-15s] SHOT 3 — Revelation Pull-Back
-  Camera: Ultra-slow pull-back 0.3x from macro to wide, settle on hero composition
-  Subject: World slowly unfreezes from center outward. Watch settles on wrist. Gear teeth retract. Final frame: watch face clean, excavation site restored, archaeologist's hand still, one grain of sand falls in real-time.
+ Camera: Ultra-slow pull-back 0.3x from macro to wide, settle on hero composition
+ Subject: World slowly unfreezes from center outward. Watch settles on wrist. Gear teeth retract. Final frame: watch face clean, excavation site restored, archaeologist's hand still, one grain of sand falls in real-time.
 
 Style: Teal-and-ochre grade, warm archaeological amber vs cool mechanism steel, 24fps base with deliberate frame-stutter on gear-explosion moment (24fps → 8fps stutter every 3 frames). Anamorphic lens flare on sundial contact. Deep cinematic shadows.
 

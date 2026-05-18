@@ -87,35 +87,35 @@ Nach jedem Content-Erstellungs-Run muss der Agent diesen JSON-Block am Ende ausg
 
 ```json
 {
-  "scores": {
-    "humanity": 85,
-    "specificity": 78,
-    "structure_balance": 82,
-    "seo": 90,
-    "readability": 75
-  },
-  "composite": 82.85,
-  "passed": true,
-  "ai_phrase_hits": 0,
-  "em_dash_count": 1,
-  "vague_quantifier_hits": 2,
-  "priority_fixes": [
-    {
-      "location": "Absatz 3",
-      "dimension": "specificity",
-      "issue": "Phrase 'viele Unternehmen' ohne konkrete Zahl",
-      "fix": "Ersetzen mit '60% der mittelstaendischen Unternehmen' (Quelle: Bitkom 2025)",
-      "severity": "medium"
-    },
-    {
-      "location": "Title",
-      "dimension": "humanity",
-      "issue": "Em-Dash im Title",
-      "fix": "Em-Dash durch Komma ersetzen",
-      "severity": "high"
-    }
-  ],
-  "decision": "publish"
+ "scores": {
+ "humanity": 85,
+ "specificity": 78,
+ "structure_balance": 82,
+ "seo": 90,
+ "readability": 75
+ },
+ "composite": 82.85,
+ "passed": true,
+ "ai_phrase_hits": 0,
+ "em_dash_count": 1,
+ "vague_quantifier_hits": 2,
+ "priority_fixes": [
+ {
+ "location": "Absatz 3",
+ "dimension": "specificity",
+ "issue": "Phrase 'viele Unternehmen' ohne konkrete Zahl",
+ "fix": "Ersetzen mit '60% der mittelstaendischen Unternehmen' (Quelle: Bitkom 2025)",
+ "severity": "medium"
+ },
+ {
+ "location": "Title",
+ "dimension": "humanity",
+ "issue": "Em-Dash im Title",
+ "fix": "Em-Dash durch Komma ersetzen",
+ "severity": "high"
+ }
+ ],
+ "decision": "publish"
 }
 ```
 
@@ -133,14 +133,14 @@ Nach jedem Content-Erstellungs-Run muss der Agent diesen JSON-Block am Ende ausg
 1. **Initial Generation** — Content schreiben/aendern
 2. **Self-Score** — JSON Output erstellen
 3. **Decision Check:**
-   - `publish` → fertig
-   - `revise` → Schritt 4
-   - `review` → Schritt 6
+ - `publish` → fertig
+ - `revise` → Schritt 4
+ - `review` → Schritt 6
 4. **Revision** — Priority Fixes addressieren, neuer Content
 5. **Re-Score** — JSON Output erneut
 6. **Iteration Limit:**
-   - Wenn nach 2 Revisions immer noch `revise` → `review`
-   - Wenn `publish` → fertig
+ - Wenn nach 2 Revisions immer noch `revise` → `review`
+ - Wenn `publish` → fertig
 7. **Review Path** — Content + Notes in `review-required/` Ordner mit `_REVIEW_NOTES.md`
 
 ### Review Notes Format

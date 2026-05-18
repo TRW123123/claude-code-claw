@@ -48,7 +48,7 @@ allowed-tools: [Read, Write, Bash]
 Immer in dieser Reihenfolge:
 
 ```
-1. SCENE  — Umgebung, Beleuchtung, Tageszeit
+1. SCENE — Umgebung, Beleuchtung, Tageszeit
 2. CHARACTERS — [Character X: Name, Voice Tone]
 3. ACTION — Explizite Bewegung mit Physik
 4. CAMERA — Cinematic Terms (erstes Keyword = staerkstes Gewicht)

@@ -88,8 +88,8 @@ Für jede gewählte Plattform:
 ```bash
 # Für jeden Profil-Text:
 node ~/.claude/skills/humanizer-de/scripts/check.mjs \
-  --profile {plattform} \
-  --text "{text}"
+ --profile {plattform} \
+ --text "{text}"
 ```
 
 Wenn Score nicht erreicht → Rewrite-Loop bis Pass.

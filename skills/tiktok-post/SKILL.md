@@ -1,13 +1,13 @@
 ---
 name: tiktok-post
-description: TikTok Content Posting Pipeline für profilfoto-ki. Sandbox-Upload via FILE_UPLOAD an Inbox plus Telegram-Caption-Nachricht. Nutzen wenn ein Reel auf TikTok gepostet werden soll.
+description: TikTok Content Posting Pipeline für profilfoto-ki. Sandbox-Upload via FILE_UPLOAD an Inbox plus Caption-Notification via Messaging-Gateway. Nutzen wenn ein Reel auf TikTok gepostet werden soll.
 allowed-tools: [Read, Write, Bash]
 ---
 
 # TikTok Post Skill
 
 ## Zweck
-Fertige Reels (MP4) landen in deiner TikTok-Mobile-App-Inbox. Parallel bekommst du auf Telegram den Caption-Text copy-paste-ready für die App.
+Fertige Reels (MP4) landen in deiner TikTok-Mobile-App-Inbox. Parallel bekommst du im konfigurierten Messaging-Channel den Caption-Text copy-paste-ready für die App.
 
 ## Hard Rules
 
@@ -17,7 +17,7 @@ Fertige Reels (MP4) landen in deiner TikTok-Mobile-App-Inbox. Parallel bekommst 
 4. **Redirect URI:** Nur HTTPS auf der verifizierten Domain (`https://www.profilfoto-ki.de/auth/tiktok/callback/`). Localhost wird vom TikTok Dev Portal abgelehnt.
 5. **Token-Gültigkeit:** Access Token 24h, Refresh Token 365 Tage. Auth-Code NICHT nur 1 Minute — deutlich länger (getestet >30 Sek OK).
 6. **Target-User:** Muss im Sandbox-Dev-Portal unter Sandbox-Settings eingetragen sein, sonst kommt kein Video in der Inbox an.
-7. **Caption-Delivery via Telegram: NUR der copy-paste-ready Text. Keine Meta-Info, keine Präambeln, keine Trennlinien, keine Überschrift. Nur Caption + Hashtags.** User will direkt in TikTok einfügen ohne etwas wegkürzen zu müssen.
+7. **Caption-Delivery via Messaging-Channel: NUR der copy-paste-ready Text. Keine Meta-Info, keine Präambeln, keine Trennlinien, keine Überschrift. Nur Caption + Hashtags.** User will direkt in TikTok einfügen ohne etwas wegkürzen zu müssen.
 8. **Caption-Regeln:** Keine Anführungszeichen. Standard-Deutsch. Einfach, emotional, visuell. Hook in erster Zeile.
 
 ## Dateien und Scripts
@@ -32,17 +32,17 @@ Fertige Reels (MP4) landen in deiner TikTok-Mobile-App-Inbox. Parallel bekommst 
 **Token-Datei:**
 - `~/Projects/profilfoto-ki-static/.tiktok-token.json`
 
-**Telegram:**
-- Credentials in `~/Projects/AI UGC/remotion-app/.env` (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`)
+**Messaging-Gateway:**
+- Credentials in `~/Projects/AI UGC/remotion-app/.env` (siehe `telegram-gateway` Skill für Setup-Details)
 
 ## Referenz-Werte
 
-- **App-Name:** Claude
-- **App-ID:** 7627098032631269384
-- **Client Key (Sandbox):** `sbawppk33v21d354y7`
-- **Redirect URI:** `https://www.profilfoto-ki.de/auth/tiktok/callback/`
-- **Verifizierte Domain:** `profilfoto-ki.de`
-- **TikTok-User:** profilfoto_ki (Open ID: `-0005MWwvTtgH2WqMB5d9ft9VywLQAG1KiPC`)
+- **App-Name:** `[your-app-name]`
+- **App-ID:** `[your-tiktok-app-id]`
+- **Client Key (Sandbox):** `[your-tiktok-client-key]`
+- **Redirect URI:** `https://[your-domain]/auth/tiktok/callback/`
+- **Verifizierte Domain:** `[your-domain]`
+- **TikTok-User:** `[your-tiktok-handle]` (Open ID: `[your-tiktok-open-id]`)
 
 ## Flow pro Reel (Copy-Paste-Block)
 
@@ -50,9 +50,9 @@ Fertige Reels (MP4) landen in deiner TikTok-Mobile-App-Inbox. Parallel bekommst 
 # 1. Upload via FILE_UPLOAD an Inbox
 node "~/Projects/profilfoto-ki-static/tiktok-upload.mjs" "<video-path>" "<caption-text>"
 
-# 2. Caption via Telegram (parallel — Şafak postet manuell in TikTok-App)
-# Üblicher Pfad: tg_caption_0XX.mjs im remotion-app Ordner anlegen, basierend auf tg_caption_041.mjs
-cd "~/Projects/AI UGC/remotion-app" && node tg_caption_0XX.mjs
+# 2. Caption via Messaging-Channel (parallel — User postet manuell in TikTok-App)
+# Üblicher Pfad: caption-notify_0XX.mjs im remotion-app Ordner anlegen, basierend auf caption-notify_041.mjs
+cd "~/Projects/AI UGC/remotion-app" && node caption-notify_0XX.mjs
 ```
 
 ## Caption-Schema
@@ -72,7 +72,7 @@ cd "~/Projects/AI UGC/remotion-app" && node tg_caption_0XX.mjs
 
 ## Was NICHT tun
 
-- Niemals "Caption für ReelXXX:" oder ähnliche Meta-Info in die Telegram-Nachricht
+- Niemals "Caption für ReelXXX:" oder ähnliche Meta-Info in die Caption-Notification
 - Niemals Publish-ID oder Status in die Caption-Message mischen (separate Message wenn nötig)
 - Niemals PULL_FROM_URL ausprobieren mit Supabase-URL — kostet 10 Minuten Debugging
 - Niemals Scope `video.publish` probieren ohne Production-Approval — scope_not_authorized

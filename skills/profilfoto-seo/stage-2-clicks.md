@@ -23,19 +23,19 @@ Danach: Impact messen via Changelog + GSC-Vergleich.
 ```sql
 -- Seiten mit Position < 20 aber CTR < 2%
 SELECT h.page,
-  ROUND(AVG(h.position)::numeric, 1) as avg_pos,
-  SUM(h.impressions) as total_impr,
-  SUM(h.clicks) as total_clicks,
-  ROUND(CASE WHEN SUM(h.impressions) > 0
-    THEN SUM(h.clicks)::numeric / SUM(h.impressions) * 100
-    ELSE 0 END, 2) as ctr_pct
+ ROUND(AVG(h.position)::numeric, 1) as avg_pos,
+ SUM(h.impressions) as total_impr,
+ SUM(h.clicks) as total_clicks,
+ ROUND(CASE WHEN SUM(h.impressions) > 0
+ THEN SUM(h.clicks)::numeric / SUM(h.impressions) * 100
+ ELSE 0 END, 2) as ctr_pct
 FROM gsc_history h
 WHERE h.domain = 'profilfoto-ki.de'
-  AND h.date >= CURRENT_DATE - 14
+ AND h.date >= CURRENT_DATE - 14
 GROUP BY h.page
 HAVING AVG(h.position) < 20
-  AND SUM(h.impressions) >= 10
-  AND (SUM(h.clicks)::numeric / NULLIF(SUM(h.impressions), 0) * 100) < 2
+ AND SUM(h.impressions) >= 10
+ AND (SUM(h.clicks)::numeric / NULLIF(SUM(h.impressions), 0) * 100) < 2
 ORDER BY total_impr DESC;
 ```
 
@@ -44,11 +44,11 @@ ORDER BY total_impr DESC;
 ```sql
 -- Top Query fuer eine CTR-Problem-Seite
 SELECT query, SUM(impressions) as impr, SUM(clicks) as clicks,
-  ROUND(AVG(position)::numeric, 1) as avg_pos
+ ROUND(AVG(position)::numeric, 1) as avg_pos
 FROM gsc_queries
 WHERE domain = 'profilfoto-ki.de'
-  AND page = '[problem-page-url]'
-  AND date >= CURRENT_DATE - 14
+ AND page = '[problem-page-url]'
+ AND date >= CURRENT_DATE - 14
 GROUP BY query
 ORDER BY impr DESC
 LIMIT 5;
@@ -136,14 +136,14 @@ Wenn ja: Hat sie funktioniert? `measure_change_impact()` aufrufen — wenn negat
 
 ```sql
 SELECT insert_changelog(
-  'profilfoto-ki.de',
-  '/[slug]/',
-  'title',
-  '[alter-title]',
-  '[neuer-title]',
-  'CTR-Fix: Pos [X], [Y] Impr, [Z]% CTR — Stage 2',
-  NULL,
-  'claw-agent'
+ 'profilfoto-ki.de',
+ '/[slug]/',
+ 'title',
+ '[alter-title]',
+ '[neuer-title]',
+ 'CTR-Fix: Pos [X], [Y] Impr, [Z]% CTR — Stage 2',
+ NULL,
+ 'claw-agent'
 );
 ```
 

@@ -25,15 +25,15 @@ Tool: kw_data_google_ads_search_volume
 location_code: 2276 (Deutschland)
 language_code: de
 keywords: [
-  "{hauptkeyword}",
-  "{hauptkeyword} {stadt}",
-  "{hauptkeyword} preis",
-  "{hauptkeyword} kosten",
-  "{hauptkeyword} anbieter",
-  "{zielgruppe} {lösung}",
-  "{problem} lösung",
-  "{problem} {stadt}"
-  // + 10–20 weitere Varianten
+ "{hauptkeyword}",
+ "{hauptkeyword} {stadt}",
+ "{hauptkeyword} preis",
+ "{hauptkeyword} kosten",
+ "{hauptkeyword} anbieter",
+ "{zielgruppe} {lösung}",
+ "{problem} lösung",
+ "{problem} {stadt}"
+ // + 10–20 weitere Varianten
 ]
 ```
 
@@ -85,18 +85,18 @@ Beispiel-Cluster (domain: autohaus-video.de):
 **Dateistruktur:**
 ```
 app/
-  {slug}/
-    page.tsx
-    metadata.ts   ← oder inline in page.tsx
+ {slug}/
+ page.tsx
+ metadata.ts ← oder inline in page.tsx
 ```
 
 **Pflicht-Elemente jeder Landing Page:**
 ```tsx
 // 1. Metadata (SEO)
 export const metadata = {
-  title: '{Keyword} — {Domain}',
-  description: '{150-160 Zeichen, keyword-reichhaltig, CTR-optimiert}',
-  openGraph: { ... }
+ title: '{Keyword} — {Domain}',
+ description: '{150-160 Zeichen, keyword-reichhaltig, CTR-optimiert}',
+ openGraph: { ... }
 }
 
 // 2. Strukturierter Inhalt
@@ -122,33 +122,33 @@ Für jede Landing Page passend wählen:
 ```tsx
 // Service-Seiten:
 const schema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "{Servicename}",
-  "description": "{Beschreibung}",
-  "provider": {
-    "@type": "Organization",
-    "name": "{Firmenname}",
-    "url": "https://{domain}"
-  },
-  "areaServed": "DE",
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock"
-  }
+ "@context": "https://schema.org",
+ "@type": "Service",
+ "name": "{Servicename}",
+ "description": "{Beschreibung}",
+ "provider": {
+ "@type": "Organization",
+ "name": "{Firmenname}",
+ "url": "https://{domain}"
+ },
+ "areaServed": "DE",
+ "offers": {
+ "@type": "Offer",
+ "availability": "https://schema.org/InStock"
+ }
 }
 
 // FAQ:
 const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "{Frage}",
-      "acceptedAnswer": { "@type": "Answer", "text": "{Antwort}" }
-    }
-  ]
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+ {
+ "@type": "Question",
+ "name": "{Frage}",
+ "acceptedAnswer": { "@type": "Answer", "text": "{Antwort}" }
+ }
+ ]
 }
 ```
 
@@ -178,12 +178,12 @@ Beispiel: Autohaus Video erstellen | KI in 24h — autohaus-video.de
 `app/sitemap.ts`:
 ```typescript
 export default function sitemap() {
-  return [
-    { url: 'https://{domain}', lastModified: new Date(), priority: 1.0 },
-    { url: 'https://{domain}/{slug-1}', lastModified: new Date(), priority: 0.8 },
-    { url: 'https://{domain}/{slug-2}', lastModified: new Date(), priority: 0.8 },
-    // alle Landing Pages
-  ]
+ return [
+ { url: 'https://{domain}', lastModified: new Date(), priority: 1.0 },
+ { url: 'https://{domain}/{slug-1}', lastModified: new Date(), priority: 0.8 },
+ { url: 'https://{domain}/{slug-2}', lastModified: new Date(), priority: 0.8 },
+ // alle Landing Pages
+ ]
 }
 ```
 

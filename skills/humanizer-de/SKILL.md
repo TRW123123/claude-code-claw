@@ -1,19 +1,19 @@
 ---
 name: humanizer-de
 description: >
-  MANDATORY Pre-Publish Quality Gate. Activate BEFORE any text is generated or
-  finalized that other humans will see externally — LinkedIn posts and comments,
-  LinkedIn DMs, X/Twitter posts and replies, Instagram captions and DMs, TikTok
-  captions and DMs, cold emails, blog articles, SEO pages (pSEO), UGC video
-  scripts and voiceovers, landing page copy, product descriptions, newsletter
-  drafts, thumbnail text, UI microcopy that ships to production. Scores text
-  0-100 across five dimensions (blacklist words, sentence rhythm, AI
-  punctuation, concreteness, passive voice) and enforces platform-specific
-  thresholds. Handles German (primary) and English. Does NOT trigger for:
-  internal code comments, technical documentation, terminal output, debug logs,
-  chat responses to the user, commit messages, or any internal tooling text.
-  Trigger keywords: post, caption, DM, email, article, copy, script, thread,
-  tweet, reply, draft publish.
+ MANDATORY Pre-Publish Quality Gate. Activate BEFORE any text is generated or
+ finalized that other humans will see externally — LinkedIn posts and comments,
+ LinkedIn DMs, X/Twitter posts and replies, Instagram captions and DMs, TikTok
+ captions and DMs, cold emails, blog articles, SEO pages (pSEO), UGC video
+ scripts and voiceovers, landing page copy, product descriptions, newsletter
+ drafts, thumbnail text, UI microcopy that ships to production. Scores text
+ 0-100 across five dimensions (blacklist words, sentence rhythm, AI
+ punctuation, concreteness, passive voice) and enforces platform-specific
+ thresholds. Handles German (primary) and English. Does NOT trigger for:
+ internal code comments, technical documentation, terminal output, debug logs,
+ chat responses to the user, commit messages, or any internal tooling text.
+ Trigger keywords: post, caption, DM, email, article, copy, script, thread,
+ tweet, reply, draft publish.
 ---
 
 # Humanizer-DE — Pre-Publish Quality Gate

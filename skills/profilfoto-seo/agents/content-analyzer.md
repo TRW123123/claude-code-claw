@@ -118,18 +118,18 @@ Sortiert nach größtem Impact pro Aufwand.
 ### Top 3 Fixes (sortiert nach Impact/Aufwand)
 
 1. **Bilder hinzufügen** (+5 Punkte in Dim 1, +2 in Dim 4)
-   - 20+ Beispielbilder als Gallery integrieren (Hard Rule aus Backlog)
-   - Aufwand: Mittel (Bilder generieren via Nano Banana)
+ - 20+ Beispielbilder als Gallery integrieren (Hard Rule aus Backlog)
+ - Aufwand: Mittel (Bilder generieren via Nano Banana)
 
 2. **FAQ-Schema + 2 interne Links** (+5 Punkte in Dim 5)
-   - FAQPage Schema JSON-LD hinzufügen
-   - Link auf /linkedin-profilfoto-ki/ und /ratgeber/profilbild/ (Hub)
-   - Aufwand: Niedrig
+ - FAQPage Schema JSON-LD hinzufügen
+ - Link auf /linkedin-profilfoto-ki/ und /ratgeber/profilbild/ (Hub)
+ - Aufwand: Niedrig
 
 3. **Content erweitern um 300 Wörter** (+3 Punkte in Dim 3)
-   - Sektion "Was macht ein cooles Profilbild aus" vertiefen
-   - LSI-Keywords integrieren: ausstrahlung, wirkung, porträt, stil
-   - Aufwand: Mittel
+ - Sektion "Was macht ein cooles Profilbild aus" vertiefen
+ - LSI-Keywords integrieren: ausstrahlung, wirkung, porträt, stil
+ - Aufwand: Mittel
 
 ### Nach Fixes erwartet
 Score: ~83/100 (akzeptabel, deploy-bereit)
@@ -150,10 +150,10 @@ Für Stage 2 CTR-Fixes → nur Dimension 5 (SEO Technical) Schnell-Check.
 Pro Analyzer-Run:
 ```sql
 INSERT INTO claw.site_audits (
-  domain, page_path, audit_type, viewport, findings, scores, content_health_score, created_at
+ domain, page_path, audit_type, viewport, findings, scores, content_health_score, created_at
 ) VALUES (
-  'profilfoto-ki.de', '/ratgeber/coole-profilbilder/', 'content',
-  'desktop', '{...}'::jsonb, '{"dim1": 12, "dim2": 15, ...}'::jsonb, 68, NOW()
+ 'profilfoto-ki.de', '/ratgeber/coole-profilbilder/', 'content',
+ 'desktop', '{...}'::jsonb, '{"dim1": 12, "dim2": 15, ...}'::jsonb, 68, NOW()
 );
 ```
 

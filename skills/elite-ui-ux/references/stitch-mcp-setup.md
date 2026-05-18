@@ -31,29 +31,29 @@ In `.claude/settings.json` (oder globale Claude-Settings):
 
 ```json
 {
-  "mcpServers": {
-    "stitch": {
-      "command": "npx",
-      "args": ["@google/stitch-sdk", "mcp"],
-      "env": {
-        "STITCH_API_KEY": "dein-api-key-hier"
-      }
-    }
-  }
+ "mcpServers": {
+ "stitch": {
+ "command": "npx",
+ "args": ["@google/stitch-sdk", "mcp"],
+ "env": {
+ "STITCH_API_KEY": "dein-api-key-hier"
+ }
+ }
+ }
 }
 ```
 
 **Alternative — Remote MCP Endpoint direkt:**
 ```json
 {
-  "mcpServers": {
-    "stitch": {
-      "url": "https://stitch.withgoogle.com/mcp",
-      "headers": {
-        "Authorization": "Bearer dein-api-key-hier"
-      }
-    }
-  }
+ "mcpServers": {
+ "stitch": {
+ "url": "https://stitch.withgoogle.com/mcp",
+ "headers": {
+ "Authorization": "Bearer dein-api-key-hier"
+ }
+ }
+ }
 }
 ```
 
@@ -83,8 +83,8 @@ const project = stitch.project("mein-projekt-id");
 
 // Screen aus Master Prompt generieren
 const screen = await project.generate(`
-  Act as an Elite UI/UX Frontend Engineer...
-  [Master Prompt hier einfügen]
+ Act as an Elite UI/UX Frontend Engineer...
+ [Master Prompt hier einfügen]
 `);
 
 // HTML + Screenshot holen
@@ -104,19 +104,19 @@ const updated = await screen.edit("Make the background darker and add more contr
 
 ```
 1. User beschreibt Projekt
-        ↓
+ ↓
 2. elite-ui-ux Skill generiert:
-   - Master Prompt (für Cursor/v0)
-   - DESIGN.md (für Stitch-Konsistenz)
-        ↓
+ - Master Prompt (für Cursor/v0)
+ - DESIGN.md (für Stitch-Konsistenz)
+ ↓
 3. Claude Code ruft Stitch MCP auf:
-   create_project → "Mein Projekt"
-   generate_screen_from_text → Master Prompt
-        ↓
+ create_project → "Mein Projekt"
+ generate_screen_from_text → Master Prompt
+ ↓
 4. Stitch liefert:
-   - HTML der generierten UI
-   - Screenshot URL
-        ↓
+ - HTML der generierten UI
+ - Screenshot URL
+ ↓
 5. HTML wird in Next.js/React-Projekt eingebunden
 6. Iterationen via screen.edit() oder neue Screens
 ```
@@ -141,10 +141,10 @@ import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
 
 const { text } = await generateText({
-  model: google("gemini-2.5-flash"),
-  tools: stitchTools(),
-  maxSteps: 10,
-  prompt: "Erstelle ein Projekt und generiere ein modernes SaaS Dashboard mit dem Aesthetic 'Quantum Flux Gradients'"
+ model: google("gemini-2.5-flash"),
+ tools: stitchTools(),
+ maxSteps: 10,
+ prompt: "Erstelle ein Projekt und generiere ein modernes SaaS Dashboard mit dem Aesthetic 'Quantum Flux Gradients'"
 });
 ```
 
@@ -157,8 +157,8 @@ Stitch liest sie automatisch für konsistente Design-Entscheidungen:
 
 ```
 mein-projekt/
-├── DESIGN.md          ← Von elite-ui-ux Skill generiert
-├── CLAUDE.md          ← Claude Code Regeln
+├── DESIGN.md ← Von elite-ui-ux Skill generiert
+├── CLAUDE.md ← Claude Code Regeln
 ├── src/
 └── ...
 ```

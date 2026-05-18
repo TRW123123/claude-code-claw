@@ -1,6 +1,6 @@
 # CLAW Scripts — Übersicht
-> Auto-generiert: 2026-04-19 | Quelle: `C:\Users\User\Claude\scripts\`
-> Regenerieren: `node C:/Users/User/Claude/scripts/claw-generate-lib-docs.mjs`
+> Auto-generiert: 2026-04-19 | Quelle: `~/Claude/scripts\`
+> Regenerieren: `node ~/Claude/scripts/claw-generate-lib-docs.mjs`
 
 **Zweck:** Diese Datei verhindert Halluzinationen über Custom-Scripts. Statt zu raten was ein Script tut, liest Claude den Header-Kommentar aus dieser Übersicht.
 
@@ -76,14 +76,14 @@ Hook-Contract: Claude Code sendet via stdin JSON mit `tool_input`.
 Generiert Embedding via Gemini + schreibt in Supabase via claw_upsert
 
 Usage:
-  node claw-flush.mjs "text content" "signal_type" "namespace" "source"
+ node claw-flush.mjs "text content" "signal_type" "namespace" "source"
 
 Signal Types: explicit-remember | decision | preference | project-context |
-              substantial-input | emotional | relationship | deadline-critical | general
-Namespaces:   hard-rules | workflows | technical | sales | corrections | general
+ substantial-input | emotional | relationship | deadline-critical | general
+Namespaces: hard-rules | workflows | technical | sales | corrections | general
 
 Env vars required (in settings.json):
-  GEMINI_API_KEY, SUPABASE_URL, SUPABASE_ANON_KEY
+ GEMINI_API_KEY, SUPABASE_URL, SUPABASE_ANON_KEY
 ```
 
 ---
@@ -114,7 +114,7 @@ Usage: node claw-generate-lib-docs.mjs
 Öffnet Chrome mit dem richtigen Profil → GSC → Request Indexing
 
 Usage: node claw-gsc-submit.mjs "https://ki-automatisieren.de/ratgeber/..."
-       node claw-gsc-submit.mjs --urls-from results/2026-03-29-title-tags.md
+ node claw-gsc-submit.mjs --urls-from results/2026-03-29-title-tags.md
 
 Env: (keine — nutzt gespeicherten Chrome Login)
 ```
@@ -180,10 +180,10 @@ geändert wurden. Wenn der letzte Lauf verpasst wurde (Laptop aus), holt er
 automatisch alles nach.
 
 Usage:
-  node claw-wiki-sync.mjs                    # Sync geänderte Wiki-Files
-  node claw-wiki-sync.mjs --full             # Force: sync ALLES
-  node claw-wiki-sync.mjs --dry-run          # Zeigt was passieren würde
-  node claw-wiki-sync.mjs --file "path.md"   # Sync einzelnes File
+ node claw-wiki-sync.mjs # Sync geänderte Wiki-Files
+ node claw-wiki-sync.mjs --full # Force: sync ALLES
+ node claw-wiki-sync.mjs --dry-run # Zeigt was passieren würde
+ node claw-wiki-sync.mjs --file "path.md" # Sync einzelnes File
 
 Env vars: GEMINI_API_KEY, SUPABASE_URL, SUPABASE_ANON_KEY
 (aus Claude Code settings.json oder Windows Environment)
@@ -239,10 +239,10 @@ Gibt INSERT-SQL-Statements aus die direkt in Supabase ausgefuehrt werden koennen
 Liest alle Claude Code Session-Transkripte (.jsonl) aus ~/.claude/projects/
 und schreibt einen strukturierten Obsidian-Vault mit:
 
-  sessions/   - eine .md pro Session (benannt nach Datum + Workspace)
-  concepts/   - Stub-Notes fuer wiederkehrende Begriffe (st-automatisierung.de,
-                claw.domain_authority, Stage 0, BAFA, etc.), jede mit einer
-                Backlink-Liste zu den Sessions die den Begriff erwaehnen
+ sessions/ - eine .md pro Session (benannt nach Datum + Workspace)
+ concepts/ - Stub-Notes fuer wiederkehrende Begriffe (st-automatisierung.de,
+ claw.domain_authority, Stage 0, BAFA, etc.), jede mit einer
+ Backlink-Liste zu den Sessions die den Begriff erwaehnen
 
 Kein LLM. Kein Token-Verbrauch. Reine Python-Regex-Analyse.
 Laeuft idempotent - kann beliebig oft re-ausgefuehrt werden.

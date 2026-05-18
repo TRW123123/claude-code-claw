@@ -9,7 +9,7 @@ GSC Manual-Submit Retry fuer st-automatisierung.de — 6 AIOS-Cluster-URLs.
 Am 2026-04-14 nachmittags und am 2026-04-15 morgens wurde der GSC-Submit versucht und jeweils mit "Kontingent ueberschritten" abgelehnt. Das Kontingent ist ein rollierendes 24h-Fenster, nicht kalendertaeglich. Heute ab 15:00 Uhr lokal sollte es frei sein.
 
 ## URLs zu submitten (alle sind live 200, in Sitemap, gebaut ueber Commits 222cd02 + b8dcd4c)
-1. https://st-automatisierung.de/l/ki-betriebssystem-mittelstand-strategie/   (Pillar, Prio 1)
+1. https://st-automatisierung.de/l/ki-betriebssystem-mittelstand-strategie/ (Pillar, Prio 1)
 2. https://st-automatisierung.de/l/schatten-ki-mittelstand-risiken-governance/
 3. https://st-automatisierung.de/l/ai-operating-model-mittelstand-unterschied-konzern/
 4. https://st-automatisierung.de/l/ki-pilot-scheitert-poc-falle-mittelstand/

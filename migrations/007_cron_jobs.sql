@@ -7,14 +7,14 @@
 -- Remove any previous version of the job (cron.schedule is not idempotent on its own).
 DO $$
 BEGIN
-    IF EXISTS (SELECT 1 FROM cron.job WHERE jobname = 'claw-memory-decay') THEN
-        PERFORM cron.unschedule('claw-memory-decay');
-    END IF;
+ IF EXISTS (SELECT 1 FROM cron.job WHERE jobname = 'claw-memory-decay') THEN
+ PERFORM cron.unschedule('claw-memory-decay');
+ END IF;
 END $$;
 
 -- Daily at 03:00 UTC: decay memory importance, archive below threshold.
 SELECT cron.schedule(
-    'claw-memory-decay',
-    '0 3 * * *',
-    $$SELECT claw.run_decay();$$
+ 'claw-memory-decay',
+ '0 3 * * *',
+ $$SELECT claw.run_decay();$$
 );

@@ -26,9 +26,9 @@ allowed-tools: [Read, Write, Bash, Grep, Glob]
 2. Falls kein Tab existiert: neuen erstellen via `tabs_create_mcp`
 3. Viewport auf **1280x800** setzen (Desktop-Standard) via `resize_window`
 4. URLs sammeln:
-   - User hat spezifische URLs angegeben → diese nutzen
-   - User hat nur Domain angegeben → `/sitemap.xml` laden und alle URLs extrahieren
-   - Fallback: Startseite oeffnen, alle internen Links per JavaScript sammeln
+ - User hat spezifische URLs angegeben → diese nutzen
+ - User hat nur Domain angegeben → `/sitemap.xml` laden und alle URLs extrahieren
+ - Fallback: Startseite oeffnen, alle internen Links per JavaScript sammeln
 
 **Output:** Liste aller zu pruefenden URLs + Gesamtzahl dem User zeigen. Bestaetigung einholen ob alle URLs geprueft werden sollen oder eine Auswahl.
 
@@ -44,8 +44,8 @@ Warten bis Seite geladen (2-3 Sekunden)
 javascript_tool → Seitenhoehe + Viewport messen:
 
 const totalHeight = Math.max(
-  document.body.scrollHeight,
-  document.documentElement.scrollHeight
+ document.body.scrollHeight,
+ document.documentElement.scrollHeight
 );
 const viewportHeight = window.innerHeight;
 const viewportWidth = window.innerWidth;
@@ -64,20 +64,20 @@ javascript_tool →
 
 // Alle lazy images auf eager setzen
 document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-  img.setAttribute('loading', 'eager');
+ img.setAttribute('loading', 'eager');
 });
 
 // Einmal komplett runterscrollen um alles zu triggern
 (async () => {
-  const step = window.innerHeight;
-  const total = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-  for (let pos = 0; pos < total; pos += step) {
-    window.scrollTo(0, pos);
-    await new Promise(r => setTimeout(r, 200));
-  }
-  // Zurueck nach oben
-  window.scrollTo(0, 0);
-  'done - lazy content triggered';
+ const step = window.innerHeight;
+ const total = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+ for (let pos = 0; pos < total; pos += step) {
+ window.scrollTo(0, pos);
+ await new Promise(r => setTimeout(r, 200));
+ }
+ // Zurueck nach oben
+ window.scrollTo(0, 0);
+ 'done - lazy content triggered';
 })();
 ```
 

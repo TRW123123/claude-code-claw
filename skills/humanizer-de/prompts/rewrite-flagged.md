@@ -84,16 +84,16 @@ Wenn Subjekt nicht bekannt: Passiv behalten, nicht raten.
 
 ```json
 {
-  "rewritten_text": "...",
-  "changes": [
-    { "type": "blacklist", "original": "nahtlos", "replaced_with": "reibungslos", "position": 142 },
-    { "type": "em-dash", "original": "— der Punkt", "replaced_with": ". Der Punkt", "position": 287 },
-    { "type": "translationese", "original": "Potenzial entfesseln", "replaced_with": "ermöglichen", "position": 401 }
-  ],
-  "unresolved_flags": [
-    { "type": "hollowness", "note": "needs human input — no concrete entities available in context" }
-  ],
-  "ready_for_recheck": true
+ "rewritten_text": "...",
+ "changes": [
+ { "type": "blacklist", "original": "nahtlos", "replaced_with": "reibungslos", "position": 142 },
+ { "type": "em-dash", "original": "— der Punkt", "replaced_with": ". Der Punkt", "position": 287 },
+ { "type": "translationese", "original": "Potenzial entfesseln", "replaced_with": "ermöglichen", "position": 401 }
+ ],
+ "unresolved_flags": [
+ { "type": "hollowness", "note": "needs human input — no concrete entities available in context" }
+ ],
+ "ready_for_recheck": true
 }
 ```
 

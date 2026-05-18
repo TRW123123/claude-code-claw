@@ -51,14 +51,14 @@ NO ring light, NO photographer visible, NOT third-person perspective
 **Regel:** JEDE Landingpage mit Vorher/Nachher MUSS aus dem Persona-Pool (F1-F4 / M1-M4) generiert werden, mit dem Master-Bild als `image_input` (Reference-Lock). **Kein Freestyle-Prompting ohne Reference**, auch nicht für generische Ratgeber-Bilder. Die 8 Master-Bilder liegen unter:
 ```
 ~/.gemini\antigravity\brain\9738e8fb-b1c6-4527-8efe-7d90abaa24e3\
-  persona_f1_anna_*.png
-  persona_f2_lara_*.png
-  persona_f3_sophia_*.png
-  persona_f4_mira_*.png
-  persona_m1_tom_*.png
-  persona_m2_daniel_*.png
-  persona_m3_felix_*.png
-  persona_m4_markus_v3_*.png
+ persona_f1_anna_*.png
+ persona_f2_lara_*.png
+ persona_f3_sophia_*.png
+ persona_f4_mira_*.png
+ persona_m1_tom_*.png
+ persona_m2_daniel_*.png
+ persona_m3_felix_*.png
+ persona_m4_markus_v3_*.png
 ```
 
 ### Hard Rule C: Programmatisches Composing via Pillow, nicht KI-Composing
@@ -245,14 +245,14 @@ Für jede Persona (F1-F4, M1-M4) zuerst ein Master-Reference-Image generieren �
 
 ```
 ~/Projects/profilfoto-ki-static\dist\images\personas\
-  ├── F1-anna-master.png
-  ├── F2-lara-master.png
-  ├── F3-sophia-master.png
-  ├── F4-mira-master.png
-  ├── M1-tom-master.png
-  ├── M2-daniel-master.png
-  ├── M3-felix-master.png
-  └── M4-markus-master.png
+ ├── F1-anna-master.png
+ ├── F2-lara-master.png
+ ├── F3-sophia-master.png
+ ├── F4-mira-master.png
+ ├── M1-tom-master.png
+ ├── M2-daniel-master.png
+ ├── M3-felix-master.png
+ └── M4-markus-master.png
 ```
 
 ### Schritt 2: Pro Bild Vorher generieren mit Persona-Lock
@@ -282,7 +282,7 @@ Nach der Einzelgenerierung das Vorher- und Nachher-Bild side-by-side mit Labels 
 
 Pfad-Konvention bleibt:
 ```
-hero-{slug}.png        (640×640 oder 1024×1024)
+hero-{slug}.png (640×640 oder 1024×1024)
 ```
 
 Beispiele:
@@ -316,14 +316,14 @@ Jeder Bild-Austausch in `claw.changelog`:
 
 ```sql
 SELECT insert_changelog(
-  'profilfoto-ki.de',
-  '/{seite}/',
-  'hero_image',
-  'hero-{old}.png',
-  'hero-{new}.png',
-  'Hero-Neuguss aus image-briefs.md: Charakter-Konsistenz-Fix + einheitliche Bildsprache. Persona: {F1/M2/etc}',
-  '{commit-hash}',
-  'profilfoto-seo-build'
+ 'profilfoto-ki.de',
+ '/{seite}/',
+ 'hero_image',
+ 'hero-{old}.png',
+ 'hero-{new}.png',
+ 'Hero-Neuguss aus image-briefs.md: Charakter-Konsistenz-Fix + einheitliche Bildsprache. Persona: {F1/M2/etc}',
+ '{commit-hash}',
+ 'profilfoto-seo-build'
 );
 ```
 

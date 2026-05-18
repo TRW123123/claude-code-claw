@@ -19,7 +19,7 @@
 | Telefon | [your-phone]|
 | E-Mail | info@st-automatisierung.de |
 | Calendly | https://calendly.com/st-automatisierung-info/30min |
-| LinkedIn | https://www.linkedin.com/in/safak-tepecik-b204b1133/ |
+| LinkedIn | [your-linkedin-url] |
 
 ## Geschaeftsmodell
 

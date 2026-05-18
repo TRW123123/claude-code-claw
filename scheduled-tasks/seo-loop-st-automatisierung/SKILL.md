@@ -8,19 +8,19 @@ description: Daily SEO Full-Stack Worker für st-automatisierung.de — werktags
 ## Domain-Config
 - **Domain:** st-automatisierung.de
 - **GSC Property:** sc-domain:st-automatisierung.de
-- **Repo:** `C:\Users\User\Projects\strategie-beratung`
+- **Repo:** `~/Projects/strategie-beratung`
 - **Stack:** Astro 5.1, Tailwind 3.4, Netlify
 - **Supabase:** NanoBanana (`<SUPABASE_PROJECT_ID>`)
 - **Intent:** Beratungs-Intent (Strategie, BAFA, Compliance) — NICHT Umsetzungs-Intent
 - **Cluster-Priorität:** BAFA > AI Act > KI-Beratung > Strategieberatung
-- **Plugin:** `C:\Users\User\.claude\skills\st-auto-seo\` (4-Stufen SEO Funnel)
+- **Plugin:** `~/.claude/skills\st-auto-seo\` (4-Stufen SEO Funnel)
 
 ## Schritt 1: Kontext laden
 
-1. **Letztes Agent-Log lesen** — `C:\Users\User\Claude\sessions\agent-log-YYYY-MM-DD.md` (neuestes Datum) um zu wissen wo man steht und Duplikate zu vermeiden.
-2. **Topic-Datei lesen** — `C:\Users\User\Claude\topics\st-automatisierung.md` für aktuellen Projektstand.
-3. **pSEO Skill lesen** — `C:\Users\User\.claude\skills\pseo\SKILL.md` für Workflow, Gates und Anti-AI Blacklist.
-4. **SEO Plugin lesen** — `C:\Users\User\.claude\skills\st-auto-seo\SKILL.md` für 4-Stufen-Funnel und Routing-Logik.
+1. **Letztes Agent-Log lesen** — `~/Claude/sessions\agent-log-YYYY-MM-DD.md` (neuestes Datum) um zu wissen wo man steht und Duplikate zu vermeiden.
+2. **Topic-Datei lesen** — `~/Claude/topics\st-automatisierung.md` für aktuellen Projektstand.
+3. **pSEO Skill lesen** — `~/.claude/skills\pseo\SKILL.md` für Workflow, Gates und Anti-AI Blacklist.
+4. **SEO Plugin lesen** — `~/.claude/skills\st-auto-seo\SKILL.md` für 4-Stufen-Funnel und Routing-Logik.
 
 ## Schritt 2: GSC-Daten abrufen
 
@@ -46,7 +46,7 @@ Vor der eigenen Analyse: Gibt es Tasks vom Weekly Strategy Agent?
 SELECT id, task_type, priority, payload->>'description' as description
 FROM claw.webhook_queue
 WHERE payload->>'domain' = 'st-automatisierung.de'
-  AND status = 'pending'
+ AND status = 'pending'
 ORDER BY priority ASC, created_at ASC
 LIMIT 3;
 
@@ -62,7 +62,7 @@ ORDER BY date DESC LIMIT 1;
 **Routing-Logik (in dieser Reihenfolge prüfen):**
 
 1. **Pending CTR-Fix in Queue?** → Stage 2 ausführen (Details: `st-auto-seo/stage-2-clicks.md`)
-2. **Pending Link-Building Task?** → Stage 0b (nur mit Safak Tepecik-OK, Details: `st-auto-seo/stage-0-link-building.md`)
+2. **Pending Link-Building Task?** → Stage 0b (nur mit Safak-OK, Details: `st-auto-seo/stage-0-link-building.md`)
 3. **Pending Seiten-Vorschlag?** → Stage 1 ausführen (Details: `st-auto-seo/stage-1-impressions.md`)
 4. **Nichts pending?** → Eigenständig analysieren:
 
@@ -71,7 +71,7 @@ Eigenständige Analyse:
 - **Striking-Distance:** Keywords auf Pos 8-20 mit steigenden Impressions → Content-Update
 - **Thin Content:** Seiten mit wenig Impressions trotz gutem Keyword → Content erweitern
 - **Kannibalisierung:** Mehrere Seiten auf gleichem Keyword → konsolidieren oder schärfen
-- **Keyword-Research abgleichen:** `C:\Users\User\Projects\strategie-beratung\keyword-research\dataforseo-research-2026-03-31.json`
+- **Keyword-Research abgleichen:** `~/Projects/strategie-beratung\keyword-research\dataforseo-research-2026-03-31.json`
 
 ## Schritt 4: Entscheiden & Ausführen
 
@@ -104,12 +104,12 @@ Exit Code 0 = OK. Bei Fehlern: fixen, erneut bauen.
 ## Schritt 7: Deploy-Regel
 
 - **Title/Meta Optimierungen:** Autonom deployen erlaubt (git add + commit + push)
-- **Code-Änderungen / neue Seiten:** NUR nach explizitem Safak Tepecik-OK
+- **Code-Änderungen / neue Seiten:** NUR nach explizitem Safak-OK
 - **Analyse/Planung:** Kein git push, kein Deploy
 
 ## Schritt 8: Agent-Log schreiben
 
-`C:\Users\User\Claude\sessions\agent-log-YYYY-MM-DD.md` — erweitern (nicht überschreiben):
+`~/Claude/sessions\agent-log-YYYY-MM-DD.md` — erweitern (nicht überschreiben):
 
 ```markdown
 ## ST-Automatisierung Daily SEO [HH:MM]
@@ -132,14 +132,14 @@ Exit Code 0 = OK. Bei Fehlern: fixen, erneut bauen.
 
 ```sql
 SELECT insert_changelog(
-  'st-automatisierung.de',    -- domain
-  '/l/[slug]/',               -- page_path
-  '[change_type]',            -- title, meta_desc, content, new_page, internal_link
-  '[alter-wert]',             -- old_value (NULL bei neuen Seiten)
-  '[neuer-wert]',             -- new_value
-  '[grund-der-aenderung]',    -- reason
-  '[commit-hash]',            -- commit_hash (nach git push setzen)
-  'claw-agent'                -- actor
+ 'st-automatisierung.de', -- domain
+ '/l/[slug]/', -- page_path
+ '[change_type]', -- title, meta_desc, content, new_page, internal_link
+ '[alter-wert]', -- old_value (NULL bei neuen Seiten)
+ '[neuer-wert]', -- new_value
+ '[grund-der-aenderung]', -- reason
+ '[commit-hash]', -- commit_hash (nach git push setzen)
+ 'claw-agent' -- actor
 );
 ```
 
@@ -150,7 +150,7 @@ UPDATE claw.webhook_queue SET status = 'done', executed_at = NOW() WHERE id = '[
 
 ## Hard Rules (bindend)
 
-1. Kein Deploy ohne Safak Tepecik-OK bei Code-Änderungen
+1. Kein Deploy ohne Safak-OK bei Code-Änderungen
 2. Pinecone = READ ONLY
 3. Kein Keyword-Overlap mit ki-automatisieren.de
 4. Beratungs-Intent, NICHT Umsetzungs-Intent

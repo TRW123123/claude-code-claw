@@ -63,23 +63,23 @@ Manuell angestoßene Routine. Generiert pro Run N (Default 10) kreative Marketin
 ### PHASE 1 — PRE-BOOT (Context laden, ~2 Min)
 
 1. **DB-Top-Patterns lesen:**
-   ```sql
-   SELECT id, prompt_type, aesthetic_vibe, hook_type, winner_pattern, safak_note, industry
-   FROM claw.seedance_prompts
-   WHERE rating >= 4
-   ORDER BY rating DESC, created_at DESC
-   LIMIT 20;
-   ```
+ ```sql
+ SELECT id, prompt_type, aesthetic_vibe, hook_type, winner_pattern, safak_note, industry
+ FROM claw.seedance_prompts
+ WHERE rating >= 4
+ ORDER BY rating DESC, created_at DESC
+ LIMIT 20;
+ ```
 
 2. **Vault-Gold-Beispiele scannen:**
-   - `~/obsidian-claw-vault\seedance-2.0\examples\` listen
-   - Top-Inspirations: 3130-lacoste (Brand-als-Superkraft), koldo-nike-rain (Sport-Hyper-Real), 3128-luxury-suv (Premium Lifestyle), 3144-abandoned-train-rebuilding (Transformation), 3166-glitch-reality-living-room (Glitch), 3165-nyc-bullet-time-coffee-spill (Bullet-Time), x-keskin-auto-assembly (Process), 3169-serene-luxury-spa (Spa Premium), 3158-ballerina-and-humpback-whale (Surreal Fantasy)
+ - `~/obsidian-claw-vault\seedance-2.0\examples\` listen
+ - Top-Inspirations: 3130-lacoste (Brand-als-Superkraft), koldo-nike-rain (Sport-Hyper-Real), 3128-luxury-suv (Premium Lifestyle), 3144-abandoned-train-rebuilding (Transformation), 3166-glitch-reality-living-room (Glitch), 3165-nyc-bullet-time-coffee-spill (Bullet-Time), x-keskin-auto-assembly (Process), 3169-serene-luxury-spa (Spa Premium), 3158-ballerina-and-humpback-whale (Surreal Fantasy)
 
 3. **Apexx-Lektionen recallen:**
-   - Foto-First Pipeline (Hard Rule #19)
-   - "Container Reveal" Pattern (Produkt baut sich auf)
-   - "Self-Assembly" ungeeignet für reale Bau-Produkte
-   - 3D-Render-Look vermeiden (Nano Banana drüberjagen)
+ - Foto-First Pipeline (Hard Rule #19)
+ - "Container Reveal" Pattern (Produkt baut sich auf)
+ - "Self-Assembly" ungeeignet für reale Bau-Produkte
+ - 3D-Render-Look vermeiden (Nano Banana drüberjagen)
 
 4. **Letzter Run check:** Letzten run_id aus claw.runway_tests holen, welche Patterns gespielt wurden, NICHT wiederholen (Variation > Repetition).
 
@@ -104,19 +104,19 @@ Pro Konzept ein JSON-Eintrag mit:
 
 ```json
 {
-  "concept_no": 1,
-  "concept_title": "Sonnenbrille als Falken-Visier",
-  "pattern_genre": "Brand-als-Superkraft",
-  "brand_archetype": "Premium Eyewear",
-  "product_subject": "matte black aviator sunglasses",
-  "aesthetic_vibe": "surreal-fantasy",
-  "hook_type": "TRANSFORMATION",
-  "is_anti_default": true,
-  "image_prompt": "Hyperrealistic close-up of matte black aviator sunglasses on a stone pedestal, golden hour backlight catching the lens, subtle reflection of an eagle eye visible in the lens surface, soft fog around the pedestal, cinematic depth, 85mm lens.",
-  "video_prompt": "Director-Cut Shot-by-Shot ...",
-  "source_inspiration": "3130-lacoste (Brand-als-Superkraft Pattern), ID #19 (Sci-Fi-Scanner V10 Holographic UI als visual lexicon)",
-  "duration_s": 5,
-  "aspect_ratio": "16:9"
+ "concept_no": 1,
+ "concept_title": "Sonnenbrille als Falken-Visier",
+ "pattern_genre": "Brand-als-Superkraft",
+ "brand_archetype": "Premium Eyewear",
+ "product_subject": "matte black aviator sunglasses",
+ "aesthetic_vibe": "surreal-fantasy",
+ "hook_type": "TRANSFORMATION",
+ "is_anti_default": true,
+ "image_prompt": "Hyperrealistic close-up of matte black aviator sunglasses on a stone pedestal, golden hour backlight catching the lens, subtle reflection of an eagle eye visible in the lens surface, soft fog around the pedestal, cinematic depth, 85mm lens.",
+ "video_prompt": "Director-Cut Shot-by-Shot ...",
+ "source_inspiration": "3130-lacoste (Brand-als-Superkraft Pattern), ID #19 (Sci-Fi-Scanner V10 Holographic UI als visual lexicon)",
+ "duration_s": 5,
+ "aspect_ratio": "16:9"
 }
 ```
 
@@ -132,17 +132,17 @@ Alle Konzepte als `queued` in `claw.runway_tests` einfügen.
 4. **Wenn nicht eingeloggt:** STOP, User-Notification (Login muss manuell sein, KEINE Credentials einfügen)
 5. **Wenn eingeloggt:** navigate → Explore-Mode-URL (typischerweise `https://app.runway.ml/explore` oder via Sidebar-Nav)
 6. **UI-Discovery beim ersten Run:**
-   - Screenshot machen
-   - `read_page` filter=interactive
-   - Coordinates dokumentieren in `~/.claude/skills\runway-test\ui-coordinates.md`:
-     - "New Generation" Button
-     - Model-Selector (Seedance 2.0)
-     - Image-Upload-Area
-     - Prompt-Textarea
-     - Aspect-Ratio-Selector
-     - Duration-Selector
-     - Submit-Button
-     - Output-Area / Download-Button
+ - Screenshot machen
+ - `read_page` filter=interactive
+ - Coordinates dokumentieren in `~/.claude/skills\runway-test\ui-coordinates.md`:
+ - "New Generation" Button
+ - Model-Selector (Seedance 2.0)
+ - Image-Upload-Area
+ - Prompt-Textarea
+ - Aspect-Ratio-Selector
+ - Duration-Selector
+ - Submit-Button
+ - Output-Area / Download-Button
 
 ### PHASE 4 — GENERATION LOOP (~3-5 Min pro Konzept × N)
 
@@ -150,8 +150,8 @@ Pro Konzept:
 
 1. **Status auf `image_pending`:** `UPDATE claw.runway_tests SET status='image_pending' WHERE id=?`
 2. **Image generieren:**
-   - **Versuch A (Runway-intern):** Wenn Seedream/Image-Mode im Explore verfügbar — Image-Prompt eingeben, generieren, herunterladen → speichern `anchor_image_path`
-   - **Fallback B (Nano Banana extern):** Wenn nicht verfügbar — Nano Banana via Gemini API (`generate_image.mjs` aus ai-ugc Skill als Referenz) → Datei speichern
+ - **Versuch A (Runway-intern):** Wenn Seedream/Image-Mode im Explore verfügbar — Image-Prompt eingeben, generieren, herunterladen → speichern `anchor_image_path`
+ - **Fallback B (Nano Banana extern):** Wenn nicht verfügbar — Nano Banana via Gemini API (`generate_image.mjs` aus ai-ugc Skill als Referenz) → Datei speichern
 3. **Status auf `image_done`:** `UPDATE ... status='image_done', anchor_image_path=?`
 4. **Status auf `video_pending`:** Image in Runway upload, Seedance 2.0 wählen, Video-Prompt eingeben, Aspect/Duration setzen, Submit
 5. **Warten:** Polling-Loop (alle 15s `read_page` checken bis Video-Output sichtbar). Max 5 Min, sonst `failed`.
@@ -164,13 +164,13 @@ Pro Konzept:
 ### PHASE 5 — FINAL REPORT
 
 1. **Markdown-Report** in `~/Claude/runway-tests\<date>\REPORT.md`:
-   - Run-ID, Start/End-Time
-   - 10 Konzepte mit Title, Path, Source-Inspiration, Status
-   - Patterns die gespielt wurden (für nächste Run-Variation)
+ - Run-ID, Start/End-Time
+ - 10 Konzepte mit Title, Path, Source-Inspiration, Status
+ - Patterns die gespielt wurden (für nächste Run-Variation)
 2. **Telegram-Final-Summary:**
-   - Anzahl erfolgreich/failed
-   - Output-Pfad
-   - Aufforderung: "Bewerte die Videos manuell, dann `/runway-test rate` für Update der ratings"
+ - Anzahl erfolgreich/failed
+ - Output-Pfad
+ - Aufforderung: "Bewerte die Videos manuell, dann `/runway-test rate` für Update der ratings"
 3. **DB-Update:** `UPDATE claw.runway_tests SET status='downloaded' WHERE run_id=? AND status='video_done'` (Cleanup)
 
 ---
@@ -182,8 +182,8 @@ Nach manueller Bewertung durch User:
 ```sql
 UPDATE claw.runway_tests
 SET rating = 5,
-    safak_note = 'GOLD-direct — postbar wie Lacoste',
-    winner_pattern = 'Pattern-Beschreibung was funktioniert hat'
+ safak_note = 'GOLD-direct — postbar wie Lacoste',
+ winner_pattern = 'Pattern-Beschreibung was funktioniert hat'
 WHERE id = ?;
 ```
 

@@ -10,14 +10,14 @@
 
 ```
 opportunity_score =
-  volume_score        * 0.25  +
-  position_score      * 0.20  +
-  intent_score        * 0.20  +
-  competition_score   * 0.15  +
-  cluster_score       * 0.10  +
-  ctr_score           * 0.05  +
-  freshness_score     * 0.05  +
-  trend_score         * 0.05
+ volume_score * 0.25 +
+ position_score * 0.20 +
+ intent_score * 0.20 +
+ competition_score * 0.15 +
+ cluster_score * 0.10 +
+ ctr_score * 0.05 +
+ freshness_score * 0.05 +
+ trend_score * 0.05
 ```
 
 ---
@@ -207,45 +207,45 @@ Fallender Trend bekommt hohen Score weil Drop-Recovery wichtig ist.
 
 ```sql
 WITH opp_data AS (
-  SELECT
-    q.page,
-    q.query,
-    AVG(q.position) as avg_pos,
-    SUM(q.impressions) as impressions,
-    SUM(q.clicks) as clicks,
-    CASE WHEN SUM(q.impressions) > 0
-         THEN SUM(q.clicks)::numeric / SUM(q.impressions) * 100
-         ELSE 0 END as actual_ctr
-  FROM gsc_queries q
-  WHERE q.domain = 'st-automatisierung.de'
-    AND q.date >= CURRENT_DATE - 14
-  GROUP BY q.page, q.query
+ SELECT
+ q.page,
+ q.query,
+ AVG(q.position) as avg_pos,
+ SUM(q.impressions) as impressions,
+ SUM(q.clicks) as clicks,
+ CASE WHEN SUM(q.impressions) > 0
+ THEN SUM(q.clicks)::numeric / SUM(q.impressions) * 100
+ ELSE 0 END as actual_ctr
+ FROM gsc_queries q
+ WHERE q.domain = 'st-automatisierung.de'
+ AND q.date >= CURRENT_DATE - 14
+ GROUP BY q.page, q.query
 )
 SELECT
-  page,
-  query,
-  avg_pos,
-  impressions,
-  -- Volume Score (verwende impressions als Proxy wenn DataForSEO Volume nicht da)
-  CASE
-    WHEN impressions >= 200 THEN 70
-    WHEN impressions >= 50 THEN 55
-    WHEN impressions >= 20 THEN 40
-    ELSE 10
-  END as volume_score,
-  -- Position Score (Quick Win Logik)
-  CASE
-    WHEN avg_pos BETWEEN 11 AND 15 THEN 100
-    WHEN avg_pos BETWEEN 16 AND 20 THEN 85
-    WHEN avg_pos BETWEEN 8 AND 10 THEN 50
-    WHEN avg_pos BETWEEN 21 AND 30 THEN 40
-    ELSE 20
-  END as position_score,
-  -- CTR Gap Score
-  CASE
-    WHEN avg_pos <= 10 THEN GREATEST(0, ((10 - avg_pos) * 0.025) - actual_ctr / 100) * 1000
-    ELSE GREATEST(0, 0.015 - actual_ctr / 100) * 1000
-  END as ctr_score
+ page,
+ query,
+ avg_pos,
+ impressions,
+ -- Volume Score (verwende impressions als Proxy wenn DataForSEO Volume nicht da)
+ CASE
+ WHEN impressions >= 200 THEN 70
+ WHEN impressions >= 50 THEN 55
+ WHEN impressions >= 20 THEN 40
+ ELSE 10
+ END as volume_score,
+ -- Position Score (Quick Win Logik)
+ CASE
+ WHEN avg_pos BETWEEN 11 AND 15 THEN 100
+ WHEN avg_pos BETWEEN 16 AND 20 THEN 85
+ WHEN avg_pos BETWEEN 8 AND 10 THEN 50
+ WHEN avg_pos BETWEEN 21 AND 30 THEN 40
+ ELSE 20
+ END as position_score,
+ -- CTR Gap Score
+ CASE
+ WHEN avg_pos <= 10 THEN GREATEST(0, ((10 - avg_pos) * 0.025) - actual_ctr / 100) * 1000
+ ELSE GREATEST(0, 0.015 - actual_ctr / 100) * 1000
+ END as ctr_score
 FROM opp_data
 ORDER BY (volume_score * 0.25 + position_score * 0.20) DESC;
 ```

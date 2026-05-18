@@ -31,8 +31,8 @@
 
 ```sql
 SELECT DISTINCT query, page,
-  SUM(impressions) as impr,
-  ROUND(AVG(position)::numeric, 1) as pos
+ SUM(impressions) as impr,
+ ROUND(AVG(position)::numeric, 1) as pos
 FROM gsc_queries
 WHERE domain = 'st-automatisierung.de' AND date >= CURRENT_DATE - 14
 GROUP BY query, page
@@ -46,11 +46,11 @@ ORDER BY impr DESC;
 SELECT kr.keyword, kr.cluster, kr.volume, kr.competition, kr.intent
 FROM claw.keyword_research kr
 WHERE kr.domain = 'st-automatisierung.de'
-  AND kr.keyword NOT IN (
-    SELECT DISTINCT query FROM gsc_queries
-    WHERE domain = 'st-automatisierung.de'
-      AND date >= CURRENT_DATE - 30
-  )
+ AND kr.keyword NOT IN (
+ SELECT DISTINCT query FROM gsc_queries
+ WHERE domain = 'st-automatisierung.de'
+ AND date >= CURRENT_DATE - 30
+ )
 ORDER BY kr.tier ASC, kr.volume DESC;
 ```
 
@@ -84,18 +84,18 @@ Fuer jedes Gap-Keyword: 8-Faktoren-Score berechnen → Bucket zuordnen → in Qu
 -- claw_queue_webhook() + claw.webhook_queue wurden 2026-04-19 gedroppt (Legacy).
 -- Direkt-Aufruf statt Queue nutzen. Das folgende SQL ist obsolet, nur als historische Referenz:
 SELECT claw_queue_webhook(
-  'st-automatisierung.de',
-  'pseo-page',
-  jsonb_build_object(
-    'domain', 'st-automatisierung.de',
-    'keyword', '[gap-keyword]',
-    'cluster', '[cluster]',
-    'playbook', '[Templates|Curation|Comparison|...]',
-    'volume', [volume],
-    'opportunity_score', [score],
-    'description', '[neue Seite + kurze Begruendung]'
-  ),
-  [priority_1_to_4]
+ 'st-automatisierung.de',
+ 'pseo-page',
+ jsonb_build_object(
+ 'domain', 'st-automatisierung.de',
+ 'keyword', '[gap-keyword]',
+ 'cluster', '[cluster]',
+ 'playbook', '[Templates|Curation|Comparison|...]',
+ 'volume', [volume],
+ 'opportunity_score', [score],
+ 'description', '[neue Seite + kurze Begruendung]'
+ ),
+ [priority_1_to_4]
 );
 ```
 
@@ -133,14 +133,14 @@ LLMs und Zielgruppen verwenden andere Sprache als SEO-Tools. Hier wird die echte
 **Quellen (in dieser Reihenfolge):**
 
 1. **Reddit** — `r/Mittelstand`, `r/Unternehmer`, `r/de`, `r/Selbststaendig`
-   - Suche nach "[Cluster-Keyword]"
-   - Top 5 Threads lesen
-   - Pain Points, Sprache, Story-Seeds extrahieren
+ - Suche nach "[Cluster-Keyword]"
+ - Top 5 Threads lesen
+ - Pain Points, Sprache, Story-Seeds extrahieren
 
 2. **YouTube** — `mcp__dataforseo__serp_youtube_organic_live_advanced`
-   - Top 5 Videos zum Keyword
-   - Comments analysieren via `serp_youtube_video_comments_live_advanced`
-   - Was fragen die Nutzer wirklich?
+ - Top 5 Videos zum Keyword
+ - Comments analysieren via `serp_youtube_video_comments_live_advanced`
+ - Was fragen die Nutzer wirklich?
 
 3. **Google "People Also Ask"** — schon aus Phase 1
 
@@ -245,11 +245,11 @@ Auf den **vollstaendigen Artikel**:
 3. **Pflicht-Bloecke** pruefen (aus `references/aeo-geo-patterns.md`)
 4. **JSON-LD** validieren (FAQPage + Service + BreadcrumbList)
 5. **Frontmatter** vollstaendig:
-   - title, description, keyword, cluster
-   - faq oder roi_data
-   - bafa_badge: true (wenn BAFA-Cluster)
-   - canonical mit trailing slash
-   - dateModified
+ - title, description, keyword, cluster
+ - faq oder roi_data
+ - bafa_badge: true (wenn BAFA-Cluster)
+ - canonical mit trailing slash
+ - dateModified
 6. **Internal Links** mind. 3 mit trailing slash
 7. **Em-Dash Count = 0**
 
@@ -265,14 +265,14 @@ Exit Code 0 = OK. **NEUE SEITEN: NUR mit Safak-OK deployen.**
 
 ```sql
 SELECT insert_changelog(
-  'st-automatisierung.de',
-  '/l/[slug]/',
-  'new_page',
-  NULL,
-  '[title]',
-  '[Stage 1: pSEO Seite gebaut. Cluster: X. Playbook: Y. Score: Z]',
-  '[commit-hash nach git push]',
-  'claw-agent'
+ 'st-automatisierung.de',
+ '/l/[slug]/',
+ 'new_page',
+ NULL,
+ '[title]',
+ '[Stage 1: pSEO Seite gebaut. Cluster: X. Playbook: Y. Score: Z]',
+ '[commit-hash nach git push]',
+ 'claw-agent'
 );
 
 -- claw.webhook_queue 2026-04-19 gedroppt (Legacy). Direkt-Aufruf statt Queue nutzen. Folgendes SQL obsolet:

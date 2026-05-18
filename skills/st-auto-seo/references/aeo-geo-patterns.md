@@ -186,7 +186,7 @@ Jede neue pSEO-Seite muss mindestens diese JSON-LD Bloecke haben:
 2. **FAQPage** Schema (mit allen FAQs der Seite)
 3. **BreadcrumbList** Schema
 4. **LocalBusiness** Schema (auf Homepage und Contact-Seite)
-5. **Person** Schema fuer Author (Safak Tepecik)
+5. **Person** Schema fuer Author (Safak)
 
 ### Voice Search Optimierung
 

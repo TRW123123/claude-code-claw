@@ -26,7 +26,7 @@ allowed-tools: [Read, Write, Bash]
 SELECT page, AVG(position)::numeric(5,1), SUM(impressions), SUM(clicks)
 FROM gsc_history
 WHERE domain = 'ki-automatisieren.de'
-  AND date >= CURRENT_DATE - INTERVAL '14 days'
+ AND date >= CURRENT_DATE - INTERVAL '14 days'
 GROUP BY page
 HAVING AVG(position) <= 20 AND SUM(clicks) = 0 AND SUM(impressions) >= 3
 ORDER BY SUM(impressions) DESC;
@@ -35,8 +35,8 @@ ORDER BY SUM(impressions) DESC;
 SELECT query, SUM(impressions), AVG(position)::numeric(5,1)
 FROM gsc_queries
 WHERE domain = 'ki-automatisieren.de'
-  AND page LIKE '%/blog/%'
-  AND date >= CURRENT_DATE - INTERVAL '14 days'
+ AND page LIKE '%/blog/%'
+ AND date >= CURRENT_DATE - INTERVAL '14 days'
 GROUP BY query
 ORDER BY SUM(impressions) DESC
 LIMIT 20;
@@ -68,21 +68,21 @@ Jeden Tag zuerst GSC-Daten lesen, dann priorisieren:
 
 ```
 PRIORITÄT 1 — CTR-Fix
-  Position 1–15, Impressions ≥ 5, Clicks = 0
-  → meta title + description überarbeiten
-  → H1 prüfen (Keyword drin?)
+ Position 1–15, Impressions ≥ 5, Clicks = 0
+ → meta title + description überarbeiten
+ → H1 prüfen (Keyword drin?)
 
 PRIORITÄT 2 — Content-Upgrade
-  Impressions hoch, Position 15–40
-  → Content vertiefen (min. +300 Wörter)
-  → FAQ hinzufügen oder erweitern
-  → Interne Links ergänzen
+ Impressions hoch, Position 15–40
+ → Content vertiefen (min. +300 Wörter)
+ → FAQ hinzufügen oder erweitern
+ → Interne Links ergänzen
 
 PRIORITÄT 3 — Neue Seite bauen
-  Laut SEO-PLAN-2026.md (C:\Users\User\Projects\ki-automatisieren-astro\SEO-PLAN-2026.md)
+ Laut SEO-PLAN-2026.md (~/Projects/ki-automatisieren-astro/SEO-PLAN-2026.md)
 
 PRIORITÄT 4 — Visuell / Technisch
-  Seiten ohne Animation, ohne Schema.org, ohne Vergleichstabelle
+ Seiten ohne Animation, ohne Schema.org, ohne Vergleichstabelle
 ```
 
 ---
@@ -91,11 +91,11 @@ PRIORITÄT 4 — Visuell / Technisch
 
 ```python
 PSEO_CHECKS = {
-    "keyword_in_h1": True,           # Haupt-Keyword exakt in <h1>
-    "keyword_density": (3, 5),        # 3-5x im Fließtext
-    "word_count": (800, 1200),
-    "has_meta_description": True,
-    "meta_desc_length": (120, 160),
+ "keyword_in_h1": True, # Haupt-Keyword exakt in <h1>
+ "keyword_density": (3, 5), # 3-5x im Fließtext
+ "word_count": (800, 1200),
+ "has_meta_description": True,
+ "meta_desc_length": (120, 160),
 }
 ```
 
@@ -125,14 +125,14 @@ Diese Phrasen sind verboten — sofort ersetzen wenn gefunden:
 
 ```python
 PSEO_REQUIREMENTS = {
-    "has_h2_faq_section": True,
-    "has_json_ld_faqpage": True,       # FAQPage Schema.org
-    "has_json_ld_service": True,        # Service Schema.org
-    "has_comparison_table": True,
-    "has_internal_links": True,         # Min. 2 interne Links (Anti-Orphan)
-    "has_breadcrumbs": True,
-    "has_strong_tags_for_usps": True,
-    "no_text_walls": True,
+ "has_h2_faq_section": True,
+ "has_json_ld_faqpage": True, # FAQPage Schema.org
+ "has_json_ld_service": True, # Service Schema.org
+ "has_comparison_table": True,
+ "has_internal_links": True, # Min. 2 interne Links (Anti-Orphan)
+ "has_breadcrumbs": True,
+ "has_strong_tags_for_usps": True,
+ "no_text_walls": True,
 }
 ```
 

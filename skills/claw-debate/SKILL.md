@@ -101,24 +101,24 @@ Wenn der User sagt:
 
 ```
 RUNDE 1:
-  1. Visionaer → These entwickeln (WebSearch nutzen)
-  2. Red Team → These angreifen (WebSearch nutzen)
-  3. Synthese → Erste Regeln destillieren
+ 1. Visionaer → These entwickeln (WebSearch nutzen)
+ 2. Red Team → These angreifen (WebSearch nutzen)
+ 3. Synthese → Erste Regeln destillieren
 
 RUNDE 2:
-  4. Visionaer → These verfeinern oder verteidigen
-  5. Red Team → Neue Angriffspunkte finden
-  6. Synthese → Regeln haerten
+ 4. Visionaer → These verfeinern oder verteidigen
+ 5. Red Team → Neue Angriffspunkte finden
+ 6. Synthese → Regeln haerten
 
 RUNDE 3:
-  7. Visionaer → Finale Position
-  8. Red Team → Letzter Angriff
-  9. Synthese → FINALES REGELWERK
+ 7. Visionaer → Finale Position
+ 8. Red Team → Letzter Angriff
+ 9. Synthese → FINALES REGELWERK
 
 JUDGE (nach Runde 3):
-  10. Alle Synthesen zusammenfassen
-  11. Master-Ruleset als Markdown schreiben
-  12. JSON-Verdict ausgeben
+ 10. Alle Synthesen zusammenfassen
+ 11. Master-Ruleset als Markdown schreiben
+ 12. JSON-Verdict ausgeben
 ```
 
 ---
@@ -127,9 +127,9 @@ JUDGE (nach Runde 3):
 
 ```
 ~/Claude/debates\[thema-slug]\
-├── debate_transcript.md      ← Vollstaendiges Transkript aller Runden
-├── master_ruleset.md         ← Finales Regelwerk (menschenlesbar)
-└── architecture_rules.json   ← Maschinenlesbare Regeln fuer Build-Prozesse
+├── debate_transcript.md ← Vollstaendiges Transkript aller Runden
+├── master_ruleset.md ← Finales Regelwerk (menschenlesbar)
+└── architecture_rules.json ← Maschinenlesbare Regeln fuer Build-Prozesse
 ```
 
 ---
@@ -138,15 +138,15 @@ JUDGE (nach Runde 3):
 
 ```json
 {
-  "status": "APPROVED | REJECTED",
-  "score": 1-10,
-  "topic": "[Thema]",
-  "date": "[ISO-Datum]",
-  "core_strategy": "...",
-  "hard_rules": ["Regel 1", "Regel 2", "..."],
-  "toxic_anti_patterns": ["Anti-Pattern 1", "..."],
-  "open_questions": ["Was noch unklar ist"],
-  "final_verdict": "..."
+ "status": "APPROVED | REJECTED",
+ "score": 1-10,
+ "topic": "[Thema]",
+ "date": "[ISO-Datum]",
+ "core_strategy": "...",
+ "hard_rules": ["Regel 1", "Regel 2", "..."],
+ "toxic_anti_patterns": ["Anti-Pattern 1", "..."],
+ "open_questions": ["Was noch unklar ist"],
+ "final_verdict": "..."
 }
 ```
 
@@ -170,11 +170,11 @@ Score >= 8 = "APPROVED" → Regeln in relevantes SKILL.md integrieren.
 Nach Abschluss einer Debate:
 ```bash
 node ~/Claude/scripts/claw-flush.mjs \
-  "[Thema]: [Kern-Erkenntnis]" \
-  "explicit-remember" \
-  "autoresearch-logs" \
-  "claw-debate" \
-  "global"
+ "[Thema]: [Kern-Erkenntnis]" \
+ "explicit-remember" \
+ "autoresearch-logs" \
+ "claw-debate" \
+ "global"
 ```
 
 Wichtige Erkenntnisse landen automatisch im Supabase Memory.

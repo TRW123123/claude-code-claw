@@ -9,9 +9,9 @@
 1. **Traffic-Schwelle:** > 50 Klicks/Woche auf Money Pages (aktuell ~3)
 2. **GA4 MCP verfügbar** (✅ seit 2026-04-06 verifiziert)
 3. **Conversion-Events definiert** in GA4:
-   - `start_generation` (Upload gestartet)
-   - `checkout_initiated` (Stripe Session)
-   - `purchase_completed` (Webhook bestätigt)
+ - `start_generation` (Upload gestartet)
+ - `checkout_initiated` (Stripe Session)
+ - `purchase_completed` (Webhook bestätigt)
 4. **Baseline Conversion Rate bekannt** (> 7 Tage Daten)
 
 ## Output-Beispiel (wenn aktiv)
@@ -84,6 +84,6 @@
 SELECT SUM(clicks) as weekly_clicks
 FROM gsc_daily_summary
 WHERE domain = 'profilfoto-ki.de'
-  AND date >= CURRENT_DATE - 7;
+ AND date >= CURRENT_DATE - 7;
 -- IF weekly_clicks > 50 → CRO Analyst aktivieren
 ```

@@ -51,7 +51,7 @@ Templates die Author-Reply-Back triggern = höchste Priorität für Volumen-Push
 - Target: *"Whisper is overkill for short clips"* → Reply: *"Depends on alignment. whisper-cpp medium drifts 50-200ms on word-level for German. whisperX large-v3 + wav2vec2 fixes it. Same input, sharper captions."*
 
 **Beispiele (DE):**
-- Target: *"Claude Code ist nicht produktiv für non-coder"* → Reply: *"Werkstudentin bei uns hat damit gestern in 20 Min ihren ersten LinkedIn-Auto-Post gebaut. Token-Setup war der harte Teil, nicht der Code. Onboarding-Lücke."*
+- Target: *"Claude Code ist nicht produktiv für non-coder"* → Reply: *"Jemand ohne Dev-Background hat damit gestern in 20 Min seinen ersten LinkedIn-Auto-Post gebaut. Token-Setup war der harte Teil, nicht der Code. Onboarding-Lücke."*
 
 **Anti-Pattern (NICHT so):**
 - ❌ "Stimme zu! Das sehe ich auch so." (kein Datenpunkt)
@@ -74,7 +74,7 @@ Templates die Author-Reply-Back triggern = höchste Priorität für Volumen-Push
 
 **Slots:**
 - `{SPEZIFISCHE_FRAGE}` — keine Meta-Frage ("Was denkst du?"), sondern Detail-Frage:
-  - "Welche Version?", "Auf welcher Hardware?", "Wie lange hat das gedauert?", "Mit oder ohne Quantisierung?"
+ - "Welche Version?", "Auf welcher Hardware?", "Wie lange hat das gedauert?", "Mit oder ohne Quantisierung?"
 
 **Beispiele (EN):**
 - Target: *"Just built a video pipeline with Veo 3.1"* → Reply: *"Nice. Are you using Veo Extend or T2V for clip 2+? Got bitten by the Extend-returns-combined-video gotcha last week."*
@@ -241,12 +241,12 @@ In `claw.x_posts` für jeden Reply:
 ```sql
 INSERT INTO claw.x_posts (pillar, hook_type, hook, text, char_count, media_type, source, iteration_changes)
 VALUES ('community-reply', '<template-name>', '<first-line>', '<full>', <chars>, 'text', 'agent-v1',
-        jsonb_build_object(
-          'template', '<template-name>',
-          'target_url', '<url>',
-          'target_user', '@<handle>',
-          'trend_source', '<trend if from x_trends_daily>'
-        )::text);
+ jsonb_build_object(
+ 'template', '<template-name>',
+ 'target_url', '<url>',
+ 'target_user', '@<handle>',
+ 'trend_source', '<trend if from x_trends_daily>'
+ )::text);
 ```
 
 `extract-patterns.mjs` gruppiert Replies nach `template` → nach 2 Wochen siehst du welcher Template-Type Author-Reply-Back-Rate maximiert. Templates mit Score < Median nach 100 Samples → archivieren oder umarbeiten.

@@ -21,66 +21,66 @@ const TG_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TG_CHAT = process.env.TELEGRAM_AUTHORIZED_ID;
 
 if (!SUPABASE_URL || !SUPABASE_ANON || !TG_TOKEN || !TG_CHAT) {
-    console.error('Missing env vars');
-    process.exit(1);
+ console.error('Missing env vars');
+ process.exit(1);
 }
 
 function escapeHtml(str) {
-    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+ return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
 async function main() {
-    const res = await fetch(
-        `${SUPABASE_URL}/rest/v1/claw_heartbeat_dashboard?order=health,last_run_at.desc`,
-        { headers: { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${SUPABASE_ANON}` } }
-    );
-    const rows = await res.json();
+ const res = await fetch(
+ `${SUPABASE_URL}/rest/v1/claw_heartbeat_dashboard?order=health,last_run_at.desc`,
+ { headers: { 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${SUPABASE_ANON}` } }
+ );
+ const rows = await res.json();
 
-    const today = new Date().toISOString().slice(0, 10);
-    const byHealth = rows.reduce((acc, r) => {
-        (acc[r.health] = acc[r.health] || []).push(r);
-        return acc;
-    }, {});
+ const today = new Date().toISOString().slice(0, 10);
+ const byHealth = rows.reduce((acc, r) => {
+ (acc[r.health] = acc[r.health] || []).push(r);
+ return acc;
+ }, {});
 
-    const totals = Object.entries(byHealth)
-        .map(([h, arr]) => `${h} ${arr.length}`)
-        .join(' · ');
+ const totals = Object.entries(byHealth)
+ .map(([h, arr]) => `${h} ${arr.length}`)
+ .join(' · ');
 
-    let msg = `<b>CLAW Daily Heartbeat</b> — ${today}\n`;
-    msg += `${escapeHtml(totals)}\n\n`;
+ let msg = `<b>CLAW Daily Heartbeat</b> — ${today}\n`;
+ msg += `${escapeHtml(totals)}\n\n`;
 
-    const order = ['🔴 error', '🟡 warning', '⚪ stale', '⚫ dormant', '🟢 healthy'];
-    for (const health of order) {
-        const arr = byHealth[health];
-        if (!arr || arr.length === 0) continue;
-        msg += `<b>${escapeHtml(health)}</b>\n`;
-        for (const r of arr.slice(0, 8)) {
-            const hoursAgo = r.hours_since_run ? Math.round(r.hours_since_run) + 'h' : '?';
-            const summary = r.summary_preview ? ` — ${escapeHtml(r.summary_preview.slice(0, 80))}` : '';
-            msg += `  • ${escapeHtml(r.agent_name)} (${hoursAgo} ago)${summary}\n`;
-        }
-        msg += '\n';
-    }
+ const order = ['🔴 error', '🟡 warning', '⚪ stale', '⚫ dormant', '🟢 healthy'];
+ for (const health of order) {
+ const arr = byHealth[health];
+ if (!arr || arr.length === 0) continue;
+ msg += `<b>${escapeHtml(health)}</b>\n`;
+ for (const r of arr.slice(0, 8)) {
+ const hoursAgo = r.hours_since_run ? Math.round(r.hours_since_run) + 'h' : '?';
+ const summary = r.summary_preview ? ` — ${escapeHtml(r.summary_preview.slice(0, 80))}` : '';
+ msg += ` • ${escapeHtml(r.agent_name)} (${hoursAgo} ago)${summary}\n`;
+ }
+ msg += '\n';
+ }
 
-    if (rows.length === 0) {
-        msg += '<i>Keine Heartbeats registriert. Agents müssen claw_heartbeat(name,status,summary) RPC aufrufen.</i>';
-    }
+ if (rows.length === 0) {
+ msg += '<i>Keine Heartbeats registriert. Agents müssen claw_heartbeat(name,status,summary) RPC aufrufen.</i>';
+ }
 
-    const tgRes = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            chat_id: TG_CHAT,
-            text: msg,
-            parse_mode: 'HTML'
-        })
-    });
+ const tgRes = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+ method: 'POST',
+ headers: { 'Content-Type': 'application/json' },
+ body: JSON.stringify({
+ chat_id: TG_CHAT,
+ text: msg,
+ parse_mode: 'HTML'
+ })
+ });
 
-    if (!tgRes.ok) {
-        console.error('Telegram send failed:', await tgRes.text());
-        process.exit(1);
-    }
-    console.log(`Heartbeat report sent (${rows.length} agents)`);
+ if (!tgRes.ok) {
+ console.error('Telegram send failed:', await tgRes.text());
+ process.exit(1);
+ }
+ console.log(`Heartbeat report sent (${rows.length} agents)`);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

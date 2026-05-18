@@ -234,8 +234,8 @@ Konzept fuer eine spaetere Quality-Check-Funktion in Supabase:
 -- Einfache Pattern-Detection in claw.changelog new_value
 -- Liefert Anzahl Treffer fuer KI-Phrasen
 SELECT
-  page_path,
-  array_length(regexp_split_to_array(new_value, 'nahtlos|revolutionaer|massgeschneidert|entfesseln|im heutigen digitalen Zeitalter|abschliessend lasst sich sagen|davon abgesehen|im Wesentlichen|—'), 1) - 1 AS ai_phrase_hits
+ page_path,
+ array_length(regexp_split_to_array(new_value, 'nahtlos|revolutionaer|massgeschneidert|entfesseln|im heutigen digitalen Zeitalter|abschliessend lasst sich sagen|davon abgesehen|im Wesentlichen|—'), 1) - 1 AS ai_phrase_hits
 FROM claw.changelog
 WHERE domain = 'st-automatisierung.de' AND change_type IN ('content', 'meta_desc', 'title')
 ORDER BY ai_phrase_hits DESC NULLS LAST;

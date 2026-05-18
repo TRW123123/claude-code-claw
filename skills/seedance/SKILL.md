@@ -138,16 +138,16 @@ Die Seedance-Szene transformiert sich IN die Brand-Welt. Kein harter Cut, aber l
 
 ```json
 {
-  "prompt": "...",
-  "reference_images": [],
-  "reference_videos": [],
-  "reference_audios": [],
-  "duration": 8,
-  "resolution": "1080p",
-  "aspect_ratio": "16:9",
-  "generate_audio": true,
-  "seed": -1,
-  "return_last_frame": false
+ "prompt": "...",
+ "reference_images": [],
+ "reference_videos": [],
+ "reference_audios": [],
+ "duration": 8,
+ "resolution": "1080p",
+ "aspect_ratio": "16:9",
+ "generate_audio": true,
+ "seed": -1,
+ "return_last_frame": false
 }
 ```
 
@@ -218,29 +218,29 @@ Von @EHuanglu (el.cine) validiert — JSON liefert bessere Ergebnisse als Fliess
 
 ```json
 {
-  "cinematography": {
-    "camera_perspective": "extreme macro FPV tracking shot",
-    "lens": "8mm probe lens ultra wide macro",
-    "depth_of_field": "very shallow (f/1.4 simulated)",
-    "effects": ["radial motion blur", "foreground bokeh", "dynamic focus shifts"]
-  },
-  "motion_dynamics": {
-    "flight_path": "chaotic nonlinear weaving through grass stems",
-    "actions": ["360 degree barrel roll through vine arch"],
-    "speed_ramping": "slow motion at 120fps when passing dew drops, then 2.5x acceleration"
-  },
-  "environment": {
-    "setting": "macro grassland world, blades like skyscrapers",
-    "flora": "flowers as grand floating palaces, pollen drifting"
-  },
-  "lighting": {
-    "time": "warm afternoon sunlight",
-    "style": "dreamy cinematic fairytale with dappled light"
-  },
-  "mood": {
-    "emotion": "intense adrenaline-filled adventure",
-    "tone": "fantastical, cinematic, awe-inspiring"
-  }
+ "cinematography": {
+ "camera_perspective": "extreme macro FPV tracking shot",
+ "lens": "8mm probe lens ultra wide macro",
+ "depth_of_field": "very shallow (f/1.4 simulated)",
+ "effects": ["radial motion blur", "foreground bokeh", "dynamic focus shifts"]
+ },
+ "motion_dynamics": {
+ "flight_path": "chaotic nonlinear weaving through grass stems",
+ "actions": ["360 degree barrel roll through vine arch"],
+ "speed_ramping": "slow motion at 120fps when passing dew drops, then 2.5x acceleration"
+ },
+ "environment": {
+ "setting": "macro grassland world, blades like skyscrapers",
+ "flora": "flowers as grand floating palaces, pollen drifting"
+ },
+ "lighting": {
+ "time": "warm afternoon sunlight",
+ "style": "dreamy cinematic fairytale with dappled light"
+ },
+ "mood": {
+ "emotion": "intense adrenaline-filled adventure",
+ "tone": "fantastical, cinematic, awe-inspiring"
+ }
 }
 ```
 
@@ -469,7 +469,7 @@ Zu viele sequenzielle Mikro-Aktionen ueberfordern die Attention-Mechanismen. Reg
 
 ```
 Shot 1 [0-4s]: Subject-Beschreibung + Aktion A + Kamera A
-Shot 2 [4-9s]: Subject-Beschreibung + Aktion B + Kamera B  
+Shot 2 [4-9s]: Subject-Beschreibung + Aktion B + Kamera B 
 Shot 3 [9-15s]: Subject-Beschreibung + Aktion C + Kamera C
 Style: konsistentes Lighting + Color Grade ueber alle Shots
 Constraints: avoid jitter, maintain lighting consistency
@@ -846,10 +846,10 @@ Extend @video1 [forward/backward] by [N] seconds.
 - **Tone Reference:** `The voiceover tone references @video1` — dokumentarisch, reklame-oid, comedic
 - **Dialekt direkt im Prompt:** `The monkey orders in Sichuan dialect: "..."` — Modell versteht benannte Dialekte
 - **Multi-Character Dialogue:** Jede Figur mit NAME + ACTION + (LINE) labeln:
-  ```
-  Meow Sauce (cat host, licking fur and rolling eyes): "..."
-  Wang Zai (dog host, tilting head and wagging tail): "..."
-  ```
+ ```
+ Meow Sauce (cat host, licking fur and rolling eyes): "..."
+ Wang Zai (dog host, tilting head and wagging tail): "..."
+ ```
 - **Multi-Video-Audio:** `Background BGM references the sound effects from @video3` — Audio aus einem anderen Referenzvideo als Movement
 
 **Hard Rule (aus User-Experience ProfilfotoKI):** Wenn du KEIN deutsches Schlager-Gesang willst → explizit `no vocals, no German Schlager, international electronic only` im Prompt.
@@ -936,9 +936,9 @@ Extend @video1 by [N] seconds.
 0-5s: Ambient detail (light shifts, dust, product still).
 6-10s: [Product-Close-up + Camera-Push].
 11-15s: Text gradually appears.
-  Line 1 "[Brand]"
-  Line 2 "[Tagline]"
-  Line 3 "[CTA / Opening hours]"
+ Line 1 "[Brand]"
+ Line 2 "[Tagline]"
+ Line 3 "[CTA / Opening hours]"
 ```
 **Inputs:** 1 bestehendes Produktvideo. Ersetzt teure Studio-Outros.
 
@@ -974,17 +974,17 @@ No scene cuts throughout, one continuous shot.
 Alle 51 Cases als einzelne MDs mit Prompt + Referenzbildern + Keyframes:
 ```
 ~/obsidian-claw-vault/seedance-2.0/guide/
-├── _guide-index.md             ← Start hier
-├── 01-consistency/             (6 cases + index)
-├── 02-camera-movement/         (7 cases + index)
-├── 03-creative-effects/        (8 cases + index)
-├── 04-story-completion/        (3 cases + index)
-├── 05-video-extension/         (4 cases + index)
-├── 06-audio-voice/             (6 cases + index)
-├── 07-continuity/              (5 cases + index)
-├── 08-video-editing/           (5 cases + index)
-├── 09-music-sync/              (4 cases + index)
-└── 10-emotion/                 (3 cases + index)
+├── _guide-index.md ← Start hier
+├── 01-consistency/ (6 cases + index)
+├── 02-camera-movement/ (7 cases + index)
+├── 03-creative-effects/ (8 cases + index)
+├── 04-story-completion/ (3 cases + index)
+├── 05-video-extension/ (4 cases + index)
+├── 06-audio-voice/ (6 cases + index)
+├── 07-continuity/ (5 cases + index)
+├── 08-video-editing/ (5 cases + index)
+├── 09-music-sync/ (4 cases + index)
+└── 10-emotion/ (3 cases + index)
 ```
 
 Jeder Case enthaelt: Prompt, Input-Spec, Reference-Asset-Pfade, Keyframe-Pfade (je 5 Frames pro Result-Video bei 10/30/50/70/90% Dauer), Source-URLs.

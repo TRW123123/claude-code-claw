@@ -35,10 +35,10 @@ description: SEO Full-Stack Plugin fuer profilfoto-ki.de. 4-Stufen-Funnel (Autho
 ## 4-Stufen-Funnel
 
 ```
-Stage 0: Domain Authority    → Fundament (Backlinks, Trust)
-Stage 1: Impressionen        → Seiten bauen (Keywords → SERP-Gap → pSEO)
-Stage 2: Klicks              → Meta-Optimierung (CTR-Scanner → Impact)
-Stage 3: Conversions         → Free-Credits → Stripe Kaeufe
+Stage 0: Domain Authority → Fundament (Backlinks, Trust)
+Stage 1: Impressionen → Seiten bauen (Keywords → SERP-Gap → pSEO)
+Stage 2: Klicks → Meta-Optimierung (CTR-Scanner → Impact)
+Stage 3: Conversions → Free-Credits → Stripe Kaeufe
 ```
 
 | Stage | Datei | Status profilfoto-ki | Frequenz |
@@ -127,21 +127,21 @@ Bevor irgendein Stage-Task oder Agent ausgefuehrt wird, lies in dieser Reihenfol
 ### Auto-Chain bei Content-Edit (Stage 1 oder Stage 2)
 
 ```
-1. content-analyzer       → Baseline Score
+1. content-analyzer → Baseline Score
 2. (optional) headline-generator falls H1 schwach
 3. Edit ausfuehren
-4. humanity-editor         → muss >=75 sein, sonst Re-Edit
-5. meta-creator            → falls Title/Meta veraendert
-6. internal-linker         → 2-4 neue Links setzen
-7. content-analyzer        → Final Score, in claw.site_audits speichern
+4. humanity-editor → muss >=75 sein, sonst Re-Edit
+5. meta-creator → falls Title/Meta veraendert
+6. internal-linker → 2-4 neue Links setzen
+7. content-analyzer → Final Score, in claw.site_audits speichern
 8. claw.changelog Eintrag mit before/after Scores
 ```
 
 ### Auto-Chain bei Stage 2 CTR-Fix (Title/Meta only)
 
 ```
-1. meta-creator            → 5 Varianten generieren
-2. humanity-editor         → bestes Variante validieren
+1. meta-creator → 5 Varianten generieren
+2. humanity-editor → bestes Variante validieren
 3. Edit + Deploy
 4. claw.changelog mit predicted_ctr_lift
 5. measure_change_impact() nach 14 Tagen

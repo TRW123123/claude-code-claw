@@ -30,7 +30,7 @@ Daily 07:30 läuft `x-trends-scan` (scheduled task) und schreibt Top 25 DACH X-T
 SELECT rank, trend, category, relevance_score
 FROM claw.x_trends_daily
 WHERE scraped_at = (SELECT MAX(scraped_at) FROM claw.x_trends_daily WHERE source='trends24-germany')
-  AND source='trends24-germany'
+ AND source='trends24-germany'
 ORDER BY rank ASC;
 ```
 
@@ -132,9 +132,9 @@ Reply volume is the primary 0→10k growth lever. Grok-research-confirmed across
 - Min target post: 50+ likes OR verified profile OR substantive content
 - Add concrete value from `claw.activity_log` substance — never empty agreement
 - **Link rule (refined 2026-05-12):**
-  - Reply on someone else's post → **NO** link (down-rank signal)
-  - Own first-reply to own standalone → **link IS allowed** and is a documented algo-hack (sources: knightama 2034380576384487808, big_sensei 1962871565428637899, JohnCassidy 2041179794428047526)
-  - Standalone main-tweet → always link-free
+ - Reply on someone else's post → **NO** link (down-rank signal)
+ - Own first-reply to own standalone → **link IS allowed** and is a documented algo-hack (sources: knightama 2034380576384487808, big_sensei 1962871565428637899, JohnCassidy 2041179794428047526)
+ - Standalone main-tweet → always link-free
 - Max 280 chars, count exactly
 
 ## HOOK-AND-REPLY FORMAT (HARD RULE — 2026-05-12)
@@ -232,9 +232,9 @@ Visuals are mandatory for standalones. The visual itself must convey value — a
 **Render path:** HTML → headless Chrome → PNG.
 ```bash
 "C:/Program Files/Google/Chrome/Application/chrome.exe" --headless --disable-gpu --no-sandbox \
-  --hide-scrollbars --window-size=1200,675 \
-  --screenshot="~/Claude/x-visuals/[UUID].png" \
-  "file:///~/Claude/x-visuals/[slug].html"
+ --hide-scrollbars --window-size=1200,675 \
+ --screenshot="~/Claude/x-visuals/[UUID].png" \
+ "file:///~/Claude/x-visuals/[slug].html"
 ```
 
 **Posting via Chrome MCP:**
@@ -266,7 +266,7 @@ Browser-Selection: deviceId `15e5ce6c-c81a-4d01-aece-24053e06df16`. On login red
 3. inject visual via b64 → DataTransfer (see above)
 4. wait 5s for preview render
 5. JS: const ta = document.querySelector('[data-testid="tweetTextarea_0"]');
-       ta.focus(); document.execCommand('insertText', false, TEXT)
+ ta.focus(); document.execCommand('insertText', false, TEXT)
 6. JS: document.querySelector('[data-testid="tweetButton"]').click()
 7. wait 5s, navigate /ST_Automation, find newest post URL → post_id
 8. UPDATE claw.x_posts SET post_id, posted_at = now()
@@ -283,7 +283,7 @@ Browser-Selection: deviceId `15e5ce6c-c81a-4d01-aece-24053e06df16`. On login red
 6. JS: ta.focus(); document.execCommand('insertText', false, REPLY_TEXT)
 7. wait 1s
 8. JS: btn = document.querySelector('[data-testid="tweetButtonInline"]');
-       if (btn && !btn.disabled) btn.click()
+ if (btn && !btn.disabled) btn.click()
 9. wait 6s (URL temporarily switches to /compose/post — normal, not an error)
 10. re-navigate [TARGET_URL], wait 5s
 11. after-counter: querySelector('[data-testid="reply"]').innerText
@@ -301,12 +301,12 @@ Browser-Selection: deviceId `15e5ce6c-c81a-4d01-aece-24053e06df16`. On login red
 
 ```sql
 INSERT INTO claw.x_posts (
-  pillar, hook_type, hook, text, char_count,
-  media_type, source, iteration_changes
+ pillar, hook_type, hook, text, char_count,
+ media_type, source, iteration_changes
 ) VALUES (
-  '<pillar>', '<hook_type>', '<first-line>', '<full>', <chars>,
-  'image' | 'text', 'agent-v1',
-  jsonb_build_object('language', 'en' | 'de', 'cluster', '<cluster>')::text
+ '<pillar>', '<hook_type>', '<first-line>', '<full>', <chars>,
+ 'image' | 'text', 'agent-v1',
+ jsonb_build_object('language', 'en' | 'de', 'cluster', '<cluster>')::text
 ) RETURNING id;
 ```
 
@@ -316,12 +316,12 @@ Standalones include `day_number` — Day X narrative format is active. Before ea
 
 ```sql
 UPDATE claw.x_posts SET
-  post_id = '<tweet_id>',
-  posted_at = now(),
-  iteration_changes = jsonb_set(
-    iteration_changes::jsonb,
-    '{post_url}', to_jsonb('https://x.com/ST_Automation/status/<id>'::text)
-  )::text
+ post_id = '<tweet_id>',
+ posted_at = now(),
+ iteration_changes = jsonb_set(
+ iteration_changes::jsonb,
+ '{post_url}', to_jsonb('https://x.com/ST_Automation/status/<id>'::text)
+ )::text
 WHERE id = '<uuid>';
 ```
 
@@ -341,14 +341,14 @@ The script:
 
 ```
 score = (
-  impressions * 0.05 +
-  likes * 4 +
-  retweets * 12 +
-  replies * 8 +
-  bookmarks * 10 +
-  profile_clicks * 18 +
-  link_clicks * 25 +
-  follower_delta * 30
+ impressions * 0.05 +
+ likes * 4 +
+ retweets * 12 +
+ replies * 8 +
+ bookmarks * 10 +
+ profile_clicks * 18 +
+ link_clicks * 25 +
+ follower_delta * 30
 ) / max(1, age_in_days)
 ```
 

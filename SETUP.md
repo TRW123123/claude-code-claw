@@ -100,8 +100,8 @@ Im Supabase-Dashboard → SQL Editor → jedes File in Reihenfolge (000 → 007)
 
 Nach Apply: Verifikation via
 ```sql
-SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='claw';  -- erwartet: 22
-SELECT COUNT(*) FROM pg_proc p JOIN pg_namespace n ON p.pronamespace=n.oid WHERE n.nspname='public' AND p.proname LIKE 'claw%';  -- erwartet: ~30
+SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='claw'; -- erwartet: 22
+SELECT COUNT(*) FROM pg_proc p JOIN pg_namespace n ON p.pronamespace=n.oid WHERE n.nspname='public' AND p.proname LIKE 'claw%'; -- erwartet: ~30
 ```
 
 ### 3.1 — Schema `claw`
@@ -112,33 +112,33 @@ CREATE SCHEMA IF NOT EXISTS claw;
 ### 3.2 — Memories (Hippocampus-Pattern)
 ```sql
 CREATE TABLE claw.memories_user (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    content TEXT NOT NULL,
-    embedding vector(768),
-    namespace TEXT,
-    source TEXT,
-    importance FLOAT,
-    signal_type TEXT,
-    scope TEXT,
-    times_reinforced INT DEFAULT 0,
-    archived BOOLEAN DEFAULT FALSE,
-    last_accessed TIMESTAMPTZ,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
+ id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+ content TEXT NOT NULL,
+ embedding vector(768),
+ namespace TEXT,
+ source TEXT,
+ importance FLOAT,
+ signal_type TEXT,
+ scope TEXT,
+ times_reinforced INT DEFAULT 0,
+ archived BOOLEAN DEFAULT FALSE,
+ last_accessed TIMESTAMPTZ,
+ created_at TIMESTAMPTZ DEFAULT NOW(),
+ updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 CREATE INDEX ON claw.memories_user USING hnsw (embedding vector_cosine_ops);
 
 CREATE TABLE claw.activity_log (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    session_id TEXT,
-    domain TEXT,
-    date DATE,
-    activities JSONB,
-    decisions JSONB,
-    open_items JSONB,
-    summary TEXT,
-    project_dir TEXT,
-    created_at TIMESTAMPTZ DEFAULT NOW()
+ id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+ session_id TEXT,
+ domain TEXT,
+ date DATE,
+ activities JSONB,
+ decisions JSONB,
+ open_items JSONB,
+ summary TEXT,
+ project_dir TEXT,
+ created_at TIMESTAMPTZ DEFAULT NOW()
 );
 ```
 
@@ -148,7 +148,7 @@ Die **vollständigen Migrations** (alle 13 CLAW-Tabellen + RPCs + Views + Relati
 ```sql
 CREATE EXTENSION IF NOT EXISTS vector;
 CREATE EXTENSION IF NOT EXISTS pg_trgm;
-CREATE EXTENSION IF NOT EXISTS pg_cron;  -- für Memory-Decay
+CREATE EXTENSION IF NOT EXISTS pg_cron; -- für Memory-Decay
 ```
 
 ---
@@ -159,9 +159,9 @@ CREATE EXTENSION IF NOT EXISTS pg_cron;  -- für Memory-Decay
 # In deinem geklonten Repo:
 cp -r skills/ ~/.claude/skills/
 cp -r scheduled-tasks/ ~/.claude/scheduled-tasks/
-cp -r scripts/ ~/Claude/scripts/   # Achtung: Claude/ (capital C), nicht .claude/
+cp -r scripts/ ~/Claude/scripts/ # Achtung: Claude/ (capital C), nicht .claude/
 cp -r topics/ ~/Claude/topics/
-cp -r docs/ ~/Claude/              # MASTER.md, SOUL.md, AGENTS.md
+cp -r docs/ ~/Claude/ # MASTER.md, SOUL.md, AGENTS.md
 ```
 
 Windows PowerShell-Variante:
@@ -181,26 +181,26 @@ Erstelle `~/.claude/settings.json` basierend auf `.env.example` aus diesem Repo:
 
 ```json
 {
-  "env": {
-    "GEMINI_API_KEY": "dein-gemini-key",
-    "SUPABASE_URL": "https://xxx.supabase.co",
-    "SUPABASE_ANON_KEY": "dein-anon-key",
-    "TELEGRAM_BOT_TOKEN": "optional",
-    "TELEGRAM_AUTHORIZED_ID": "deine-telegram-user-id",
-    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "99"
-  },
-  "hooks": {
-    "SessionStart": [{ "hooks": [{ "type": "command", "command": "node ~/Claude/scripts/claw-queue-check.mjs" }] }],
-    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "node ~/Claude/scripts/claw-research.mjs" }] }],
-    "PreCompact": [{ "hooks": [{ "type": "command", "command": "node ~/Claude/scripts/claw-session-processor.mjs" }] }],
-    "Stop": [
-      { "hooks": [{ "type": "command", "command": "node ~/Claude/scripts/claw-session-processor.mjs" }] },
-      { "hooks": [{ "type": "command", "command": "node ~/Claude/scripts/claw-ralph-check.mjs" }] }
-    ],
-    "PostToolUse": [
-      { "matcher": "Edit|Write|MultiEdit", "hooks": [{ "type": "command", "command": "node ~/Claude/scripts/claw-build-check.mjs" }] }
-    ]
-  }
+ "env": {
+ "GEMINI_API_KEY": "dein-gemini-key",
+ "SUPABASE_URL": "https://xxx.supabase.co",
+ "SUPABASE_ANON_KEY": "dein-anon-key",
+ "TELEGRAM_BOT_TOKEN": "optional",
+ "TELEGRAM_AUTHORIZED_ID": "deine-telegram-user-id",
+ "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "99"
+ },
+ "hooks": {
+ "SessionStart": [{ "hooks": [{ "type": "command", "command": "node ~/Claude/scripts/claw-queue-check.mjs" }] }],
+ "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "node ~/Claude/scripts/claw-research.mjs" }] }],
+ "PreCompact": [{ "hooks": [{ "type": "command", "command": "node ~/Claude/scripts/claw-session-processor.mjs" }] }],
+ "Stop": [
+ { "hooks": [{ "type": "command", "command": "node ~/Claude/scripts/claw-session-processor.mjs" }] },
+ { "hooks": [{ "type": "command", "command": "node ~/Claude/scripts/claw-ralph-check.mjs" }] }
+ ],
+ "PostToolUse": [
+ { "matcher": "Edit|Write|MultiEdit", "hooks": [{ "type": "command", "command": "node ~/Claude/scripts/claw-build-check.mjs" }] }
+ ]
+ }
 }
 ```
 
@@ -212,15 +212,15 @@ CLAW nutzt diese MCP-Server. **Kopiere `.mcp.json.example` → `~/.claude/.mcp.j
 
 **Pflicht-MCP:**
 - `supabase` — für Schema-Migrations + SQL-Queries
-  Install: `npx -y @supabase/mcp-server-supabase` läuft automatisch on-demand
-  Braucht: `SUPABASE_ACCESS_TOKEN` (aus https://supabase.com/dashboard/account/tokens)
+ Install: `npx -y @supabase/mcp-server-supabase` läuft automatisch on-demand
+ Braucht: `SUPABASE_ACCESS_TOKEN` (aus https://supabase.com/dashboard/account/tokens)
 
 **Built-in in Claude Code (keine Installation nötig):**
 - `scheduled-tasks` — für Task-Registrierung (`create_scheduled_task` etc.)
 
 **Optional — je nach deinen Projekten:**
 - `code-graph` — Code-Navigation (impact_of, who_calls)
-  Install: `pip install code-graph-mcp`
+ Install: `pip install code-graph-mcp`
 - `dataforseo` — Keyword/Backlinks (SEO-Agents). Braucht DataForSEO-Account.
 - `analytics-mcp` — Google Analytics 4. Braucht GA4-Service-Account.
 - `serpapi` — Live-SERP-Daten. Braucht SerpApi-Account.
@@ -287,10 +287,10 @@ CLAW ist auf 5 Domains zugeschnitten (ki-auto, st-auto, profilfoto, yapayzekapra
 1. **Topic-File anlegen:** `~/Claude/topics/deine-domain.md`
 2. **In `claw-session-processor.mjs` eintragen:** `TOPIC_FILES['deine-domain']: 'deine-domain.md'`
 3. **Domain in `claw.projects` registrieren** via Supabase SQL:
-   ```sql
-   INSERT INTO claw.projects (name, domain, keywords, active)
-   VALUES ('meine-domain', 'meine-domain.de', ARRAY['kw1','kw2'], true);
-   ```
+ ```sql
+ INSERT INTO claw.projects (name, domain, keywords, active)
+ VALUES ('meine-domain', 'meine-domain.de', ARRAY['kw1','kw2'], true);
+ ```
 4. **Domain-spezifische Skills:** Falls SEO: kopiere `skills/st-auto-seo/` als Template.
 
 ---

@@ -6,5 +6,5 @@
 # - antigravity_history (internal package, not on PyPI — only relevant for Gemini Antigravity dual-setup)
 #
 # Standard requirement for most CLAW scripts:
-#   Python 3.12+
-#   No pip install needed.
+# Python 3.12+
+# No pip install needed.

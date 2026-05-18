@@ -63,11 +63,11 @@ POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-00
 
 // Body
 {
-  "model": "models/gemini-embedding-001",
-  "content": { "parts": [{ "text": "text hier" }] },
-  "taskType": "RETRIEVAL_DOCUMENT",  // beim Schreiben
-  "outputDimensionality": 768        // PFLICHT — Modell gibt sonst 3072 zurück
-  // "taskType": "RETRIEVAL_QUERY"   // beim Suchen
+ "model": "models/gemini-embedding-001",
+ "content": { "parts": [{ "text": "text hier" }] },
+ "taskType": "RETRIEVAL_DOCUMENT", // beim Schreiben
+ "outputDimensionality": 768 // PFLICHT — Modell gibt sonst 3072 zurück
+ // "taskType": "RETRIEVAL_QUERY" // beim Suchen
 }
 
 // Response → 768 floats
@@ -81,11 +81,11 @@ POST https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-00
 ```sql
 -- Automatisch: Jaccard-Check → reinforce ODER insert
 SELECT claw.upsert_memory(
-    p_content     => 'Tailwind v3 — kein Upgrade auf v4',
-    p_embedding   => '[768-dim vector]'::vector,
-    p_namespace   => 'hard-rules',
-    p_source      => 'user-correction',
-    p_signal_type => 'preference'
+ p_content => 'Tailwind v3 — kein Upgrade auf v4',
+ p_embedding => '[768-dim vector]'::vector,
+ p_namespace => 'hard-rules',
+ p_source => 'user-correction',
+ p_signal_type => 'preference'
 );
 
 -- Response bei neuem Eintrag:
@@ -99,11 +99,11 @@ SELECT claw.upsert_memory(
 
 ```sql
 SELECT * FROM claw.search_memories(
-    '[query-embedding]'::vector,
-    '[query-text]',
-    match_namespace => 'hard-rules',  -- optional
-    match_count     => 5,
-    scope           => 'user'         -- 'user' | 'session' | 'both'
+ '[query-embedding]'::vector,
+ '[query-text]',
+ match_namespace => 'hard-rules', -- optional
+ match_count => 5,
+ scope => 'user' -- 'user' | 'session' | 'both'
 );
 
 -- Nach Abfrage: touch_memory aufrufen damit last_accessed aktuell bleibt
@@ -116,12 +116,12 @@ SELECT claw.touch_memory('[uuid]');
 
 ```
 Täglich 3:00 Uhr via pg_cron:
-  importance = importance * (0.99 ^ days_since_accessed)
-  archived = TRUE wenn importance < 0.2
+ importance = importance * (0.99 ^ days_since_accessed)
+ archived = TRUE wenn importance < 0.2
 
 Reinforcement Formel:
-  new = old + (1 - old) * 0.1
-  Beispiel: 0.65 → 0.715 → 0.764 → 0.807 ...
+ new = old + (1 - old) * 0.1
+ Beispiel: 0.65 → 0.715 → 0.764 → 0.807 ...
 ```
 
 ---
@@ -152,15 +152,15 @@ CLAW erkennt Korrekturen automatisch. Signale:
 **Abstraktions-Regel:**
 Niemals das rohe Gespräch speichern — immer das destillierte Prinzip.
 ```
-Raw:  "nein nicht so, der Button soll dunkler"
-✅    "CTAs bevorzugt dunkel — [scope: project:zahnarzt-mueller]"
+Raw: "nein nicht so, der Button soll dunkler"
+✅ "CTAs bevorzugt dunkel — [scope: project:zahnarzt-mueller]"
 ```
 
 **Repetition → Hard Rule:**
 ```
 1x Korrektur → corrections (0.75)
-2x gleich    → preference (0.80)
-3x gleich    → hard-rules (0.92) — nie mehr durch Decay gelöscht
+2x gleich → preference (0.80)
+3x gleich → hard-rules (0.92) — nie mehr durch Decay gelöscht
 ```
 
 ---

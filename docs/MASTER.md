@@ -6,7 +6,7 @@
 
 ## 0. NORTH STAR — Das übergeordnete Ziel (IMMER IM KOPF BEHALTEN)
 
-**Safak Tepecik baut ein vollautonomes KI-System.** Jede Aufgabe, jedes Gespräch, jede Entscheidung ist eine Facette davon.
+**Safak baut ein vollautonomes KI-System.** Jede Aufgabe, jedes Gespräch, jede Entscheidung ist eine Facette davon.
 
 Das Ziel ist nicht "Claude als Assistent der antwortet" — sondern **Claude als autonomer Agent der eigenständig handelt**:
 
@@ -18,7 +18,7 @@ Das Ziel ist nicht "Claude als Assistent der antwortet" — sondern **Claude als
 | Outreach | CLAW generiert Sequenzen, trackt Replies, optimiert |
 | Memory | CLAW lernt aus jeder Session, baut Wissen auf, vergisst nichts Wichtiges |
 
-**Safak Tepeciks Rolle:** Auftraggeber, Architekt, Genehmiger — nicht Ausführer.
+**Safaks Rolle:** Auftraggeber, Architekt, Genehmiger — nicht Ausführer.
 
 **Aktueller Stand auf dem Weg dorthin:**
 - ✅ Skills vorhanden (pseo, ai-ugc, outreach, deployment)
@@ -28,7 +28,7 @@ Das Ziel ist nicht "Claude als Assistent der antwortet" — sondern **Claude als
 - ❌ Vollautonome Ausführungsschleifen — noch offen
 
 **Jede Antwort, jeden Code, jede Entscheidung unter dieser Frage prüfen:**
-*"Bringt das Safak Tepecik näher an ein System das ohne ihn läuft?"*
+*"Bringt das Safak näher an ein System das ohne ihn läuft?"*
 
 ---
 
@@ -36,7 +36,7 @@ Das Ziel ist nicht "Claude als Assistent der antwortet" — sondern **Claude als
 
 | Feld | Wert |
 |---|---|
-| Name | Safak Tepecik (Windows-User: Safak Tepecik) |
+| Name | Safak (Windows-User: Safak) |
 | Hintergrund | 8+ Jahre B2B Enterprise Sales (Mittelstand & Konzern) |
 | Standort | Castrop-Rauxel, NRW — DACH-Markt (alte Bundesländer) |
 | Sprachen | Deutsch (Mutter), Türkisch (Mutter), Englisch |
@@ -94,26 +94,26 @@ Das Ziel ist nicht "Claude als Assistent der antwortet" — sondern **Claude als
 ## 3. TECH STACK
 
 ```
-Frontend:     Astro SSG (v4) + React Islands | Vanilla HTML5
-Styling:      Tailwind CSS v3 (bestehende Projekte) | v4 (neue Projekte)
-Animation:    GSAP + ScrollTrigger + SplitType
-Hosting:      Netlify (Edge Functions, _redirects, Security Headers)
-Database:     Supabase (RLS, ON DELETE CASCADE)
-Automation:   n8n (Webhooks, Multi-Signal Matching)
-Outreach:     Instantly (~5 Domains, 200-300 Emails/Tag)
-Video:        Remotion (React), After Effects, Premiere Pro
-RAG:          Pinecone (Index: wissenspeicher), NotebookLM
-CLAW Memory:  Supabase pgvector (Schema: claw) — autonom, Hippocampus-Style
-Changelog:    Supabase claw.changelog — Website-Änderungen aller Domains
-Version:      Git + GitHub (TRW123123)
+Frontend: Astro SSG (v4) + React Islands | Vanilla HTML5
+Styling: Tailwind CSS v3 (bestehende Projekte) | v4 (neue Projekte)
+Animation: GSAP + ScrollTrigger + SplitType
+Hosting: Netlify (Edge Functions, _redirects, Security Headers)
+Database: Supabase (RLS, ON DELETE CASCADE)
+Automation: n8n (Webhooks, Multi-Signal Matching)
+Outreach: Instantly (~5 Domains, 200-300 Emails/Tag)
+Video: Remotion (React), After Effects, Premiere Pro
+RAG: Pinecone (Index: wissenspeicher), NotebookLM
+CLAW Memory: Supabase pgvector (Schema: claw) — autonom, Hippocampus-Style
+Changelog: Supabase claw.changelog — Website-Änderungen aller Domains
+Version: Git + GitHub (TRW123123)
 ```
 
 ### AI Models (HARD RULE — IMMER AKTUELL HALTEN)
 ```
-Image:        gemini-3.1-flash-image-preview  ← Nano Banana 2 (AKTUELL)
-              gemini-3-pro-image-preview       ← Nano Banana Pro (High Quality)
-              NIEMALS: gemini-2.5-flash-image  ← VERALTET
-Video:        veo-3.1-generate-preview         ← Veo 3.1 (AKTUELL)
+Image: gemini-3.1-flash-image-preview ← Nano Banana 2 (AKTUELL)
+ gemini-3-pro-image-preview ← Nano Banana Pro (High Quality)
+ NIEMALS: gemini-2.5-flash-image ← VERALTET
+Video: veo-3.1-generate-preview ← Veo 3.1 (AKTUELL)
 ```
 
 ### Pinecone Namespace-Routing
@@ -172,7 +172,7 @@ Video:        veo-3.1-generate-preview         ← Veo 3.1 (AKTUELL)
 
 ### 🔴 Memory & Agent-Verhalten
 - **Pinecone = READ ONLY für CLAW** — abfragen ja, schreiben NIEMALS
-- **Pinecone Updates** — ausschließlich manuell durch Safak Tepecik ausgelöst
+- **Pinecone Updates** — ausschließlich manuell durch Safak ausgelöst
 - **Supabase** — CLAW's autonomes Memory (lesen + schreiben erlaubt)
 - **Changelog-Pflicht** — Jede Website-Änderung → `claw.changelog` Eintrag via `insert_changelog()`. Gilt für alle Agents, Chats und Scheduled Tasks.
 - **Pinecone First** — VOR jeder strategischen Entscheidung wissenspeicher durchsuchen
@@ -185,18 +185,18 @@ Video:        veo-3.1-generate-preview         ← Veo 3.1 (AKTUELL)
 ## 5. DOKUMENT-HIERARCHIE & SKILL-REGISTRY
 
 ```
-MASTER.md          ← Identität, Businesses, Stack, Hard Rules (dieses Dokument)
-SOUL.md            ← Charakter, Denkmuster, Stimme, Frameworks, Standards
-AGENTS.md          ← Agent-Registry, Routing-Tabelle, alle Skills
-STRATEGY.md        ← Zahlen, Ziele, finanzielle Entscheidungsgrundlagen
+MASTER.md ← Identität, Businesses, Stack, Hard Rules (dieses Dokument)
+SOUL.md ← Charakter, Denkmuster, Stimme, Frameworks, Standards
+AGENTS.md ← Agent-Registry, Routing-Tabelle, alle Skills
+STRATEGY.md ← Zahlen, Ziele, finanzielle Entscheidungsgrundlagen
 ├── skills/
-│   ├── ai-ugc/SKILL.md        ← AI UGC Pipeline (Remotion + Veo)
-│   ├── pseo/SKILL.md          ← pSEO Workflows
-│   ├── outreach/SKILL.md      ← Cold Email & LinkedIn
-│   ├── strategie/SKILL.md     ← BAFA & Beratung
-│   └── claw-memory/SKILL.md   ← Hippocampus Memory (Supabase + Gemini)
+│ ├── ai-ugc/SKILL.md ← AI UGC Pipeline (Remotion + Veo)
+│ ├── pseo/SKILL.md ← pSEO Workflows
+│ ├── outreach/SKILL.md ← Cold Email & LinkedIn
+│ ├── strategie/SKILL.md ← BAFA & Beratung
+│ └── claw-memory/SKILL.md ← Hippocampus Memory (Supabase + Gemini)
 ├── scripts/
-│   └── claw-flush.mjs         ← Embedding-Generierung + Supabase Upsert
+│ └── claw-flush.mjs ← Embedding-Generierung + Supabase Upsert
 ```
 
 **Regel:** Ein Skill pro klar abgegrenztem Thema. Was in zwei Skills steht → gehört in MASTER.md.
@@ -206,19 +206,19 @@ STRATEGY.md        ← Zahlen, Ziele, finanzielle Entscheidungsgrundlagen
 ## 6. WORKSPACE-STRUKTUR
 
 ```
-C:\Users\User\Projects\          ← Primärer Projekt-Workspace
-├── ki-automatisieren-astro\     ← ki-automatisieren.de
-├── pratik-yapay-zeka-astro\     ← yapayzekapratik.com  
-├── strategie-beratung\          ← st-automatisierung.de
-├── profilfoto-ki-static\        ← profilfoto-ki.de
-├── sanper-vision-astro\         ← <BUSINESS_EXAMPLE>
-├── AI UGC\                      ← Remotion + Veo Pipeline
+~/Projects/ ← Primärer Projekt-Workspace
+├── ki-automatisieren-astro\ ← ki-automatisieren.de
+├── pratik-yapay-zeka-astro\ ← yapayzekapratik.com 
+├── strategie-beratung\ ← st-automatisierung.de
+├── profilfoto-ki-static\ ← profilfoto-ki.de
+├── sanper-vision-astro\ ← <BUSINESS_EXAMPLE>
+├── AI UGC\ ← Remotion + Veo Pipeline
 └── [weitere Projekte]
 
-C:\Users\User\.gemini\antigravity\  ← Legacy Brain (Antigravity)
-├── knowledge\                      ← 55+ Knowledge Items
-├── skills\                         ← 20+ SKILL.md Dateien
-└── brain\                          ← Session Artifacts
+~/.gemini/antigravity\ ← Legacy Brain (Antigravity)
+├── knowledge\ ← 55+ Knowledge Items
+├── skills\ ← 20+ SKILL.md Dateien
+└── brain\ ← Session Artifacts
 ```
 
 ---

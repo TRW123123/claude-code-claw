@@ -74,24 +74,24 @@ npm install
 Beispiel (Industrial/Garage Direction):
 ```js
 theme: {
-  extend: {
-    colors: {
-      surface: '#E7E4DF',
-      'surface-dim': '#D8D4CD',
-      'surface-bright': '#FFF6F0',
-      'surface-container-lowest': '#FBF9F5',
-      'on-surface': '#1A1715',
-      'on-surface-variant': '#4B4641',
-      ink: '#0F0D0C',
-      primary: '#CC4A1B',
-      // ...
-    },
-    fontFamily: {
-      display: ['"Space Grotesk"', 'sans-serif'],
-      sans: ['"Space Grotesk"', 'sans-serif'],
-      mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-    },
-  }
+ extend: {
+ colors: {
+ surface: '#E7E4DF',
+ 'surface-dim': '#D8D4CD',
+ 'surface-bright': '#FFF6F0',
+ 'surface-container-lowest': '#FBF9F5',
+ 'on-surface': '#1A1715',
+ 'on-surface-variant': '#4B4641',
+ ink: '#0F0D0C',
+ primary: '#CC4A1B',
+ // ...
+ },
+ fontFamily: {
+ display: ['"Space Grotesk"', 'sans-serif'],
+ sans: ['"Space Grotesk"', 'sans-serif'],
+ mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+ },
+ }
 }
 ```
 
@@ -105,28 +105,28 @@ theme: {
 @tailwind utilities;
 
 /* ⚠️ NIEMALS: hardcoded color in utility classes die auf hellen UND dunklen Backgrounds erscheinen.
-   (Pitfall P-04 — color: #4B4641 überschreibt alle text-* Tailwind Utilities) */
+ (Pitfall P-04 — color: #4B4641 überschreibt alle text-* Tailwind Utilities) */
 
 @font-face {
-  font-family: "Space Grotesk";
-  src: url("/fonts/SpaceGrotesk-Variable.woff2") format("woff2");
-  font-weight: 300 700;
-  font-display: swap;
+ font-family: "Space Grotesk";
+ src: url("/fonts/SpaceGrotesk-Variable.woff2") format("woff2");
+ font-weight: 300 700;
+ font-display: swap;
 }
 
 @layer components {
-  /* GUT: color inherit, parent steuert */
-  .mono-caps {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    /* color hier NICHT setzen — inherits */
-  }
+ /* GUT: color inherit, parent steuert */
+ .mono-caps {
+ font-family: "JetBrains Mono", monospace;
+ font-size: 11px;
+ text-transform: uppercase;
+ letter-spacing: 0.12em;
+ /* color hier NICHT setzen — inherits */
+ }
 
-  /* SCHLECHT (nicht so machen):
-  .mono-caps { color: #4B4641; }  ← überschreibt ALLE text-* Overrides
-  */
+ /* SCHLECHT (nicht so machen):
+ .mono-caps { color: #4B4641; } ← überschreibt ALLE text-* Overrides
+ */
 }
 ```
 
@@ -136,16 +136,16 @@ theme: {
 
 ```
 src/
-  index.html              ← Landing
-  ueber-uns.html          ← Founder-Story (P-14)
-  impressum.html
-  datenschutz.html
-  input.css
-  motion.js
+ index.html ← Landing
+ ueber-uns.html ← Founder-Story (P-14)
+ impressum.html
+ datenschutz.html
+ input.css
+ motion.js
 public/
-  favicon.svg
-  fonts/
-  videos/ (oder images/)
+ favicon.svg
+ fonts/
+ videos/ (oder images/)
 ```
 
 **Pflicht-Elemente in index.html:**
@@ -163,43 +163,43 @@ public/
 
 ```toml
 [build]
-  command = "npm run build"
-  publish = "dist"
+ command = "npm run build"
+ publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20"
+ NODE_VERSION = "20"
 
 [[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "SAMEORIGIN"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
-    Content-Security-Policy = "default-src 'self'; ..."  # Anpassen nach Backend (Supabase, Formspree, etc.)
+ for = "/*"
+ [headers.values]
+ X-Frame-Options = "SAMEORIGIN"
+ X-Content-Type-Options = "nosniff"
+ Referrer-Policy = "strict-origin-when-cross-origin"
+ Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+ Content-Security-Policy = "default-src 'self'; ..." # Anpassen nach Backend (Supabase, Formspree, etc.)
 
 [[headers]]
-  for = "/fonts/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+ for = "/fonts/*"
+ [headers.values]
+ Cache-Control = "public, max-age=31536000, immutable"
 
 # Pretty URLs
 [[redirects]]
-  from = "/ueber-uns"
-  to = "/ueber-uns.html"
-  status = 200
+ from = "/ueber-uns"
+ to = "/ueber-uns.html"
+ status = 200
 
 [[redirects]]
-  from = "/ueber-uns.html"
-  to = "/ueber-uns"
-  status = 301
-  force = false
+ from = "/ueber-uns.html"
+ to = "/ueber-uns"
+ status = 301
+ force = false
 
 # Result-Page Pattern für Lead-Pipeline (P-2.5)
 [[redirects]]
-  from = "/v/*"
-  to = "/v.html"
-  status = 200
+ from = "/v/*"
+ to = "/v.html"
+ status = 200
 ```
 
 ---
@@ -217,12 +217,12 @@ const V = Date.now().toString(36);
 const html = readdirSync(DIST).filter(f => f.endsWith('.html'));
 
 html.forEach(f => {
-  const p = join(DIST, f);
-  let src = readFileSync(p, 'utf8');
-  src = src.replace(/href="\/style\.css"/g, `href="/style.css?v=${V}"`);
-  src = src.replace(/src="\/motion\.js"/g, `src="/motion.js?v=${V}"`);
-  // ⚠️ FONTS NICHT CACHEBUSTEN — bricht Preload-Match (Pitfall P-01)
-  writeFileSync(p, src);
+ const p = join(DIST, f);
+ let src = readFileSync(p, 'utf8');
+ src = src.replace(/href="\/style\.css"/g, `href="/style.css?v=${V}"`);
+ src = src.replace(/src="\/motion\.js"/g, `src="/motion.js?v=${V}"`);
+ // ⚠️ FONTS NICHT CACHEBUSTEN — bricht Preload-Match (Pitfall P-01)
+ writeFileSync(p, src);
 });
 
 console.log(`cachebust v=${V} applied to ${html.length} html file(s)`);
@@ -235,19 +235,19 @@ console.log(`cachebust v=${V} applied to ${html.length} html file(s)`);
 ```html
 <!-- Mobile Toggle -->
 <button id="mnav-toggle" class="md:hidden" aria-expanded="false" aria-controls="mnav-panel">
-  <svg>...</svg>
+ <svg>...</svg>
 </button>
 
 <!-- Mobile Drawer -->
 <div id="mnav-panel" class="hidden fixed inset-0 z-50" aria-hidden="true">
-  <div id="mnav-backdrop" class="absolute inset-0 bg-black/50"></div>
-  <aside class="absolute right-0 top-0 h-full w-80 bg-surface-bright">
-    <button id="mnav-close">×</button>
-    <nav class="flex flex-1 flex-col gap-1 px-5 pt-6">
-      <a href="#formate" class="mnav-link">Formate</a>
-      <!-- ... -->
-    </nav>
-  </aside>
+ <div id="mnav-backdrop" class="absolute inset-0 bg-black/50"></div>
+ <aside class="absolute right-0 top-0 h-full w-80 bg-surface-bright">
+ <button id="mnav-close">×</button>
+ <nav class="flex flex-1 flex-col gap-1 px-5 pt-6">
+ <a href="#formate" class="mnav-link">Formate</a>
+ <!-- ... -->
+ </nav>
+ </aside>
 </div>
 ```
 
@@ -308,7 +308,7 @@ netlify deploy --prod --dir=dist
 
 Im Handoff-File dokumentieren:
 ```yaml
-deploy_mode: cli  # oder git-auto
+deploy_mode: cli # oder git-auto
 last_deploy: 69ee21334039c5a6063171d4
 ```
 
@@ -326,7 +326,7 @@ Screenshot mobile + desktop
 **Wenn Browser-MCP geblockt:**
 ```
 1. Lighthouse via DataForSEO (umgeht DNS-Sperre):
-   mcp__dataforseo__on_page_lighthouse
+ mcp__dataforseo__on_page_lighthouse
 2. User explizit fragen: "Kannst du https://... öffnen und prüfen?"
 3. NIEMALS halluzinieren
 ```

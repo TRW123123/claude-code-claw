@@ -21,15 +21,15 @@ Diese Fragen müssen am Anfang JEDER Business-Launch-Session beantwortet sein. A
 ### Q1 — Stack-Type
 **Welche Architektur?**
 - **A) Static Landing-Page** — HTML + Tailwind, kein Backend (Skill: `phase-2a-static`)
-  - Use-Case: Trafic-Sammler, Lead-Funnel, Pre-Launch
-  - Beispiele: profilfoto-ki-static, autohaus-video-static
-  - Vorteil: Lighthouse 100/100, ms-Builds, simpel
+ - Use-Case: Trafic-Sammler, Lead-Funnel, Pre-Launch
+ - Beispiele: profilfoto-ki-static, autohaus-video-static
+ - Vorteil: Lighthouse 100/100, ms-Builds, simpel
 - **B) Full Web-App** — Next.js + Supabase Auth + DB (Skill: `phase-2b-nextjs`)
-  - Use-Case: Login, User-Accounts, Dashboard, App-Funktionalität
-  - Beispiele: profilfoto-ki-app-v2
+ - Use-Case: Login, User-Accounts, Dashboard, App-Funktionalität
+ - Beispiele: profilfoto-ki-app-v2
 - **C) Microservice-Split** — Beide getrennt (2 Repos, 2 Netlify-Sites)
-  - Use-Case: SEO-Landing + App auf eigenen Subdomains
-  - Beispiele: `profilfoto-ki.de` (static) + `app.profilfoto-ki.de` (Next.js)
+ - Use-Case: SEO-Landing + App auf eigenen Subdomains
+ - Beispiele: `profilfoto-ki.de` (static) + `app.profilfoto-ki.de` (Next.js)
 
 ### Q2 — Förderung-Target
 **Plant ihr eine Förderung oder Programm-Bewerbung?**
@@ -48,7 +48,7 @@ Diese Fragen müssen am Anfang JEDER Business-Launch-Session beantwortet sein. A
 - **A) Form → DB only** — Klassisches Kontaktformular, Daten in Tabelle
 - **B) Form → DB → Storage** — Form mit Datei-Upload (Fotos, PDFs, Voice-Memos)
 - **C) Form → DB → Storage → Edge-Processing** — Bei Upload werden Files konvertiert/verarbeitet (z.B. WebP→JPEG, Image-Resize, OCR, Voice-Transkription)
-- **D) Form → DB → Workflow** — Lead triggert Email/SMS/Slack/Telegram-Notification, ggf n8n-Workflow
+- **D) Form → DB → Workflow** — Lead triggert Email/SMS/Messaging-Notification, ggf n8n-Workflow
 
 → Treibt Phase 1 Schema-Design + Phase 2.5 Edge-Function-Architektur.
 
@@ -120,7 +120,7 @@ Format:
 ## Tech-Stack (verifiziert mit User)
 - Frontend: ...
 - Backend: ...
-- AI/ML: ...   ← critical für Förderung-Claims
+- AI/ML: ... ← critical für Förderung-Claims
 
 ## Phase Status
 Phase 1: ✅ done — {date}

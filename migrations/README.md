@@ -42,22 +42,22 @@ Open each file, paste into SQL Editor, run them **in numeric order**
 ## Notes & limitations
 
 - **GSC tables** (`public.gsc_history`, `public.gsc_queries`,
-  `public.gsc_daily_summary`) are declared here as schema-only so the
-  research views compile. You are responsible for feeding them from
-  your own GSC collector — the canonical CLAW public repo does not
-  include that collector.
+ `public.gsc_daily_summary`) are declared here as schema-only so the
+ research views compile. You are responsible for feeding them from
+ your own GSC collector — the canonical CLAW public repo does not
+ include that collector.
 - **`pg_cron`** must be enabled on the project. On Supabase this is a
-  single toggle under Database → Extensions. The cron job runs as the
-  `postgres` role.
+ single toggle under Database → Extensions. The cron job runs as the
+ `postgres` role.
 - **Omitted**: the three RPCs `claw_queue_task`, `claw_get_pending_tasks`,
-  `claw_update_task` reference `claw.webhook_queue`, which is not part of
-  the canonical open-source schema. Add a separate migration if you need
-  the webhook queue.
+ `claw_update_task` reference `claw.webhook_queue`, which is not part of
+ the canonical open-source schema. Add a separate migration if you need
+ the webhook queue.
 - **No seed data**, **no secrets**, **no Supabase-internal objects**
-  (`auth`, `storage`, `realtime`) are included. Bring-your-own content.
+ (`auth`, `storage`, `realtime`) are included. Bring-your-own content.
 - **Embeddings** use `vector(1536)` (OpenAI-family dimension). If you
-  use a different model, change the dimension in `001_memories.sql`
-  **before** the first apply.
+ use a different model, change the dimension in `001_memories.sql`
+ **before** the first apply.
 
 ## Verification
 
@@ -74,9 +74,9 @@ SELECT table_schema, table_name FROM information_schema.tables
 
 -- 3. Expected RPCs
 SELECT proname FROM pg_proc p
-   JOIN pg_namespace n ON p.pronamespace = n.oid
-  WHERE n.nspname = 'public' AND proname LIKE 'claw\_%' ESCAPE '\'
-  ORDER BY proname;
+ JOIN pg_namespace n ON p.pronamespace = n.oid
+ WHERE n.nspname = 'public' AND proname LIKE 'claw\_%' ESCAPE '\'
+ ORDER BY proname;
 
 -- 4. Cron job
 SELECT jobname, schedule, command FROM cron.job WHERE jobname = 'claw-memory-decay';

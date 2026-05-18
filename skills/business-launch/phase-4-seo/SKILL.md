@@ -19,9 +19,9 @@ allowed-tools: [Read, Write, Edit, Bash, Skill, mcp__Claude_in_Chrome__navigate,
 1. https://search.google.com/search-console/ öffnen
 2. "Property hinzufügen" → Domain-Property (nicht URL-Prefix)
 3. DNS-TXT-Verifikation:
-   - GSC gibt google-site-verification=... aus
-   - IONOS DNS → {domain} → DNS → TXT-Record
-   - Zurück zu GSC → "Bestätigen"
+ - GSC gibt google-site-verification=... aus
+ - IONOS DNS → {domain} → DNS → TXT-Record
+ - Zurück zu GSC → "Bestätigen"
 4. Warten 5–30 Min DNS-Propagation
 ```
 
@@ -61,24 +61,24 @@ Niemals `Disallow: /` versehentlich gesetzt lassen.
 ### 4.1 Hero
 ```html
 <header>
-  <span class="badge">Built in {Stadt} · Powered by {Top-Tech}</span>
-  <h1>Über {Firmenname}</h1>
-  <p>{Tagline — was ihr tut, in 1-2 Sätzen}</p>
+ <span class="badge">Built in {Stadt} · Powered by {Top-Tech}</span>
+ <h1>Über {Firmenname}</h1>
+ <p>{Tagline — was ihr tut, in 1-2 Sätzen}</p>
 </header>
 ```
 
 ### 4.2 Founder-Section
 ```html
 <section>
-  <img src="/images/team/founder-portrait.jpg" alt="{Founder-Name}, Founder von {Firmenname}">
-  <span class="badge">Founder Story</span>
-  <h2>{Founder-Name}<br><span>Founder & Builder</span></h2>
-  <div class="story">
-    <p>{Persönlicher Anker — was hat dich getriggert?}</p>
-    <p>{Erkenntnis-Moment — was hast du bemerkt?}</p>
-    <p>{Gründung — warum jetzt?}</p>
-    <p class="bold">{Mission-Statement — was wollt ihr ändern?}</p>
-  </div>
+ <img src="/images/team/founder-portrait.jpg" alt="{Founder-Name}, Founder von {Firmenname}">
+ <span class="badge">Founder Story</span>
+ <h2>{Founder-Name}<br><span>Founder & Builder</span></h2>
+ <div class="story">
+ <p>{Persönlicher Anker — was hat dich getriggert?}</p>
+ <p>{Erkenntnis-Moment — was hast du bemerkt?}</p>
+ <p>{Gründung — warum jetzt?}</p>
+ <p class="bold">{Mission-Statement — was wollt ihr ändern?}</p>
+ </div>
 </section>
 ```
 
@@ -87,39 +87,39 @@ Niemals `Disallow: /` versehentlich gesetzt lassen.
 ### 4.3 Mission
 ```html
 <section>
-  <h2>Unsere Mission</h2>
-  <p>{Klare 1-Satz Vision der demokratisierten Lösung}</p>
+ <h2>Unsere Mission</h2>
+ <p>{Klare 1-Satz Vision der demokratisierten Lösung}</p>
 </section>
 ```
 
 ### 4.4 Differenziatoren (3 Cards)
 ```html
 <section>
-  <h2>Was uns anders macht</h2>
-  <div class="grid grid-cols-3">
-    <article>
-      <h3>{Differenziator 1 — z.B. "Made in Germany"}</h3>
-      <p>{Beleg, Tech-Stack, geografisch}</p>
-    </article>
-    <article>
-      <h3>{Differenziator 2 — z.B. "Faires Pricing"}</h3>
-      <p>{Konkrete Zahlen vs. Wettbewerb}</p>
-    </article>
-    <article>
-      <h3>{Differenziator 3 — z.B. "Echte KI"}</h3>
-      <p>{Welches Modell, warum es passt}</p>
-    </article>
-  </div>
+ <h2>Was uns anders macht</h2>
+ <div class="grid grid-cols-3">
+ <article>
+ <h3>{Differenziator 1 — z.B. "Made in Germany"}</h3>
+ <p>{Beleg, Tech-Stack, geografisch}</p>
+ </article>
+ <article>
+ <h3>{Differenziator 2 — z.B. "Faires Pricing"}</h3>
+ <p>{Konkrete Zahlen vs. Wettbewerb}</p>
+ </article>
+ <article>
+ <h3>{Differenziator 3 — z.B. "Echte KI"}</h3>
+ <p>{Welches Modell, warum es passt}</p>
+ </article>
+ </div>
 </section>
 ```
 
 ### 4.5 Fakten in Zahlen (4 Stats)
 ```html
 <section>
-  <div class="stat"><big>2026</big><small>Gegründet</small></div>
-  <div class="stat"><big>{Stadt}</big><small>Standort 🇩🇪</small></div>
-  <div class="stat"><big>{Preis}</big><small>{Einheit}</small></div>
-  <div class="stat"><big>{Lieferzeit}</big><small>Bis fertig</small></div>
+ <div class="stat"><big>2026</big><small>Gegründet</small></div>
+ <div class="stat"><big>{Stadt}</big><small>Standort 🇩🇪</small></div>
+ <div class="stat"><big>{Preis}</big><small>{Einheit}</small></div>
+ <div class="stat"><big>{Lieferzeit}</big><small>Bis fertig</small></div>
 </section>
 ```
 
@@ -129,37 +129,37 @@ Niemals `Disallow: /` versehentlich gesetzt lassen.
 
 ```html
 <section>
-  <span class="badge">Unter der Haube</span>
-  <h2>Wie wir's bauen</h2>
-  <p>{Tech-Stack ist auf {Förderer}-Cloud-Infrastruktur aufgebaut. Komplett in der EU. DSGVO-konform.}</p>
+ <span class="badge">Unter der Haube</span>
+ <h2>Wie wir's bauen</h2>
+ <p>{Tech-Stack ist auf {Förderer}-Cloud-Infrastruktur aufgebaut. Komplett in der EU. DSGVO-konform.}</p>
 
-  <ol>
-    <li>
-      <span>01</span>
-      <h3>{Top-AI-Service}: {Provider} {Region}</h3>
-      <p>{Was läuft hier, welche Modelle, welche Region, DSGVO-Status}</p>
-    </li>
-    <li>
-      <span>02</span>
-      <h3>{Reasoning/Brain}: {Modell}</h3>
-      <p>{Was macht das, welche Eingabe → welcher Output}</p>
-    </li>
-    <li>
-      <span>03</span>
-      <h3>{Bildgenerierung/Detail}: {Modell}</h3>
-      <p>{Wozu, welche Limits}</p>
-    </li>
-    <li>
-      <span>04</span>
-      <h3>Datenbank: Supabase Frankfurt</h3>
-      <p>Postgres in eu-central-1, verschlüsselt at rest + in transit.</p>
-    </li>
-    <li>
-      <span>05</span>
-      <h3>Hosting: Netlify Frankfurt</h3>
-      <p>Edge-Locations in der EU. Keine US-CDN-Hops für deutsche Nutzer.</p>
-    </li>
-  </ol>
+ <ol>
+ <li>
+ <span>01</span>
+ <h3>{Top-AI-Service}: {Provider} {Region}</h3>
+ <p>{Was läuft hier, welche Modelle, welche Region, DSGVO-Status}</p>
+ </li>
+ <li>
+ <span>02</span>
+ <h3>{Reasoning/Brain}: {Modell}</h3>
+ <p>{Was macht das, welche Eingabe → welcher Output}</p>
+ </li>
+ <li>
+ <span>03</span>
+ <h3>{Bildgenerierung/Detail}: {Modell}</h3>
+ <p>{Wozu, welche Limits}</p>
+ </li>
+ <li>
+ <span>04</span>
+ <h3>Datenbank: Supabase Frankfurt</h3>
+ <p>Postgres in eu-central-1, verschlüsselt at rest + in transit.</p>
+ </li>
+ <li>
+ <span>05</span>
+ <h3>Hosting: Netlify Frankfurt</h3>
+ <p>Edge-Locations in der EU. Keine US-CDN-Hops für deutsche Nutzer.</p>
+ </li>
+ </ol>
 </section>
 ```
 
@@ -173,13 +173,13 @@ Niemals `Disallow: /` versehentlich gesetzt lassen.
 ### 4.7 CTA mit Trust-Badges
 ```html
 <section class="cta">
-  <h2>Bereit für {Action}?</h2>
-  <a href="/...">CTA</a>
-  <div class="badges">
-    <span>DSGVO-konform</span>
-    <span>Made in Germany</span>
-    <span>{Liefer-USP}</span>
-  </div>
+ <h2>Bereit für {Action}?</h2>
+ <a href="/...">CTA</a>
+ <div class="badges">
+ <span>DSGVO-konform</span>
+ <span>Made in Germany</span>
+ <span>{Liefer-USP}</span>
+ </div>
 </section>
 ```
 
@@ -192,56 +192,56 @@ In `index.html` und `ueber-uns.html`:
 ```html
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://{domain}/#organization",
-      "name": "{Firmenname}",
-      "legalName": "{Firmenname} · Inhaber {Founder-Name}",
-      "url": "https://{domain}/",
-      "foundingDate": "{Jahr}",
-      "email": "info@{domain}",
-      "founder": {
-        "@type": "Person",
-        "@id": "https://{domain}/ueber-uns#founder",
-        "name": "{Founder-Name}",
-        "jobTitle": "Founder & Builder",
-        "image": "https://{domain}/images/team/founder-portrait.jpg",
-        "worksFor": { "@id": "https://{domain}/#organization" }
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "{Straße}",
-        "postalCode": "{PLZ}",
-        "addressLocality": "{Stadt}",
-        "addressCountry": "DE"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "info@{domain}",
-        "contactType": "customer support",
-        "areaServed": ["DE", "AT", "CH"],
-        "availableLanguage": ["de"]
-      }
-    },
-    {
-      "@type": "Service",
-      "@id": "https://{domain}/#service",
-      "serviceType": "{Service-Type}",
-      "provider": { "@id": "https://{domain}/#organization" },
-      "areaServed": {"@type": "Country", "name": ["Deutschland", "Österreich", "Schweiz"]},
-      "offers": {"@type": "Offer", "priceCurrency": "EUR", "price": "{Preis}"}
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://{domain}/#website",
-      "url": "https://{domain}/",
-      "name": "{Firmenname}",
-      "publisher": { "@id": "https://{domain}/#organization" },
-      "inLanguage": "de-DE"
-    }
-  ]
+ "@context": "https://schema.org",
+ "@graph": [
+ {
+ "@type": "Organization",
+ "@id": "https://{domain}/#organization",
+ "name": "{Firmenname}",
+ "legalName": "{Firmenname} · Inhaber {Founder-Name}",
+ "url": "https://{domain}/",
+ "foundingDate": "{Jahr}",
+ "email": "info@{domain}",
+ "founder": {
+ "@type": "Person",
+ "@id": "https://{domain}/ueber-uns#founder",
+ "name": "{Founder-Name}",
+ "jobTitle": "Founder & Builder",
+ "image": "https://{domain}/images/team/founder-portrait.jpg",
+ "worksFor": { "@id": "https://{domain}/#organization" }
+ },
+ "address": {
+ "@type": "PostalAddress",
+ "streetAddress": "{Straße}",
+ "postalCode": "{PLZ}",
+ "addressLocality": "{Stadt}",
+ "addressCountry": "DE"
+ },
+ "contactPoint": {
+ "@type": "ContactPoint",
+ "email": "info@{domain}",
+ "contactType": "customer support",
+ "areaServed": ["DE", "AT", "CH"],
+ "availableLanguage": ["de"]
+ }
+ },
+ {
+ "@type": "Service",
+ "@id": "https://{domain}/#service",
+ "serviceType": "{Service-Type}",
+ "provider": { "@id": "https://{domain}/#organization" },
+ "areaServed": {"@type": "Country", "name": ["Deutschland", "Österreich", "Schweiz"]},
+ "offers": {"@type": "Offer", "priceCurrency": "EUR", "price": "{Preis}"}
+ },
+ {
+ "@type": "WebSite",
+ "@id": "https://{domain}/#website",
+ "url": "https://{domain}/",
+ "name": "{Firmenname}",
+ "publisher": { "@id": "https://{domain}/#organization" },
+ "inLanguage": "de-DE"
+ }
+ ]
 }
 </script>
 ```
@@ -261,16 +261,16 @@ In `netlify.toml`:
 ```toml
 # Rewrite (URL bleibt clean, intern wird .html geladen)
 [[redirects]]
-  from = "/ueber-uns"
-  to = "/ueber-uns.html"
-  status = 200
+ from = "/ueber-uns"
+ to = "/ueber-uns.html"
+ status = 200
 
 # Redirect (alte .html-Links → clean)
 [[redirects]]
-  from = "/ueber-uns.html"
-  to = "/ueber-uns"
-  status = 301
-  force = false
+ from = "/ueber-uns.html"
+ to = "/ueber-uns"
+ status = 301
+ force = false
 ```
 
 Wiederholen für jede Page.
@@ -295,7 +295,7 @@ Pflicht-Sektionen:
 ⚠️ **Hard Rule:** KEINE Platzhalter wie `[STRASSE HAUSNUMMER]` im finalen Deploy. User muss echte Daten liefern. Pre-Phase-4: Liste aller benötigten Felder ausgeben + User um Bestätigung bitten.
 
 ```html
-<meta name="robots" content="noindex, nofollow">  <!-- Impressum nicht in Google -->
+<meta name="robots" content="noindex, nofollow"> <!-- Impressum nicht in Google -->
 ```
 
 ---

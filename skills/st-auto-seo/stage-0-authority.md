@@ -30,10 +30,10 @@ DataForSEO Tool: `backlinks_bulk_ranks`
 
 ```
 targets: [
-  "st-automatisierung.de",
-  "4-advice.de",
-  "3pc.de",
-  "digital-umsetzen.de"
+ "st-automatisierung.de",
+ "4-advice.de",
+ "3pc.de",
+ "digital-umsetzen.de"
 ]
 ```
 
@@ -65,32 +65,32 @@ Ergebnis: Domains die auf Wettbewerber verlinken aber NICHT auf st-auto. Das sin
 -- TODO Stage 0: claw.domain_authority wurde 2026-04-19 gedroppt (DataForSEO Backlinks-Abo nicht aktiv). Neu bauen wenn Abo vorhanden.
 INSERT INTO claw.domain_authority (domain, date, rank_score, referring_domains, backlinks_total, spam_score, competitor_gap)
 VALUES (
-  'st-automatisierung.de',
-  CURRENT_DATE,
-  [rank_score],
-  [referring_domains],
-  [backlinks_total],
-  [spam_score],
-  '[competitor_gap_json]'::jsonb
+ 'st-automatisierung.de',
+ CURRENT_DATE,
+ [rank_score],
+ [referring_domains],
+ [backlinks_total],
+ [spam_score],
+ '[competitor_gap_json]'::jsonb
 )
 ON CONFLICT (domain, date) DO UPDATE SET
-  rank_score = EXCLUDED.rank_score,
-  referring_domains = EXCLUDED.referring_domains,
-  backlinks_total = EXCLUDED.backlinks_total,
-  spam_score = EXCLUDED.spam_score,
-  competitor_gap = EXCLUDED.competitor_gap;
+ rank_score = EXCLUDED.rank_score,
+ referring_domains = EXCLUDED.referring_domains,
+ backlinks_total = EXCLUDED.backlinks_total,
+ spam_score = EXCLUDED.spam_score,
+ competitor_gap = EXCLUDED.competitor_gap;
 ```
 
 ### Schritt 6: WoW-Trend berechnen
 
 ```sql
 SELECT
-  d1.date, d1.rank_score, d1.referring_domains,
-  d1.rank_score - d2.rank_score as rank_change,
-  d1.referring_domains - d2.referring_domains as rd_change
+ d1.date, d1.rank_score, d1.referring_domains,
+ d1.rank_score - d2.rank_score as rank_change,
+ d1.referring_domains - d2.referring_domains as rd_change
 FROM claw.domain_authority d1
 LEFT JOIN claw.domain_authority d2
-  ON d1.domain = d2.domain AND d2.date = d1.date - 7
+ ON d1.domain = d2.domain AND d2.date = d1.date - 7
 WHERE d1.domain = 'st-automatisierung.de'
 ORDER BY d1.date DESC LIMIT 4;
 ```
@@ -103,8 +103,8 @@ ORDER BY d1.date DESC LIMIT 4;
 - **Referring Domains:** [X] ([+/-Y] WoW)
 - **Spam Score:** [X] / 100
 - **Top Link-Building Opportunities:**
-  - [Directory/Domain 1] — verlinkt auf [Competitor] aber nicht auf uns
-  - [Directory/Domain 2] — ...
+ - [Directory/Domain 1] — verlinkt auf [Competitor] aber nicht auf uns
+ - [Directory/Domain 2] — ...
 ```
 
 ## Kosten

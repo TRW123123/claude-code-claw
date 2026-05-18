@@ -9,14 +9,14 @@ Du bist der wöchentliche SEO-Strategie-Agent für profilfoto-ki.de. Führe alle
 
 ## Domain-Config
 - **Domain:** profilfoto-ki.de
-- **Repo:** `C:\Users\User\Projects\profilfoto-ki-static`
+- **Repo:** `~/Projects/profilfoto-ki-static`
 - **Supabase:** NanoBanana (`<SUPABASE_PROJECT_ID>`)
 
 ## Schritt 1: Kontext laden
 
-1. **Topic-Datei lesen:** `C:\Users\User\Claude\topics\profilfoto-ki.md`
-2. **Letzte Agent-Logs lesen:** Die letzten 5 Tage `agent-log-*.md` aus `C:\Users\User\Claude\sessions\`
-3. **SEO Plugin lesen:** `C:\Users\User\.claude\skills\profilfoto-seo\SKILL.md` für aktuelle Routing-Logik
+1. **Topic-Datei lesen:** `~/Claude/topics\profilfoto-ki.md`
+2. **Letzte Agent-Logs lesen:** Die letzten 5 Tage `agent-log-*.md` aus `~/Claude/sessions\`
+3. **SEO Plugin lesen:** `~/.claude/skills\profilfoto-seo\SKILL.md` für aktuelle Routing-Logik
 4. **Context Pack (minimal):** `context/target-keywords.md` und `context/competitor-analysis.md` für Cluster-Priorisierung
 
 ## Schritt 2: WoW-Vergleich (Week-over-Week)
@@ -24,27 +24,27 @@ Du bist der wöchentliche SEO-Strategie-Agent für profilfoto-ki.de. Führe alle
 ```sql
 -- Domain-Level WoW
 WITH current_week AS (
-  SELECT SUM(total_clicks) as clicks, SUM(total_impressions) as impressions, AVG(avg_position) as position
-  FROM gsc_daily_summary
-  WHERE domain = 'profilfoto-ki.de' AND date >= CURRENT_DATE - 7
+ SELECT SUM(total_clicks) as clicks, SUM(total_impressions) as impressions, AVG(avg_position) as position
+ FROM gsc_daily_summary
+ WHERE domain = 'profilfoto-ki.de' AND date >= CURRENT_DATE - 7
 ),
 previous_week AS (
-  SELECT SUM(total_clicks) as clicks, SUM(total_impressions) as impressions, AVG(avg_position) as position
-  FROM gsc_daily_summary
-  WHERE domain = 'profilfoto-ki.de' AND date >= CURRENT_DATE - 14 AND date < CURRENT_DATE - 7
+ SELECT SUM(total_clicks) as clicks, SUM(total_impressions) as impressions, AVG(avg_position) as position
+ FROM gsc_daily_summary
+ WHERE domain = 'profilfoto-ki.de' AND date >= CURRENT_DATE - 14 AND date < CURRENT_DATE - 7
 )
 SELECT
-  cw.clicks as cw_clicks, pw.clicks as pw_clicks,
-  cw.impressions as cw_impressions, pw.impressions as pw_impressions,
-  ROUND(cw.position::numeric, 1) as cw_position, ROUND(pw.position::numeric, 1) as pw_position
+ cw.clicks as cw_clicks, pw.clicks as pw_clicks,
+ cw.impressions as cw_impressions, pw.impressions as pw_impressions,
+ ROUND(cw.position::numeric, 1) as cw_position, ROUND(pw.position::numeric, 1) as pw_position
 FROM current_week cw, previous_week pw;
 
 -- Top-Seiten WoW Detail
 SELECT page,
-  SUM(CASE WHEN date >= CURRENT_DATE - 7 THEN impressions ELSE 0 END) as cw_impressions,
-  SUM(CASE WHEN date >= CURRENT_DATE - 14 AND date < CURRENT_DATE - 7 THEN impressions ELSE 0 END) as pw_impressions,
-  SUM(CASE WHEN date >= CURRENT_DATE - 7 THEN clicks ELSE 0 END) as cw_clicks,
-  SUM(CASE WHEN date >= CURRENT_DATE - 14 AND date < CURRENT_DATE - 7 THEN clicks ELSE 0 END) as pw_clicks
+ SUM(CASE WHEN date >= CURRENT_DATE - 7 THEN impressions ELSE 0 END) as cw_impressions,
+ SUM(CASE WHEN date >= CURRENT_DATE - 14 AND date < CURRENT_DATE - 7 THEN impressions ELSE 0 END) as pw_impressions,
+ SUM(CASE WHEN date >= CURRENT_DATE - 7 THEN clicks ELSE 0 END) as cw_clicks,
+ SUM(CASE WHEN date >= CURRENT_DATE - 14 AND date < CURRENT_DATE - 7 THEN clicks ELSE 0 END) as pw_clicks
 FROM gsc_history
 WHERE domain = 'profilfoto-ki.de' AND date >= CURRENT_DATE - 14
 GROUP BY page
@@ -132,8 +132,8 @@ Wenn `weekly_clicks > 50` UND GA4 Conversion Events (`start_generation`, `checko
 SELECT query, page, clicks, impressions, ctr, position
 FROM gsc_queries
 WHERE domain = 'profilfoto-ki.de'
-  AND position BETWEEN 5 AND 20
-  AND impressions >= 3
+ AND position BETWEEN 5 AND 20
+ AND impressions >= 3
 ORDER BY impressions DESC;
 ```
 
@@ -146,14 +146,14 @@ Für die Top 3 Striking-Distance-Opportunities (Schritt 5):
 Via Supabase-MCP `execute_sql`:
 ```sql
 SELECT claw_create_research_brief(
-    p_domain := 'profilfoto-ki.de',
-    p_target_keyword := '<keyword>',
-    p_created_by := 'seo-weekly-profilfoto-ki',
-    p_target_page_path := '/<slug>/',
-    p_search_intent := 'informational|commercial|transactional',
-    p_serp_gaps := ARRAY['gap1', 'gap2'],
-    p_target_wordcount := 2200,
-    p_outline := '{"h2": ["Section 1","Section 2"]}'::jsonb
+ p_domain := 'profilfoto-ki.de',
+ p_target_keyword := '<keyword>',
+ p_created_by := 'seo-weekly-profilfoto-ki',
+ p_target_page_path := '/<slug>/',
+ p_search_intent := 'informational|commercial|transactional',
+ p_serp_gaps := ARRAY['gap1', 'gap2'],
+ p_target_wordcount := 2200,
+ p_outline := '{"h2": ["Section 1","Section 2"]}'::jsonb
 );
 ```
 
@@ -163,7 +163,7 @@ Nur 3-5 Briefs pro Woche. Keine Briefs bei leerer Striking-Distance-Liste.
 
 ## Schritt 6: Agent-Log schreiben
 
-`C:\Users\User\Claude\sessions\agent-log-YYYY-MM-DD.md` erweitern:
+`~/Claude/sessions\agent-log-YYYY-MM-DD.md` erweitern:
 
 ```markdown
 ## Profilfoto-KI Weekly Strategy [HH:MM]

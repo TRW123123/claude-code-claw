@@ -8,17 +8,17 @@ description: Weekly SEO Strategy Agent für st-automatisierung.de — Montag 09:
 ## Domain-Config
 - **Domain:** st-automatisierung.de
 - **GSC Property:** sc-domain:st-automatisierung.de
-- **Repo:** `C:\Users\User\Projects\strategie-beratung`
+- **Repo:** `~/Projects/strategie-beratung`
 - **Supabase:** NanoBanana (`<SUPABASE_PROJECT_ID>`)
 - **Cluster-Priorität:** BAFA > AI Act > KI-Beratung > Strategieberatung
 
 ## Schritt 1: Kontext laden
 
-1. **Letztes Agent-Log lesen** — `C:\Users\User\Claude\sessions\agent-log-YYYY-MM-DD.md`
-2. **Topic-Datei lesen** — `C:\Users\User\Claude\topics\st-automatisierung.md`
-3. **SEO-PLAN-2026.md lesen** — `C:\Users\User\Projects\strategie-beratung\SEO-PLAN-2026.md`
-4. **Keyword-Research laden** — `C:\Users\User\Projects\strategie-beratung\keyword-research\dataforseo-research-2026-03-31.json`
-5. **SEO Plugin lesen** — `C:\Users\User\.claude\skills\st-auto-seo\SKILL.md` für 4-Stufen-Funnel
+1. **Letztes Agent-Log lesen** — `~/Claude/sessions\agent-log-YYYY-MM-DD.md`
+2. **Topic-Datei lesen** — `~/Claude/topics\st-automatisierung.md`
+3. **SEO-PLAN-2026.md lesen** — `~/Projects/strategie-beratung\SEO-PLAN-2026.md`
+4. **Keyword-Research laden** — `~/Projects/strategie-beratung\keyword-research\dataforseo-research-2026-03-31.json`
+5. **SEO Plugin lesen** — `~/.claude/skills\st-auto-seo\SKILL.md` für 4-Stufen-Funnel
 
 ## Schritt 2: GSC Week-over-Week Vergleich
 
@@ -39,18 +39,18 @@ ORDER BY date DESC LIMIT 14 OFFSET 7;
 
 -- Top-Seiten mit Veränderung
 SELECT page, SUM(clicks) as clicks, SUM(impressions) as impressions,
-       ROUND(AVG(ctr)::numeric, 4) as avg_ctr, ROUND(AVG(position)::numeric, 1) as avg_pos
+ ROUND(AVG(ctr)::numeric, 4) as avg_ctr, ROUND(AVG(position)::numeric, 1) as avg_pos
 FROM gsc_history
 WHERE domain = 'st-automatisierung.de'
-  AND date >= CURRENT_DATE - INTERVAL '7 days'
+ AND date >= CURRENT_DATE - INTERVAL '7 days'
 GROUP BY page ORDER BY impressions DESC LIMIT 25;
 
 -- Top-Queries dieser Woche
 SELECT query, SUM(clicks) as clicks, SUM(impressions) as impressions,
-       ROUND(AVG(position)::numeric, 1) as avg_pos
+ ROUND(AVG(position)::numeric, 1) as avg_pos
 FROM gsc_queries
 WHERE domain = 'st-automatisierung.de'
-  AND date >= CURRENT_DATE - INTERVAL '7 days'
+ AND date >= CURRENT_DATE - INTERVAL '7 days'
 GROUP BY query ORDER BY impressions DESC LIMIT 30;
 ```
 
@@ -83,7 +83,7 @@ Berechne für diese Woche vs. letzte Woche:
 
 ## Schritt 4: Stage 0 — Domain Authority Tracking
 
-Workflow aus `C:\Users\User\.claude\skills\st-auto-seo\stage-0-authority.md` ausfuehren:
+Workflow aus `~/.claude/skills\st-auto-seo\stage-0-authority.md` ausfuehren:
 
 1. DataForSEO `backlinks_summary` fuer st-automatisierung.de
 2. DataForSEO `backlinks_bulk_ranks` — Vergleich mit Wettbewerbern
@@ -93,7 +93,7 @@ Workflow aus `C:\Users\User\.claude\skills\st-auto-seo\stage-0-authority.md` aus
 
 ## Schritt 5: Stage 1 — SERP-Gap Analyse
 
-Workflow aus `C:\Users\User\.claude\skills\st-auto-seo\stage-1-impressions.md` (Weekly-Teil):
+Workflow aus `~/.claude/skills\st-auto-seo\stage-1-impressions.md` (Weekly-Teil):
 
 1. Bestehende Rankings vs. Keyword Research vergleichen
 2. DataForSEO `dataforseo_labs_google_ranked_keywords` fuer Wettbewerber
@@ -102,7 +102,7 @@ Workflow aus `C:\Users\User\.claude\skills\st-auto-seo\stage-1-impressions.md` (
 
 ## Schritt 6: Stage 2 — Changelog Impact-Measurement
 
-Workflow aus `C:\Users\User\.claude\skills\st-auto-seo\stage-2-clicks.md` (Weekly-Teil):
+Workflow aus `~/.claude/skills\st-auto-seo\stage-2-clicks.md` (Weekly-Teil):
 
 ```sql
 -- Impact aller Changelog-Aenderungen messen
@@ -114,7 +114,7 @@ Winning Patterns dokumentieren.
 
 ## Schritt 7: Stage 3 — CRO Report (wenn GA4 verfuegbar)
 
-Workflow aus `C:\Users\User\.claude\skills\st-auto-seo\stage-3-conversions.md`:
+Workflow aus `~/.claude/skills\st-auto-seo\stage-3-conversions.md`:
 
 Nur ausfuehren wenn:
 - GA4 MCP verbunden ist
@@ -129,15 +129,15 @@ Für die Top 3 identifizierten Content-Chancen aus Stage 1 SERP-Gap + Content-Ga
 Via Supabase-MCP `execute_sql`:
 ```sql
 SELECT claw_create_research_brief(
-    p_domain := 'st-automatisierung.de',
-    p_target_keyword := '<keyword>',
-    p_created_by := 'seo-gsc-weekly-review-st',
-    p_target_page_path := '/<slug>/',
-    p_search_intent := 'informational|commercial|transactional',
-    p_serp_gaps := ARRAY['gap1', 'gap2'],
-    p_target_wordcount := 2500,
-    p_outline := '{"h2": ["Section 1","Section 2"]}'::jsonb,
-    p_cluster := 1
+ p_domain := 'st-automatisierung.de',
+ p_target_keyword := '<keyword>',
+ p_created_by := 'seo-gsc-weekly-review-st',
+ p_target_page_path := '/<slug>/',
+ p_search_intent := 'informational|commercial|transactional',
+ p_serp_gaps := ARRAY['gap1', 'gap2'],
+ p_target_wordcount := 2500,
+ p_outline := '{"h2": ["Section 1","Section 2"]}'::jsonb,
+ p_cluster := 1
 );
 ```
 
@@ -147,14 +147,14 @@ Nur 3-5 Briefs pro Woche. Bei leerem SERP-Gap: keine Briefs schreiben.
 
 ## Schritt 8: SEO-PLAN-2026.md aktualisieren
 
-Im Repo `C:\Users\User\Projects\strategie-beratung\SEO-PLAN-2026.md`:
+Im Repo `~/Projects/strategie-beratung\SEO-PLAN-2026.md`:
 - Status der letzten Wochen-Aufgaben updaten
 - Neue Findings einpflegen
 - Tasks aus Stage 0-3 als Prioritaeten setzen
 
 ## Schritt 9: Agent-Log schreiben
 
-`C:\Users\User\Claude\sessions\agent-log-YYYY-MM-DD.md` — Format:
+`~/Claude/sessions\agent-log-YYYY-MM-DD.md` — Format:
 
 ```markdown
 ## ST-Automatisierung Weekly Review [Datum]

@@ -26,9 +26,9 @@ Manueller Schritt — Browser-Automation funktioniert nicht zuverlaessig:
 2. Property: `sc-domain:profilfoto-ki.de`
 3. Linke Sidebar → "Links"
 4. Externe Links → Notieren:
-   - Anzahl Backlinks insgesamt
-   - Anzahl Referring Domains
-   - Top 10 verlinkende Domains
+ - Anzahl Backlinks insgesamt
+ - Anzahl Referring Domains
+ - Top 10 verlinkende Domains
 
 ## Schritt 2: Ahrefs Backlink Checker (kostenlos, Top 100)
 
@@ -37,24 +37,24 @@ Manueller Schritt:
 2. Domain: `profilfoto-ki.de`
 3. "Check backlinks"
 4. Notieren:
-   - Domain Rating (DR)
-   - Referring Domains (Top 100)
-   - Top 5 verlinkende Domains nach DR
+ - Domain Rating (DR)
+ - Referring Domains (Top 100)
+ - Top 5 verlinkende Domains nach DR
 
 ## Schritt 3: In Supabase loggen
 
 ```sql
 -- TODO Stage 0: claw.domain_authority wurde 2026-04-19 gedroppt (DataForSEO Backlinks-Abo nicht aktiv). Neu bauen wenn Abo vorhanden.
 INSERT INTO claw.domain_authority (
-  domain, date, rank_score, referring_domains, backlinks_count, source, notes
+ domain, date, rank_score, referring_domains, backlinks_count, source, notes
 ) VALUES (
-  'profilfoto-ki.de',
-  CURRENT_DATE,
-  [DR-Score von Ahrefs],
-  [Anzahl Referring Domains],
-  [Anzahl Backlinks gesamt],
-  'ahrefs-free',
-  '[Notizen, z.B. Trend-Vergleich zur Vorwoche]'
+ 'profilfoto-ki.de',
+ CURRENT_DATE,
+ [DR-Score von Ahrefs],
+ [Anzahl Referring Domains],
+ [Anzahl Backlinks gesamt],
+ 'ahrefs-free',
+ '[Notizen, z.B. Trend-Vergleich zur Vorwoche]'
 );
 ```
 

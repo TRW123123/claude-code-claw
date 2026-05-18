@@ -22,11 +22,11 @@ Ziel: Mehr indexierte Seiten = mehr Impressions in Google.
 ```sql
 -- Fuer welche Keywords rankt profilfoto-ki bereits?
 SELECT DISTINCT query, page,
-  SUM(impressions) as total_impr,
-  ROUND(AVG(position)::numeric, 1) as avg_pos
+ SUM(impressions) as total_impr,
+ ROUND(AVG(position)::numeric, 1) as avg_pos
 FROM gsc_queries
 WHERE domain = 'profilfoto-ki.de'
-  AND date >= CURRENT_DATE - 14
+ AND date >= CURRENT_DATE - 14
 GROUP BY query, page
 ORDER BY total_impr DESC;
 ```
@@ -38,11 +38,11 @@ ORDER BY total_impr DESC;
 SELECT kr.keyword, kr.cluster, kr.volume, kr.intent
 FROM claw.keyword_research kr
 WHERE kr.domain = 'profilfoto-ki.de'
-  AND kr.keyword NOT IN (
-    SELECT DISTINCT query FROM gsc_queries
-    WHERE domain = 'profilfoto-ki.de'
-      AND date >= CURRENT_DATE - 30
-  )
+ AND kr.keyword NOT IN (
+ SELECT DISTINCT query FROM gsc_queries
+ WHERE domain = 'profilfoto-ki.de'
+ AND date >= CURRENT_DATE - 30
+ )
 ORDER BY kr.tier ASC, kr.volume DESC;
 ```
 
@@ -80,17 +80,17 @@ Fuer jedes Gap-Keyword mit Volume > 30:
 ```sql
 -- claw_queue_webhook() + claw.webhook_queue 2026-04-19 gedroppt (Legacy). Folgendes SQL obsolet:
 SELECT claw_queue_webhook(
-  'profilfoto-ki.de',
-  'pseo-page',
-  jsonb_build_object(
-    'domain', 'profilfoto-ki.de',
-    'keyword', '[gap-keyword]',
-    'cluster', '[bewerbungsfoto|beruf|social|ratgeber|cv]',
-    'volume', [volume],
-    'intent', '[transactional|informational]',
-    'description', 'Neue pSEO-Seite fuer [keyword] — SERP-Gap identifiziert'
-  ),
-  2  -- priority (1=urgent, 2=normal, 3=low)
+ 'profilfoto-ki.de',
+ 'pseo-page',
+ jsonb_build_object(
+ 'domain', 'profilfoto-ki.de',
+ 'keyword', '[gap-keyword]',
+ 'cluster', '[bewerbungsfoto|beruf|social|ratgeber|cv]',
+ 'volume', [volume],
+ 'intent', '[transactional|informational]',
+ 'description', 'Neue pSEO-Seite fuer [keyword] — SERP-Gap identifiziert'
+ ),
+ 2 -- priority (1=urgent, 2=normal, 3=low)
 );
 ```
 
@@ -102,8 +102,8 @@ SELECT claw_queue_webhook(
 -- HINWEIS: claw.webhook_queue 2026-04-19 gedroppt (Legacy). Folgendes SQL obsolet:
 SELECT * FROM claw.webhook_queue
 WHERE payload->>'domain' = 'profilfoto-ki.de'
-  AND task_type = 'pseo-page'
-  AND status = 'pending'
+ AND task_type = 'pseo-page'
+ AND status = 'pending'
 ORDER BY priority ASC, created_at ASC
 LIMIT 1;
 ```
@@ -176,14 +176,14 @@ git push origin master
 ```sql
 -- Changelog
 SELECT insert_changelog(
-  'profilfoto-ki.de',
-  '/[slug]/',
-  'content',
-  NULL,
-  '[page-title]',
-  'Neue pSEO-Seite fuer [keyword] — SERP-Gap Stage 1',
-  '[commit-hash]',
-  'claw-agent'
+ 'profilfoto-ki.de',
+ '/[slug]/',
+ 'content',
+ NULL,
+ '[page-title]',
+ 'Neue pSEO-Seite fuer [keyword] — SERP-Gap Stage 1',
+ '[commit-hash]',
+ 'claw-agent'
 );
 
 -- Queue Task als done markieren (claw.webhook_queue 2026-04-19 gedroppt — Direkt-Aufruf nutzen, folgendes obsolet):

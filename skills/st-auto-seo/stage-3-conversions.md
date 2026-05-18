@@ -24,12 +24,12 @@ GA4 MCP Tool: `run_report`
 
 ```json
 {
-  "property_id": "[PROPERTY_ID]",
-  "date_ranges": [{"start_date": "14daysAgo", "end_date": "yesterday"}],
-  "dimensions": ["pagePath"],
-  "metrics": ["sessions", "bounceRate", "averageSessionDuration", "engagedSessions", "conversions"],
-  "order_by": [{"metric": {"metric_name": "sessions"}, "desc": true}],
-  "limit": 30
+ "property_id": "[PROPERTY_ID]",
+ "date_ranges": [{"start_date": "14daysAgo", "end_date": "yesterday"}],
+ "dimensions": ["pagePath"],
+ "metrics": ["sessions", "bounceRate", "averageSessionDuration", "engagedSessions", "conversions"],
+ "order_by": [{"metric": {"metric_name": "sessions"}, "desc": true}],
+ "limit": 30
 }
 ```
 
@@ -86,7 +86,7 @@ WHERE table_schema = 'public' AND table_name LIKE '%lead%';
 -- HINWEIS: claw.webhook_queue 2026-04-19 gedroppt (Legacy). Folgendes SQL obsolet:
 SELECT * FROM claw.webhook_queue
 WHERE payload->>'domain' = 'st-automatisierung.de'
-  AND task_type LIKE '%lead%'
+ AND task_type LIKE '%lead%'
 ORDER BY created_at DESC LIMIT 10;
 ```
 

@@ -10,21 +10,21 @@ Du bist der tägliche SEO-Agent für profilfoto-ki.de. Führe alle Schritte der 
 ## Domain-Config
 - **Domain:** profilfoto-ki.de
 - **GSC Property:** sc-domain:profilfoto-ki.de
-- **Repo:** `C:\Users\User\Projects\profilfoto-ki-static`
+- **Repo:** `~/Projects/profilfoto-ki-static`
 - **Stack:** Vanilla HTML5, Tailwind CSS, Node.js Scripts — KEIN Build-Step, dist/ = src/
 - **Hosting:** Netlify (Workspace: nanobanana, git push master → auto-deploy)
 - **Supabase:** NanoBanana (`<SUPABASE_PROJECT_ID>`)
 - **Intent:** B2C visuell (Profilfoto/Bewerbungsfoto) — NICHT Beratungs-Intent
 - **Cluster-Priorität:** Bewerbungsfoto > Berufs-Portraits > Social > Ratgeber > CV
-- **Plugin:** `C:\Users\User\.claude\skills\profilfoto-seo\` (4-Stufen SEO Funnel)
+- **Plugin:** `~/.claude/skills\profilfoto-seo\` (4-Stufen SEO Funnel)
 - **Changelog:** `claw.changelog` — JEDE Änderung MUSS hier protokolliert werden
 
 ## Schritt 1: Kontext laden
 
-1. **Letztes Agent-Log lesen:** `C:\Users\User\Claude\sessions\agent-log-YYYY-MM-DD.md` (neuestes Datum) um zu wissen wo man steht und Duplikate zu vermeiden.
-2. **Topic-Datei lesen:** `C:\Users\User\Claude\topics\profilfoto-ki.md` für aktuellen Projektstand.
-3. **pSEO Skill lesen:** `C:\Users\User\.claude\skills\pseo\SKILL.md` für Workflow, Gates und Anti-AI Blacklist.
-4. **SEO Plugin lesen:** `C:\Users\User\.claude\skills\profilfoto-seo\SKILL.md` für 4-Stufen-Funnel und Routing-Logik.
+1. **Letztes Agent-Log lesen:** `~/Claude/sessions\agent-log-YYYY-MM-DD.md` (neuestes Datum) um zu wissen wo man steht und Duplikate zu vermeiden.
+2. **Topic-Datei lesen:** `~/Claude/topics\profilfoto-ki.md` für aktuellen Projektstand.
+3. **pSEO Skill lesen:** `~/.claude/skills\pseo\SKILL.md` für Workflow, Gates und Anti-AI Blacklist.
+4. **SEO Plugin lesen:** `~/.claude/skills\profilfoto-seo\SKILL.md` für 4-Stufen-Funnel und Routing-Logik.
 5. **Context Pack lesen (PFLICHT):** Mindestens `context/brand-voice.md`, `context/style-guide.md`, `context/target-keywords.md`. Bei Content-Edit zusätzlich `context/internal-links-map.md`, `context/seo-guidelines.md`, `context/writing-examples.md`.
 
 ## Schritt 2: GSC-Daten aus Supabase lesen
@@ -40,7 +40,7 @@ ORDER BY date DESC LIMIT 14;
 SELECT page, clicks, impressions, ctr, position
 FROM gsc_history
 WHERE domain = 'profilfoto-ki.de'
-  AND date >= CURRENT_DATE - 3
+ AND date >= CURRENT_DATE - 3
 ORDER BY impressions DESC LIMIT 30;
 
 -- Top-Queries
@@ -103,14 +103,14 @@ Nach JEDER Änderung via Supabase SQL:
 
 ```sql
 SELECT insert_changelog(
-  'profilfoto-ki.de',           -- domain
-  '/seiten-pfad/',              -- page_path
-  'title',                      -- change_type: encoding|schema|hero_image|title|meta_desc|internal_link|content|technical
-  'Alter Wert',                 -- old_value
-  'Neuer Wert',                 -- new_value
-  'Grund der Änderung',         -- reason (GSC-Daten referenzieren)
-  'abc1234',                    -- commit_hash
-  'seo-loop-profilfoto-ki'      -- actor
+ 'profilfoto-ki.de', -- domain
+ '/seiten-pfad/', -- page_path
+ 'title', -- change_type: encoding|schema|hero_image|title|meta_desc|internal_link|content|technical
+ 'Alter Wert', -- old_value
+ 'Neuer Wert', -- new_value
+ 'Grund der Änderung', -- reason (GSC-Daten referenzieren)
+ 'abc1234', -- commit_hash
+ 'seo-loop-profilfoto-ki' -- actor
 );
 ```
 
@@ -119,7 +119,7 @@ SELECT insert_changelog(
 **KEIN Build-Step nötig** — profilfoto-ki-static ist eine reine HTML-Site.
 
 ```bash
-cd "C:/Users/User/Projects/profilfoto-ki-static"
+cd "~/Projects/profilfoto-ki-static"
 git add -A
 git commit -m "seo: [kurze Beschreibung]"
 git push origin master
@@ -129,7 +129,7 @@ Deploy erfolgt automatisch über Netlify.
 
 ## Schritt 7: Agent-Log schreiben
 
-`C:\Users\User\Claude\sessions\agent-log-YYYY-MM-DD.md` erweitern (nicht überschreiben):
+`~/Claude/sessions\agent-log-YYYY-MM-DD.md` erweitern (nicht überschreiben):
 
 ```markdown
 ## Profilfoto-KI Daily SEO [HH:MM]

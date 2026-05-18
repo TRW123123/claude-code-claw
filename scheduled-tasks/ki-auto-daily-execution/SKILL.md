@@ -8,16 +8,16 @@ description: Daily SEO Execution Agent für ki-automatisieren.de — werktags 09
 ## Domain-Config
 - **Domain:** ki-automatisieren.de
 - **GSC Property:** sc-domain:ki-automatisieren.de
-- **Repo:** `C:\Users\User\Projects\ki-automatisieren-astro`
+- **Repo:** `~/Projects/ki-automatisieren-astro`
 - **Stack:** Astro 4, React, Tailwind 3, Static Output
 - **Hosting:** Netlify (git push → auto-deploy)
 - **Supabase:** NanoBanana (`<SUPABASE_PROJECT_ID>`)
 
 ## Schritt 1 — Kontext laden
 
-1. **Topic-Datei lesen:** `C:\Users\User\Claude\topics\ki-automatisieren.md`
-2. **Letztes Agent-Log lesen:** `C:\Users\User\Claude\sessions\agent-log-YYYY-MM-DD.md` (neuestes Datum)
-3. **pSEO Skill lesen:** `C:\Users\User\.claude\skills\pseo\SKILL.md`
+1. **Topic-Datei lesen:** `~/Claude/topics\ki-automatisieren.md`
+2. **Letztes Agent-Log lesen:** `~/Claude/sessions\agent-log-YYYY-MM-DD.md` (neuestes Datum)
+3. **pSEO Skill lesen:** `~/.claude/skills\pseo\SKILL.md`
 
 ## Schritt 2 — GSC-Daten aus Supabase lesen
 
@@ -32,7 +32,7 @@ ORDER BY date DESC LIMIT 14;
 SELECT page, clicks, impressions, ctr, position
 FROM gsc_history
 WHERE domain = 'ki-automatisieren.de'
-  AND date >= CURRENT_DATE - 3
+ AND date >= CURRENT_DATE - 3
 ORDER BY impressions DESC LIMIT 30;
 
 -- Top-Queries
@@ -76,7 +76,7 @@ Basierend auf der Analyse eine der folgenden Aktionen ausführen:
 ## Schritt 5 — Build & Deploy
 
 ```bash
-cd "C:/Users/User/Projects/ki-automatisieren-astro"
+cd "~/Projects/ki-automatisieren-astro"
 npm run build
 ```
 
@@ -94,7 +94,7 @@ Deploy erfolgt automatisch über Netlify nach Push.
 
 ## Schritt 6 — Agent-Log schreiben
 
-In `C:\Users\User\Claude\sessions\agent-log-YYYY-MM-DD.md` dokumentieren:
+In `~/Claude/sessions\agent-log-YYYY-MM-DD.md` dokumentieren:
 
 - GSC-Zahlen (Clicks, Impressions, Top-Queries)
 - Was wurde geändert (Dateien, Art der Änderung)

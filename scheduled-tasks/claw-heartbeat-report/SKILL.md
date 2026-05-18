@@ -5,7 +5,7 @@ description: Täglicher Status-Report aller CLAW-Agents via Telegram (Health-Das
 
 Führe aus:
 ```bash
-node C:/Users/User/Claude/scripts/claw-heartbeat-report.mjs
+node ~/Claude/scripts/claw-heartbeat-report.mjs
 ```
 
 Das Script:

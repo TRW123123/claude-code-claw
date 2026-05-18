@@ -122,15 +122,15 @@ Primäre Keyword-Cluster in Reihenfolge der Business-Priorität. Source: `claw.k
 
 ```
 priority_score =
-  (impressions * position_weight) *   # je höher Pos, desto mehr Potential
-  (1 + commercial_intent_bonus) *     # Cluster 1 + 2 = +50%
-  (1 - cannibalization_penalty)       # Keyword-Overlap mit anderen Seiten = -
+ (impressions * position_weight) * # je höher Pos, desto mehr Potential
+ (1 + commercial_intent_bonus) * # Cluster 1 + 2 = +50%
+ (1 - cannibalization_penalty) # Keyword-Overlap mit anderen Seiten = -
 
 position_weight =
-  WHEN position BETWEEN 1-5  THEN 0.3  (schon top, geringer Hebel)
-  WHEN position BETWEEN 6-10 THEN 1.5  (Quick Win Zone!)
-  WHEN position BETWEEN 11-20 THEN 1.0 (Striking Distance)
-  WHEN position > 20         THEN 0.4  (zu weit weg)
+ WHEN position BETWEEN 1-5 THEN 0.3 (schon top, geringer Hebel)
+ WHEN position BETWEEN 6-10 THEN 1.5 (Quick Win Zone!)
+ WHEN position BETWEEN 11-20 THEN 1.0 (Striking Distance)
+ WHEN position > 20 THEN 0.4 (zu weit weg)
 ```
 
 ## Keywords zum regelmäßigen Monitoring (Weekly)

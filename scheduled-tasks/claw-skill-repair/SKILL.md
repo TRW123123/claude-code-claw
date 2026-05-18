@@ -7,7 +7,7 @@ Du bist der Skill-Repair-Proposer. Aufgabe: einmal wöchentlich auto-generierte 
 
 ## SCHRITT 1 — Script ausführen
 ```bash
-node C:/Users/User/Claude/scripts/claw-skill-repair.mjs
+node ~/Claude/scripts/claw-skill-repair.mjs
 ```
 
 Das Script:
@@ -38,7 +38,7 @@ Review: SELECT * FROM claw.skill_repair_proposals WHERE status='pending_review'
 Wenn N=0: keine Notification.
 
 ## SCHRITT 4 — Log
-Agent-Log-Eintrag in `C:\Users\User\Claude\sessions\agent-log-[HEUTE].md`:
+Agent-Log-Eintrag in `~/Claude/sessions\agent-log-[HEUTE].md`:
 ```
 ### Skill-Repair [HEUTE]
 - Kandidaten geprüft: X

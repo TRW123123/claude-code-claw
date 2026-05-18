@@ -16,17 +16,17 @@
 ## ARCHITEKTUR
 
 ```
-Safak Tepecik (Director)
-    │
-    ├── CLAW (Claude Code — dieses System)
-    │       Skills:  C:\Users\User\Claude\skills\
-    │       Memory:  Supabase pgvector (autonom, lesen+schreiben)
-    │       Wissen:  Pinecone (nur lesen — NIEMALS schreiben)
-    │
-    └── Antigravity (Gemini-basiert, paralleler Architekt)
-            Skills:  C:\Users\User\.gemini\antigravity\skills\
-            Brain:   C:\Users\User\.gemini\antigravity\
-            Memory:  Pinecone (lesen+schreiben — manuell durch Safak Tepecik)
+Safak (Director)
+ │
+ ├── CLAW (Claude Code — dieses System)
+ │ Skills: ~/Claude/skills\
+ │ Memory: Supabase pgvector (autonom, lesen+schreiben)
+ │ Wissen: Pinecone (nur lesen — NIEMALS schreiben)
+ │
+ └── Antigravity (Gemini-basiert, paralleler Architekt)
+ Skills: ~/.gemini/antigravity\skills\
+ Brain: ~/.gemini/antigravity\
+ Memory: Pinecone (lesen+schreiben — manuell durch Safak)
 ```
 
 ---
@@ -42,8 +42,8 @@ Safak Tepecik (Director)
 ### Pinecone — kuratiertes Wissensspeicher
 - ✅ CLAW darf Pinecone **lesen/abfragen**
 - ❌ CLAW darf Pinecone **NIEMALS schreiben/updaten**
-- ✅ Nur Safak Tepecik löst Pinecone-Updates manuell aus
-- ✅ Antigravity schreibt auf Safak Tepeciks Anweisung
+- ✅ Nur Safak löst Pinecone-Updates manuell aus
+- ✅ Antigravity schreibt auf Safaks Anweisung
 
 **Regel:** Skill existiert in CLAW → nutze ihn hier.
 Skill existiert nur in Antigravity → Bridge nutzen (ANTIGRAVITY_BRIDGE.md).
@@ -135,7 +135,7 @@ Skill existiert in beiden → CLAW hat Vorrang.
 **Outreach/Sales** → `outreach` (Claude Code)
 **Recherche mit Debate** → `autoresearch-debate-protocol` (Antigravity)
 **CLAW Memory speichern** → `claw-memory` (Claude Code) → Supabase — AUTOMATISCH
-**Pinecone schreiben** → ❌ NIEMALS durch CLAW — ausschließlich manuell durch Safak Tepecik
+**Pinecone schreiben** → ❌ NIEMALS durch CLAW — ausschließlich manuell durch Safak
 **Pinecone lesen/abfragen** → Pinecone MCP direkt (read-only für CLAW)
 **CLAW Memory lesen** → `claw-memory` (Supabase) → hybrid search
 **UI/UX Design** → `stitch-elite-prototyper` (Antigravity)

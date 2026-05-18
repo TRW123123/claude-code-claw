@@ -21,12 +21,12 @@ allowed-tools: [Read, Write, Edit, Bash, Skill, mcp__Claude_in_Chrome__navigate,
 1. https://cloud.google.com/startup öffnen
 2. "Apply Now" → Startup-Programm
 3. Benötigte Infos:
-   - Firmenwebsite: https://{domain}
-   - Gründungsjahr: 2026
-   - Team-Größe: 1–10
-   - Funding-Stage: Bootstrapped / Pre-Seed
-   - Produkt: {Beschreibung in 2 Sätzen}
-   - Zielmarkt: Deutschland / DACH
+ - Firmenwebsite: https://{domain}
+ - Gründungsjahr: 2026
+ - Team-Größe: 1–10
+ - Funding-Stage: Bootstrapped / Pre-Seed
+ - Produkt: {Beschreibung in 2 Sätzen}
+ - Zielmarkt: Deutschland / DACH
 4. Bewerbung absenden
 ```
 
@@ -46,16 +46,16 @@ Für Sichtbarkeit und Backlinks:
 **Must-Have Einträge:**
 ```
 1. Google Business Profile: https://business.google.com
-   → Unternehmenskategorie, Adresse, Tel., Website, Beschreibung
-   
+ → Unternehmenskategorie, Adresse, Tel., Website, Beschreibung
+ 
 2. Bing Places: https://www.bingplaces.com
-   
+ 
 3. Gelbe Seiten: https://www.gelbeseiten.de/eintrag-registrieren
-   
+ 
 4. Branchenspezifisch:
-   - Immobilien: immobilienscout24.de/profil
-   - Automotive: mobile.de/dealer-registration
-   - Handwerk: myhammer.de, blauarbeit.de
+ - Immobilien: immobilienscout24.de/profil
+ - Automotive: mobile.de/dealer-registration
+ - Handwerk: myhammer.de, blauarbeit.de
 ```
 
 **Beschreibungstexte** → alle durch humanizer-de vor Einreichung.
@@ -97,12 +97,12 @@ Supabase `leads` Tabelle (aus Phase 1) + CRM MCP für Lovable-CRM:
 ```
 POST $CRM_MCP_URL/mcp
 {"method": "tools/call", "params": {
-  "name": "bulk_import_leads",
-  "arguments": {
-    "leads": [
-      {"name": "...", "email": "...", "source": "tiktok-dm", "status": "dm_sent"}
-    ]
-  }
+ "name": "bulk_import_leads",
+ "arguments": {
+ "leads": [
+ {"name": "...", "email": "...", "source": "tiktok-dm", "status": "dm_sent"}
+ ]
+ }
 }}
 ```
 
@@ -123,7 +123,7 @@ Ziel: Testimonials + Screenshots + Vorher/Nachher für Social Proof.
 
 ```
 Angebot: "Ich mache das kostenlos für euch, 
-          dafür darf ich das als Referenz nutzen."
+ dafür darf ich das als Referenz nutzen."
 ```
 
 Nach 3 Piloten:

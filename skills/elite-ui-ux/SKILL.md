@@ -21,9 +21,9 @@ Du bist ein Senior UI/UX Frontend Engineer. Du schreibst direkt Code — keine P
 ## 1. ACTIVE BASELINE (Dials)
 
 ```
-DESIGN_VARIANCE:  8   (1=Perfekte Symmetrie, 10=Artsy Chaos)
-MOTION_INTENSITY: 6   (1=Statisch, 10=Cinematic Physics)
-VISUAL_DENSITY:   4   (1=Art Gallery/Airy, 10=Cockpit/Packed Data)
+DESIGN_VARIANCE: 8 (1=Perfekte Symmetrie, 10=Artsy Chaos)
+MOTION_INTENSITY: 6 (1=Statisch, 10=Cinematic Physics)
+VISUAL_DENSITY: 4 (1=Art Gallery/Airy, 10=Cockpit/Packed Data)
 ```
 
 Diese Werte sind der Standard für alle Generierungen. Dynamisch anpassen wenn der User explizit etwas anderes fordert. Die Dial-Werte steuern die Logik in den Sektionen 3–7.
@@ -70,14 +70,14 @@ Existiert nicht: neu anlegen nach folgender Reihenfolge.
 ### Reihenfolge (cheapest-first)
 
 1. **awesome-design Repo** (`references/awesome-design-md/design-md/{brand}/`)
-   - 59 Brand-Schemas: apple, bmw, claude, cursor, ferrari, figma, framer, lamborghini, linear.app, lovable, notion, nvidia, raycast, stripe, supabase, tesla, vercel, webflow u.v.m.
-   - Match gefunden → Schema direkt in DESIGN.md-Format übersetzen.
+ - 59 Brand-Schemas: apple, bmw, claude, cursor, ferrari, figma, framer, lamborghini, linear.app, lovable, notion, nvidia, raycast, stripe, supabase, tesla, vercel, webflow u.v.m.
+ - Match gefunden → Schema direkt in DESIGN.md-Format übersetzen.
 
 2. **Reverse-Engineering aus existierender `tailwind.config.js`**
-   - Wenn Projekt bereits Tailwind-Config hat → Farben/Fonts extrahieren und in DESIGN.md YAML-Frontmatter überführen.
+ - Wenn Projekt bereits Tailwind-Config hat → Farben/Fonts extrahieren und in DESIGN.md YAML-Frontmatter überführen.
 
 3. **WebFetch der Brand-URL** (kein Repo-Match, keine Tailwind-Config)
-   - Extrahiere: CSS-Variablen, Font-Stack, Hex-Codes aus `:root`
+ - Extrahiere: CSS-Variablen, Font-Stack, Hex-Codes aus `:root`
 
 4. **Chrome MCP** — NUR auf explizite User-Anfrage
 
@@ -91,64 +91,64 @@ version: alpha
 name: {Projekt-Name}
 description: {1 Satz Design-Philosophie}
 colors:
-  # Core
-  primary: "#xxxxxx"
-  on-primary: "#xxxxxx"
-  primary-container: "#xxxxxx"
-  on-primary-container: "#xxxxxx"
-  # Surface (Light/Dark Container-Hierarchie)
-  surface: "#xxxxxx"
-  surface-dim: "#xxxxxx"
-  surface-bright: "#xxxxxx"
-  surface-container-lowest: "#xxxxxx"
-  surface-container-low: "#xxxxxx"
-  surface-container: "#xxxxxx"
-  surface-container-high: "#xxxxxx"
-  surface-container-highest: "#xxxxxx"
-  on-surface: "#xxxxxx"
-  on-surface-variant: "#xxxxxx"
-  # Outline
-  outline: "#xxxxxx"
-  outline-variant: "#xxxxxx"
-  # Secondary, Tertiary, Error mit gleicher Struktur
-  secondary: "#xxxxxx"
-  on-secondary: "#xxxxxx"
-  # ...
+ # Core
+ primary: "#xxxxxx"
+ on-primary: "#xxxxxx"
+ primary-container: "#xxxxxx"
+ on-primary-container: "#xxxxxx"
+ # Surface (Light/Dark Container-Hierarchie)
+ surface: "#xxxxxx"
+ surface-dim: "#xxxxxx"
+ surface-bright: "#xxxxxx"
+ surface-container-lowest: "#xxxxxx"
+ surface-container-low: "#xxxxxx"
+ surface-container: "#xxxxxx"
+ surface-container-high: "#xxxxxx"
+ surface-container-highest: "#xxxxxx"
+ on-surface: "#xxxxxx"
+ on-surface-variant: "#xxxxxx"
+ # Outline
+ outline: "#xxxxxx"
+ outline-variant: "#xxxxxx"
+ # Secondary, Tertiary, Error mit gleicher Struktur
+ secondary: "#xxxxxx"
+ on-secondary: "#xxxxxx"
+ # ...
 typography:
-  display:
-    fontFamily: {Font}
-    fontSize: 44px
-    fontWeight: "800"
-    lineHeight: 52px
-    letterSpacing: -0.02em
-  headline-lg:
-    fontFamily: {Font}
-    fontSize: 32px
-    fontWeight: "600"
-    lineHeight: 40px
-  headline-md: {...}
-  body-lg: {...}
-  body-md: {...}
-  label-sm: {...}
+ display:
+ fontFamily: {Font}
+ fontSize: 44px
+ fontWeight: "800"
+ lineHeight: 52px
+ letterSpacing: -0.02em
+ headline-lg:
+ fontFamily: {Font}
+ fontSize: 32px
+ fontWeight: "600"
+ lineHeight: 40px
+ headline-md: {...}
+ body-lg: {...}
+ body-md: {...}
+ label-sm: {...}
 rounded:
-  sm: 4px
-  md: 8px
-  lg: 12px
-  full: 9999px
+ sm: 4px
+ md: 8px
+ lg: 12px
+ full: 9999px
 spacing:
-  xs: 4px
-  sm: 8px
-  md: 16px
-  lg: 32px
-  xl: 64px
+ xs: 4px
+ sm: 8px
+ md: 16px
+ lg: 32px
+ xl: 64px
 components:
-  button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.on-primary}"
-    rounded: "{rounded.md}"
-    padding: 12px
-  button-primary-hover:
-    backgroundColor: "{colors.primary-container}"
+ button-primary:
+ backgroundColor: "{colors.primary}"
+ textColor: "{colors.on-primary}"
+ rounded: "{rounded.md}"
+ padding: 12px
+ button-primary-hover:
+ backgroundColor: "{colors.primary-container}"
 ---
 
 ## Overview
@@ -244,10 +244,10 @@ LLMs haben statistische Bias zu UI-Cliché-Patterns. Diese Regeln korrigieren da
 **Global Easing** (niemals `ease-in-out`):
 ```css
 :root {
-  --spring-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --spring-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-  --spring-snap:   cubic-bezier(0.2, 0.8, 0.2, 1);
-  --spring-snappy: cubic-bezier(0.5, 0, 0.1, 1);
+ --spring-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+ --spring-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+ --spring-snap: cubic-bezier(0.2, 0.8, 0.2, 1);
+ --spring-snappy: cubic-bezier(0.5, 0, 0.1, 1);
 }
 ```
 
@@ -399,12 +399,12 @@ background: linear-gradient(180deg, #0a0e14 0%, #111827 100%);
 ### Global CSS Override Pattern (Tailwind-Template-Bruch)
 ```css
 section:not(header) .bg-card {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 6px 24px -8px rgba(0,0,0,0.06) !important;
-  transition: transform 300ms var(--spring-smooth), box-shadow 300ms var(--spring-smooth) !important;
+ box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 6px 24px -8px rgba(0,0,0,0.06) !important;
+ transition: transform 300ms var(--spring-smooth), box-shadow 300ms var(--spring-smooth) !important;
 }
 section:not(header) .bg-card:hover {
-  transform: translateY(-4px) !important;
-  box-shadow: 0 4px 16px -4px rgba(15,118,110,0.10), 0 20px 50px -15px rgba(0,0,0,0.15) !important;
+ transform: translateY(-4px) !important;
+ box-shadow: 0 4px 16px -4px rgba(15,118,110,0.10), 0 20px 50px -15px rgba(0,0,0,0.15) !important;
 }
 ```
 

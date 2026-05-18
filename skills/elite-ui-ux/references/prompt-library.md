@@ -36,9 +36,9 @@ The aesthetic is **"Quantum Flux Gradients & Volumetric Micro-Interactions"**. T
 **PHYSICS_AND_MOTION_SYSTEM (GSAP):**
 - Global ease: const quantumEase = "cubic-bezier(0.2, 0.8, 0.2, 1)"; — all transitions use this
 - Hover (Data Crystallizers + Action Conduits), 0.5s:
-  1. transform: scale(1.025) translateZ(10px) — requires perspective on parent
-  2. filter: brightness(1.15)
-  3. box-shadow: 0px 10px 30px -5px rgba(126, 87, 255, 0.25)
+ 1. transform: scale(1.025) translateZ(10px) — requires perspective on parent
+ 2. filter: brightness(1.15)
+ 3. box-shadow: 0px 10px 30px -5px rgba(126, 87, 255, 0.25)
 - On-Load: GSAP stagger, from opacity:0 y:20 → opacity:1 y:0
 
 Do not build a website; build a digital instrument — a living, reactive command center for financial analysis. Execute.
@@ -300,9 +300,9 @@ Aesthetic: **"Deconstructed Data Glitch Brutalism"** — raw, unapologetic data 
 **PHYSICS_AND_MOTION_SYSTEM (GSAP):**
 - Easing: cubic-bezier(0.7, 0, 0.3, 1), all durations short and visceral (150ms)
 - Actuator Hover (multi-layered glitch):
-  1. filter: hue-rotate(90deg) contrast(200%)
-  2. Text flickers through random characters for 100ms (JS-driven)
-  3. clip-path briefly shifts to more distorted polygon
+ 1. filter: hue-rotate(90deg) contrast(200%)
+ 2. Text flickers through random characters for 100ms (JS-driven)
+ 3. clip-path briefly shifts to more distorted polygon
 - Performance Fragment Hover: Bio-Metric Oscillators deconstruct — data points break away then snap back on mouse-out
 
 Do not build a website; build a raw data engine, a high-performance diagnostic tool. Execute with precision.

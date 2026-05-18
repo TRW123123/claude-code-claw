@@ -9,9 +9,9 @@ Diese Stage ist fuer profilfoto-ki.de **noch nicht aktiv**. Aktivierung erforder
 1. **>50 Klicks/Woche** — Aktuell ~3 Klicks/Woche (12 in 30 Tagen). Statistisch nicht signifikant fuer CRO-Tests.
 2. **GA4 MCP eingerichtet** — `mcp__analytics-mcp` ist installiert, Property muss verbunden werden
 3. **Conversion-Events definiert** in GA4:
-   - `signup` (neue Registrierung)
-   - `first_photo_generated` (Free Credit eingeloest)
-   - `purchase` (Stripe-Kauf)
+ - `signup` (neue Registrierung)
+ - `first_photo_generated` (Free Credit eingeloest)
+ - `purchase` (Stripe-Kauf)
 4. **Stripe Webhook → Supabase** Event-Logging muss laufen
 
 ## Warum noch nicht aktiv
@@ -64,14 +64,14 @@ profilfoto-ki ist Vanilla HTML — kein Built-in A/B-Test-Framework. Optionen:
 
 ```sql
 SELECT insert_changelog(
-  'profilfoto-ki.de',
-  '/[seite]/',
-  'design',
-  '[alte-variante]',
-  '[neue-variante]',
-  'CRO Stage 3: A/B-Test [hypothesis] — Sample Size [N], Conversion Vorher [X]%, Nachher [Y]%',
-  '[commit]',
-  'claw-agent'
+ 'profilfoto-ki.de',
+ '/[seite]/',
+ 'design',
+ '[alte-variante]',
+ '[neue-variante]',
+ 'CRO Stage 3: A/B-Test [hypothesis] — Sample Size [N], Conversion Vorher [X]%, Nachher [Y]%',
+ '[commit]',
+ 'claw-agent'
 );
 ```
 

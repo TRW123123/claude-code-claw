@@ -27,7 +27,7 @@
 ```bash
 node ~/.claude/skills/insta-dm/scripts/apify-pre-check.mjs handle1 handle2 ... > /tmp/precheck.json
 ```
-- Apify-Call pro Lead (`shu8hvrXbJbY3Eb9W`, $0.0025/Profil)
+- Apify-Call pro Lead (`[apify-actor-id]`, $0.0025/Profil)
 - Routing-Logic wählt 1 von 5 Varianten (siehe unten)
 - Slot-Daten werden für Template-Fill extrahiert
 - Output: JSON `{results: [{handle, variant, slots, ...}], summary: {...}}`
@@ -36,15 +36,15 @@ node ~/.claude/skills/insta-dm/scripts/apify-pre-check.mjs handle1 handle2 ... >
 ### Routing-Logic (in dieser Reihenfolge auswerten)
 ```
 1. IF latestPosts[0] ist Video/Reel UND videoViewCount ≥ 50:
-   → V9.5-REEL-PERFORMANCE
+ → V9.5-REEL-PERFORMANCE
 2. ELIF Marken+Modell extrahierbar aus latestPosts[0].caption:
-   → V9.5-MODELL
+ → V9.5-MODELL
 3. ELIF biography matched Spezialisierungs-Pattern:
-   → V9.5-SPEZIALIST
+ → V9.5-SPEZIALIST
 4. ELIF biography enthält "Seit YYYY" oder "Familienunternehmen":
-   → V9.5-HERITAGE
+ → V9.5-HERITAGE
 5. ELSE:
-   → V9.4/A (Fallback)
+ → V9.4/A (Fallback)
 ```
 
 ---

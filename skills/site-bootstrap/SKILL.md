@@ -126,9 +126,9 @@ In `~/Claude/scripts\claw-session-processor.mjs`:
 CLAW kann das NICHT automatisch — der User muss in n8n:
 1. Workflow "CLAW – GSC Daily Data Collector v3" öffnen
 2. Im "Code – Domains & Datum" Node die neue Domain hinzufügen:
-   ```js
-   { domain: '{domain}', siteUrl: 'sc-domain:{domain}' }
-   ```
+ ```js
+ { domain: '{domain}', siteUrl: 'sc-domain:{domain}' }
+ ```
 3. Domain muss in der Google Search Console als Property verifiziert sein
 
 Ausgabe: Klare Instruktion an den User mit Copy-Paste Code.
@@ -157,10 +157,10 @@ Checkliste für den User ausgeben:
 ✅ Session Processor: Pfad hinzugefügt
 
 ⏳ Du musst manuell:
-  1. n8n: Domain in GSC Collector v3 hinzufügen
-  2. Task Scheduler: CLAW-Agent-{projektName} erstellen ({schedulerZeit})
-  3. GSC: Domain als Property verifizieren (falls nicht schon geschehen)
-  4. GSC: Sitemap einreichen
+ 1. n8n: Domain in GSC Collector v3 hinzufügen
+ 2. Task Scheduler: CLAW-Agent-{projektName} erstellen ({schedulerZeit})
+ 3. GSC: Domain als Property verifizieren (falls nicht schon geschehen)
+ 4. GSC: Sitemap einreichen
 
 Danach: `cd ~/Claude/{projektName} && claude` → Chat hat sofort Kontext.
 ```

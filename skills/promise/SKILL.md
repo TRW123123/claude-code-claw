@@ -23,11 +23,11 @@ NICHT aktivieren bei:
 Rufe Supabase-RPC auf:
 ```sql
 SELECT claw_set_promise(
-  p_session_id := '<aktuelle session_id>',
-  p_task := '10 pSEO-Seiten für ki-automatisieren.de bauen',
-  p_target := 10,
-  p_unit := 'seiten',
-  p_max_iter := 15
+ p_session_id := '<aktuelle session_id>',
+ p_task := '10 pSEO-Seiten für ki-automatisieren.de bauen',
+ p_target := 10,
+ p_unit := 'seiten',
+ p_max_iter := 15
 );
 ```
 → Gibt UUID der Promise zurück.
@@ -37,8 +37,8 @@ Session-ID gibt's im Claude-Code-Runtime; wenn nicht bekannt: `get_active_promis
 ### SCHRITT 2 — Nach jedem Teil-Erfolg: Progress melden
 ```sql
 SELECT * FROM claw_update_promise_progress(
-  p_session_id := '<session_id>',
-  p_delta := 1
+ p_session_id := '<session_id>',
+ p_delta := 1
 );
 ```
 Output: `{id, target, progress, remaining, status}`
@@ -50,8 +50,8 @@ Output: `{id, target, progress, remaining, status}`
 Wenn du merkst dass du nicht weitermachen kannst (fehlende Info, Bug, Scope-Unklarheit):
 ```sql
 SELECT claw_close_promise(
-  p_session_id := '<session_id>',
-  p_note := 'Blocker: Stripe-Test-Keys fehlen in .env.test — User-Entscheidung nötig'
+ p_session_id := '<session_id>',
+ p_note := 'Blocker: Stripe-Test-Keys fehlen in .env.test — User-Entscheidung nötig'
 );
 ```
 → Status wird `abandoned` mit Begründung. Stop-Hook lässt die Session normal enden.
@@ -83,8 +83,8 @@ CLAW:
 8. Session-Ende geht durch
 
 Falls bei Seite 4 Blocker:
-  [claw_close_promise note="Content-Fehler in Seite 4 — User-Review nötig"]
-  Session-Ende geht durch mit abandoned-Status.
+ [claw_close_promise note="Content-Fehler in Seite 4 — User-Review nötig"]
+ Session-Ende geht durch mit abandoned-Status.
 ```
 
 ## Integration mit Scheduled Tasks
@@ -93,7 +93,7 @@ Scheduled Tasks können auch Promises nutzen für "X/Y fertig"-Tracking. Z.B. `s
 ## Query: aktive Promises ansehen
 ```sql
 SELECT task_description, criterion_progress || '/' || criterion_target AS progress,
-       iterations_used || '/' || max_iterations AS iter, created_at
+ iterations_used || '/' || max_iterations AS iter, created_at
 FROM claw.completion_promises
 WHERE status = 'active'
 ORDER BY created_at DESC;

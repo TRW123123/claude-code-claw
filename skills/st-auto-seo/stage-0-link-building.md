@@ -69,19 +69,19 @@ Diese Daten muessen bei JEDER Directory Submission identisch sein:
 ```sql
 INSERT INTO claw.link_building_queue (domain, directory_name, directory_url, category, status, nap_data)
 VALUES
-  ('st-automatisierung.de', 'Gelbe Seiten', 'https://www.gelbeseiten.de', 'branchenbuch', 'pending', '{}'),
-  ('st-automatisierung.de', '11880', 'https://www.11880.com', 'branchenbuch', 'pending', '{}'),
-  ('st-automatisierung.de', 'Das Oertliche', 'https://www.dasoertliche.de', 'branchenbuch', 'pending', '{}'),
-  ('st-automatisierung.de', 'WLW', 'https://www.wlw.de', 'b2b', 'pending', '{}'),
-  ('st-automatisierung.de', 'GoLocal', 'https://www.golocal.de', 'bewertung', 'pending', '{}'),
-  ('st-automatisierung.de', 'Cylex', 'https://www.cylex.de', 'branchenbuch', 'pending', '{}'),
-  ('st-automatisierung.de', 'Hotfrog', 'https://www.hotfrog.de', 'branchenbuch', 'pending', '{}'),
-  ('st-automatisierung.de', 'Firmenwissen', 'https://www.firmenwissen.de', 'firmenverzeichnis', 'pending', '{}'),
-  ('st-automatisierung.de', 'Branchenbuch.de', 'https://www.branchenbuch.de', 'branchenbuch', 'pending', '{}'),
-  ('st-automatisierung.de', 'ProvenExpert', 'https://www.provenexpert.com', 'bewertung', 'pending', '{}'),
-  ('st-automatisierung.de', 'Creditreform', 'https://www.creditreform.de', 'wirtschaft', 'verifizieren', '{}'),
-  ('st-automatisierung.de', 'IHK', 'https://www.ihk.de', 'kammer', 'verifizieren', '{}'),
-  ('st-automatisierung.de', 'BAFA Beraterliste', 'https://www.bafa.de', 'foerderung', 'verifizieren', '{}')
+ ('st-automatisierung.de', 'Gelbe Seiten', 'https://www.gelbeseiten.de', 'branchenbuch', 'pending', '{}'),
+ ('st-automatisierung.de', '11880', 'https://www.11880.com', 'branchenbuch', 'pending', '{}'),
+ ('st-automatisierung.de', 'Das Oertliche', 'https://www.dasoertliche.de', 'branchenbuch', 'pending', '{}'),
+ ('st-automatisierung.de', 'WLW', 'https://www.wlw.de', 'b2b', 'pending', '{}'),
+ ('st-automatisierung.de', 'GoLocal', 'https://www.golocal.de', 'bewertung', 'pending', '{}'),
+ ('st-automatisierung.de', 'Cylex', 'https://www.cylex.de', 'branchenbuch', 'pending', '{}'),
+ ('st-automatisierung.de', 'Hotfrog', 'https://www.hotfrog.de', 'branchenbuch', 'pending', '{}'),
+ ('st-automatisierung.de', 'Firmenwissen', 'https://www.firmenwissen.de', 'firmenverzeichnis', 'pending', '{}'),
+ ('st-automatisierung.de', 'Branchenbuch.de', 'https://www.branchenbuch.de', 'branchenbuch', 'pending', '{}'),
+ ('st-automatisierung.de', 'ProvenExpert', 'https://www.provenexpert.com', 'bewertung', 'pending', '{}'),
+ ('st-automatisierung.de', 'Creditreform', 'https://www.creditreform.de', 'wirtschaft', 'verifizieren', '{}'),
+ ('st-automatisierung.de', 'IHK', 'https://www.ihk.de', 'kammer', 'verifizieren', '{}'),
+ ('st-automatisierung.de', 'BAFA Beraterliste', 'https://www.bafa.de', 'foerderung', 'verifizieren', '{}')
 ON CONFLICT (domain, directory_name) DO NOTHING;
 ```
 

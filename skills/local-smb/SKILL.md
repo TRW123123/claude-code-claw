@@ -150,15 +150,15 @@ Performance-Log: `~/Claude/sessions/local-smb-daily-log.tsv`.
 
 ### 2A. Apify Instagram Scraper
 ```
-POST https://api.apify.com/v2/acts/shu8hvrXbJbY3Eb9W/run-sync-get-dataset-items
-  ?token=$APIFY_TOKEN&timeout=120&format=json
+POST https://api.apify.com/v2/acts/[apify-actor-id]/run-sync-get-dataset-items
+ ?token=$APIFY_TOKEN&timeout=120&format=json
 
 Body:
 {
-  "directUrls": ["https://instagram.com/{handle}/"],
-  "resultsType": "details",
-  "resultsLimit": 5,
-  "addParentData": false
+ "directUrls": ["https://instagram.com/{handle}/"],
+ "resultsType": "details",
+ "resultsLimit": 5,
+ "addParentData": false
 }
 ```
 Kosten: ~$0,0025 pro Profil.
@@ -203,30 +203,30 @@ Aus den letzten 3 Post-Captions, **nur diese 4 Kategorien als zuverlässig:**
 Aus den Spalten L/M/N/O/P den passenden Hook wählen:
 
 E) Lifecycle-Event (Spalte P gefüllt)
-   → ABSOLUTE PRIORITÄT. Hook = der Event.
-   → Beispiel: "Glückwunsch zum neuen Standort in der [Straße]."
+ → ABSOLUTE PRIORITÄT. Hook = der Event.
+ → Beispiel: "Glückwunsch zum neuen Standort in der [Straße]."
 
 D) Website ✓ + 1+ Buchungs-Plattformen
-   → Hook = Plattform-Abhängigkeit + Wunsch auf eigene Buchung
-   → Beispiel: "Mir ist aufgefallen, dass eure Website da ist, aber Termine über Studiobookr und Planity laufen."
+ → Hook = Plattform-Abhängigkeit + Wunsch auf eigene Buchung
+ → Beispiel: "Mir ist aufgefallen, dass eure Website da ist, aber Termine über Studiobookr und Planity laufen."
 
 C) Keine Website + 1+ Buchungs-Plattformen
-   → Hook = Plattform-Abhängigkeit, eigenes Standbein fehlt
-   → Beispiel: "Wer euch googelt, landet bei Studiobookr und nicht bei euch."
+ → Hook = Plattform-Abhängigkeit, eigenes Standbein fehlt
+ → Beispiel: "Wer euch googelt, landet bei Studiobookr und nicht bei euch."
 
 B) Website ✓ + keine Buchungs-Plattformen
-   → Hook = Website da, aber Buchung nicht eingebaut
-   → Beispiel: "Eure Website ist da, aber buchen geht nur über Anruf."
+ → Hook = Website da, aber Buchung nicht eingebaut
+ → Beispiel: "Eure Website ist da, aber buchen geht nur über Anruf."
 
 A) Keine Website + keine Buchungs-Plattformen
-   → Hook = ihr existiert online nur auf Instagram
-   → Beispiel: "Wer euch googelt, landet nur auf eurem Insta-Profil."
+ → Hook = ihr existiert online nur auf Instagram
+ → Beispiel: "Wer euch googelt, landet nur auf eurem Insta-Profil."
 
 F) Niedrige Reaktionen (< 1% Likes/Follower) ohne andere Lücke
-   → Sekundär-Hook: "Ihr postet regelmäßig, aber die Reaktionen bleiben klein."
+ → Sekundär-Hook: "Ihr postet regelmäßig, aber die Reaktionen bleiben klein."
 
 X) Lead ist gut aufgestellt
-   → SKIPPEN, Status = `skip-good-shape`. Kein DM.
+ → SKIPPEN, Status = `skip-good-shape`. Kein DM.
 ```
 
 ### DM-Struktur (≤ 75 Wörter, 3 Blöcke, `||` als Trenner)

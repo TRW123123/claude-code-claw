@@ -106,9 +106,9 @@ Top-Variante auswählen nach Kriterien:
 - **Humanity Score** (je höher, desto besser)
 - **Keyword-Dichte** (Primary Keyword vorne, nicht gestuffed)
 - **CTR-Potenzial** basierend auf Pattern-Erfahrung:
-  - Number-Hook + Checklist = höchste CTR bei Ratgeber-Intent
-  - Benefit-First + Direct Value = höchste CTR bei Commercial Intent
-  - Question-Hook + Curiosity Gap = gut für Top-of-Funnel
+ - Number-Hook + Checklist = höchste CTR bei Ratgeber-Intent
+ - Benefit-First + Direct Value = höchste CTR bei Commercial Intent
+ - Question-Hook + Curiosity Gap = gut für Top-of-Funnel
 
 ### 6. A/B-Test-Empfehlung
 Wenn die Seite > 500 Impressions/Monat hat: Empfehle die Top 2 Varianten als A/B-Test über Split-Testing (Netlify built-in) oder sequenzielles Testing (1. Variante 2 Wochen, dann 2. Variante 2 Wochen, dann `measure_change_impact()` vergleichen).

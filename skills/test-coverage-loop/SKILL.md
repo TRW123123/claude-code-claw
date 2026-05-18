@@ -25,11 +25,11 @@ Blocker die VOR dem ersten Skill-Run geklärt sein müssen:
 1. **Test-Supabase-Projekt provisionieren** via `mcp__supabase__create_branch` oder separates Projekt. Hard Rule: "integration tests must hit a real database, not mocks".
 2. **Edge-Functions lokal ziehen** via `mcp__supabase__get_edge_function` (Stripe-Webhook, Create-Checkout) → ablegen in `supabase/functions/<slug>/index.ts`
 3. **Test-Tooling installieren:**
-   ```bash
-   cd ~/Projects/profilfoto-ki-app-v2
-   npm i -D vitest @vitest/ui @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom playwright @playwright/test
-   npx playwright install chromium
-   ```
+ ```bash
+ cd ~/Projects/profilfoto-ki-app-v2
+ npm i -D vitest @vitest/ui @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom playwright @playwright/test
+ npx playwright install chromium
+ ```
 4. **Stripe Test-Mode Secrets** in `.env.test` eintragen (NUR `sk_test_*` + `whsec_*` aus Stripe Dashboard → Test-Mode)
 
 Ohne diese 4 Punkte: Tests laufen als `describe.skip` mit Warnung in REVIEW.md.
@@ -105,8 +105,8 @@ Grund: Tests die ein echtes Stripe-Webhook triggern könnten müssen vom Mensche
 ## Output-Layout
 ```
 src/pages/Generate.tsx
-src/pages/Generate.test.ts      ← Writer output
-src/pages/REVIEW.md             ← Reviewer output (Verdict + Issues)
+src/pages/Generate.test.ts ← Writer output
+src/pages/REVIEW.md ← Reviewer output (Verdict + Issues)
 ```
 
 ## Hard Rules (bindend)

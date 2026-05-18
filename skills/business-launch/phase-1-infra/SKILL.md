@@ -43,9 +43,9 @@ CREATE SCHEMA IF NOT EXISTS my_project;
 **Für eigenes Projekt:**
 ```
 mcp__534623b9...__create_project
-  name: "{projektName}"
-  region: "eu-central-1"
-  organization_id: "..."
+ name: "{projektName}"
+ region: "eu-central-1"
+ organization_id: "..."
 ```
 
 ---
@@ -57,14 +57,14 @@ mcp__534623b9...__create_project
 ### Wenn Q3 = A (DB only) — Klassischer Lead
 ```sql
 CREATE TABLE leads (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  name TEXT,
-  email TEXT NOT NULL,
-  phone TEXT,
-  message TEXT,
-  source TEXT,            -- welche Landing Page
-  status TEXT DEFAULT 'new'
+ id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+ created_at TIMESTAMPTZ DEFAULT NOW(),
+ name TEXT,
+ email TEXT NOT NULL,
+ phone TEXT,
+ message TEXT,
+ source TEXT, -- welche Landing Page
+ status TEXT DEFAULT 'new'
 );
 
 ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
@@ -75,24 +75,24 @@ ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
 **→ Phase 2.5 ausführen.** Phase 1 erstellt minimales Skelett, Phase 2.5 baut die volle Pipeline. Pflicht-Felder hier:
 ```sql
 CREATE TABLE leads (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  slug TEXT UNIQUE NOT NULL,    -- für Public-Result-Page
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  updated_at TIMESTAMPTZ DEFAULT NOW(),
-  name TEXT,
-  email TEXT,
-  phone TEXT,
-  message TEXT,
-  source TEXT,
-  source_platform TEXT,         -- z.B. 'mobile.de', 'autoscout24'
-  listing_url TEXT,
-  photo_urls TEXT[] DEFAULT '{}',
-  photo_count INT DEFAULT 0,
-  video_url TEXT,
-  video_uploaded_at TIMESTAMPTZ,
-  status TEXT DEFAULT 'new',
-  ip_address INET,
-  user_agent TEXT
+ id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+ slug TEXT UNIQUE NOT NULL, -- für Public-Result-Page
+ created_at TIMESTAMPTZ DEFAULT NOW(),
+ updated_at TIMESTAMPTZ DEFAULT NOW(),
+ name TEXT,
+ email TEXT,
+ phone TEXT,
+ message TEXT,
+ source TEXT,
+ source_platform TEXT, -- z.B. 'mobile.de', 'autoscout24'
+ listing_url TEXT,
+ photo_urls TEXT[] DEFAULT '{}',
+ photo_count INT DEFAULT 0,
+ video_url TEXT,
+ video_uploaded_at TIMESTAMPTZ,
+ status TEXT DEFAULT 'new',
+ ip_address INET,
+ user_agent TEXT
 );
 ```
 
@@ -100,14 +100,14 @@ CREATE TABLE leads (
 Gleich wie B/C plus:
 ```sql
 CREATE TABLE outreach_log (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  lead_id UUID REFERENCES leads(id),
-  channel TEXT,                 -- 'email', 'whatsapp', 'tiktok-dm'
-  direction TEXT,               -- 'inbound' | 'outbound'
-  message_type TEXT,
-  content TEXT,
-  response TEXT,
-  created_at TIMESTAMPTZ DEFAULT NOW()
+ id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+ lead_id UUID REFERENCES leads(id),
+ channel TEXT, -- 'email', 'whatsapp', 'tiktok-dm'
+ direction TEXT, -- 'inbound' | 'outbound'
+ message_type TEXT,
+ content TEXT,
+ response TEXT,
+ created_at TIMESTAMPTZ DEFAULT NOW()
 );
 ```
 
@@ -118,15 +118,15 @@ CREATE TABLE outreach_log (
 CREATE OR REPLACE FUNCTION generate_slug()
 RETURNS TEXT AS $$
 DECLARE
-  candidate TEXT;
-  exists_count INT;
+ candidate TEXT;
+ exists_count INT;
 BEGIN
-  LOOP
-    candidate := substr(md5(random()::text || clock_timestamp()::text), 1, 8);
-    SELECT COUNT(*) INTO exists_count FROM leads WHERE slug = candidate;
-    EXIT WHEN exists_count = 0;
-  END LOOP;
-  RETURN candidate;
+ LOOP
+ candidate := substr(md5(random()::text || clock_timestamp()::text), 1, 8);
+ SELECT COUNT(*) INTO exists_count FROM leads WHERE slug = candidate;
+ EXIT WHEN exists_count = 0;
+ END LOOP;
+ RETURN candidate;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -134,14 +134,14 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION update_updated_at()
 RETURNS TRIGGER AS $$
 BEGIN
-  NEW.updated_at = NOW();
-  RETURN NEW;
+ NEW.updated_at = NOW();
+ RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER leads_update_updated_at
-  BEFORE UPDATE ON leads
-  FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+ BEFORE UPDATE ON leads
+ FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 ```
 
 ---
@@ -152,11 +152,11 @@ CREATE TRIGGER leads_update_updated_at
 
 ```
 project-root/
-  db/
-    migrations/
-      20260427_120000_create_leads.sql
-      20260427_120100_rpc_bridge.sql
-      20260427_120200_storage_bucket.sql
+ db/
+ migrations/
+ 20260427_120000_create_leads.sql
+ 20260427_120100_rpc_bridge.sql
+ 20260427_120200_storage_bucket.sql
 ```
 
 **Workflow:**
@@ -201,15 +201,15 @@ Wenn Pre-Flight Q2 = Google AI Startup / EU / etc:
 In Handoff-File dokumentieren:
 ```yaml
 foerderung:
-  target: "Google AI Startup Programm"
-  tech_stack_committed:
-    - "Google Vertex AI (europe-west3)"
-    - "Google Gemini 2.5 Pro für Reasoning"
-    - "Google Nano Banana für Bildgenerierung"
-    - "Supabase EU (Frankfurt)"
-    - "Netlify EU-Edge"
-  tech_stack_verified_with_user: true   # ← KRITISCH (Pitfall P-14)
-  application_due: "2026-Q3"
+ target: "Google AI Startup Programm"
+ tech_stack_committed:
+ - "Google Vertex AI (europe-west3)"
+ - "Google Gemini 2.5 Pro für Reasoning"
+ - "Google Nano Banana für Bildgenerierung"
+ - "Supabase EU (Frankfurt)"
+ - "Netlify EU-Edge"
+ tech_stack_verified_with_user: true # ← KRITISCH (Pitfall P-14)
+ application_due: "2026-Q3"
 ```
 
 **Hard Rule:** Tech-Stack-Behauptungen die später auf Public-Pages erscheinen (Über-uns) müssen mit User explizit verifiziert sein. NICHT raten basierend auf Context.

@@ -17,12 +17,12 @@ Beispiel: `seo-weekly-profilfoto-ki` findet einen Pattern-Win ("Title mit Zahlen
 ## Workflow: Nachricht senden
 ```sql
 SELECT claw_send_agent_message(
-    p_from_agent := 'seo-weekly-profilfoto-ki',
-    p_to_agent := 'seo-weekly-st-automatisierung',
-    p_subject := 'Pattern-Win: Zahlen+Power-Words in Title',
-    p_body := 'Bei 3 pSEO-Seiten CTR von 1.2% auf 3.8% — Vorher/Nachher-Evidence siehe changelog-Id <xyz>',
-    p_severity := 'hint',
-    p_related_task_id := NULL
+ p_from_agent := 'seo-weekly-profilfoto-ki',
+ p_to_agent := 'seo-weekly-st-automatisierung',
+ p_subject := 'Pattern-Win: Zahlen+Power-Words in Title',
+ p_body := 'Bei 3 pSEO-Seiten CTR von 1.2% auf 3.8% — Vorher/Nachher-Evidence siehe changelog-Id <xyz>',
+ p_severity := 'hint',
+ p_related_task_id := NULL
 );
 ```
 
@@ -36,19 +36,19 @@ SELECT * FROM claw_get_agent_inbox(p_agent_name := '<dein-task-name>', p_limit :
 
 Pro Message: entscheiden ob relevant. Wenn ja:
 ```sql
-SELECT claw_ack_agent_message('<msg_id>', 'acted');  -- wurde berücksichtigt
+SELECT claw_ack_agent_message('<msg_id>', 'acted'); -- wurde berücksichtigt
 ```
 Wenn nicht: `'dismissed'`.
 
 ## Workflow: Task erstellen mit Dependency
 ```sql
 SELECT claw_create_task(
-    p_owner_agent := 'ki-auto-daily-execution',
-    p_title := 'Prüfe Pattern-Transfer von profilfoto',
-    p_description := 'Title-Pattern mit Zahlen+Power-Words bei 3 pSEO-Seiten anwenden',
-    p_domain := 'ki-automatisieren.de',
-    p_priority := 2,
-    p_blocked_by := ARRAY['<parent-task-id>']::UUID[]
+ p_owner_agent := 'ki-auto-daily-execution',
+ p_title := 'Prüfe Pattern-Transfer von profilfoto',
+ p_description := 'Title-Pattern mit Zahlen+Power-Words bei 3 pSEO-Seiten anwenden',
+ p_domain := 'ki-automatisieren.de',
+ p_priority := 2,
+ p_blocked_by := ARRAY['<parent-task-id>']::UUID[]
 );
 ```
 

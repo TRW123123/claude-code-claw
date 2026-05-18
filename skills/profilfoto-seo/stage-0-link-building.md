@@ -55,14 +55,14 @@ Wenn Stage 0b aktiviert wird:
 
 ```sql
 INSERT INTO claw.link_building_queue (
-  domain, directory_name, directory_url, category, status, nap_data
+ domain, directory_name, directory_url, category, status, nap_data
 ) VALUES (
-  'profilfoto-ki.de',
-  'There''s An AI For That',
-  'https://theresanaiforthat.com/submit',
-  'ai-directory',
-  'pending',
-  '{"name": "Profilfoto KI", "url": "https://www.profilfoto-ki.de", "description": "...", "category": "AI Photo Generator"}'::jsonb
+ 'profilfoto-ki.de',
+ 'There''s An AI For That',
+ 'https://theresanaiforthat.com/submit',
+ 'ai-directory',
+ 'pending',
+ '{"name": "Profilfoto KI", "url": "https://www.profilfoto-ki.de", "description": "...", "category": "AI Photo Generator"}'::jsonb
 );
 ```
 

@@ -1,20 +1,20 @@
 ---
 name: youtube-thumbnail
 description: >
-  YouTube Thumbnail Generator mit Nano Banana Pro + Remotion renderStill().
-  Nano Banana generiert text-freie AI-Hintergrundbilder, Remotion rendert pixel-perfekten
-  Text, Logos und Branding als Overlay. Apify scrapt Competitor-Thumbnails als Inspiration.
-  Nutzen wenn YouTube Thumbnails erstellt, optimiert oder A/B-getestet werden sollen.
-  Triggers: "thumbnail", "youtube thumbnail", "CTR", "click-through rate", "thumbnail brief".
+ YouTube Thumbnail Generator mit Nano Banana Pro + Remotion renderStill().
+ Nano Banana generiert text-freie AI-Hintergrundbilder, Remotion rendert pixel-perfekten
+ Text, Logos und Branding als Overlay. Apify scrapt Competitor-Thumbnails als Inspiration.
+ Nutzen wenn YouTube Thumbnails erstellt, optimiert oder A/B-getestet werden sollen.
+ Triggers: "thumbnail", "youtube thumbnail", "CTR", "click-through rate", "thumbnail brief".
 tools:
-  - Read
-  - Write
-  - Bash
-  - WebSearch
-  - Edit
-  - Grep
-  - Glob
-  - Agent
+ - Read
+ - Write
+ - Bash
+ - WebSearch
+ - Edit
+ - Grep
+ - Glob
+ - Agent
 ---
 
 # YouTube Thumbnail Skill — Nano Banana + Remotion Hybrid
@@ -41,20 +41,20 @@ Vor jeder Thumbnail-Erstellung laden:
 
 ```
 Step 1: Apify Competitor Research (optional)
-  └→ scripts/fetch-competitor-thumbnails.mjs --query "{keyword}" --top 5
+ └→ scripts/fetch-competitor-thumbnails.mjs --query "{keyword}" --top 5
 
 Step 2: Claude analysiert Competitors + definiert Desire Loop + 4 Konzepte
 
 Step 3: Nano Banana Pro × 4 (text-frei)
-  └→ scripts/generate-thumbnail-bg.mjs --headshot {path} --prompt "{concept}" --output bg-{x}.png
-  └→ Parallel: 4 Calls fuer Konzepte A, B, C, D
+ └→ scripts/generate-thumbnail-bg.mjs --headshot {path} --prompt "{concept}" --output bg-{x}.png
+ └→ Parallel: 4 Calls fuer Konzepte A, B, C, D
 
 Step 4: Remotion renderStill() × 4
-  └→ YTThumbnail Composition mit Props: backgroundSrc, hookText, accentColor, textSide
-  └→ scripts/remotion/ — React Composition mit CSS Text-Rendering
+ └→ YTThumbnail Composition mit Props: backgroundSrc, hookText, accentColor, textSide
+ └→ scripts/remotion/ — React Composition mit CSS Text-Rendering
 
 Step 5: Comparison Grid (Remotion ComparisonGrid Composition)
-  └→ 2x2 Grid mit Labels A, B, C, D
+ └→ 2x2 Grid mit Labels A, B, C, D
 
 Step 6: User waehlt → Iteration mit v2, v3...
 ```
@@ -81,7 +81,7 @@ Bevor IRGENDETWAS generiert wird, brauche diese Inputs (fragen wenn fehlend):
 
 ```bash
 node ~/.claude/skills/youtube-thumbnail/scripts/fetch-competitor-thumbnails.mjs \
-  --query "{video topic}" --top 5 --min-views 10000
+ --query "{video topic}" --top 5 --min-views 10000
 ```
 
 Output: `workspace/examples/*.jpg` + JSON-Manifest mit Metadata.
@@ -119,10 +119,10 @@ Jedes Konzept kurz beschreiben, welchen Desire-Loop-Aspekt es nutzt.
 ```bash
 # Concept A
 node ~/.claude/skills/youtube-thumbnail/scripts/generate-thumbnail-bg.mjs \
-  --headshot "{headshot_path}" \
-  --examples workspace/examples/*.jpg \
-  --prompt "{concept A prompt — TEXT-FREI}" \
-  --output "workspace/thumbnails/{slug}/bg-a.png"
+ --headshot "{headshot_path}" \
+ --examples workspace/examples/*.jpg \
+ --prompt "{concept A prompt — TEXT-FREI}" \
+ --output "workspace/thumbnails/{slug}/bg-a.png"
 
 # Repeat for B, C, D (parallel)
 ```
@@ -153,14 +153,14 @@ Fuer jedes der 4 Backgrounds, Remotion `renderStill()` aufrufen mit der `YTThumb
 ```typescript
 // Props fuer jedes Konzept
 {
-  backgroundSrc: "bg-a.png",
-  hookText: "BASICALLY\nCHEATING",  // max 3 Woerter, uppercase
-  subText: "mit KI",                // optional, accent color
-  accentColor: "#FF6B35",
-  textSide: "left",                 // gegenueber dem Gesicht
-  logoSrc: "logo.png",             // optional
-  vignette: true,
-  accentGlow: true,
+ backgroundSrc: "bg-a.png",
+ hookText: "BASICALLY\nCHEATING", // max 3 Woerter, uppercase
+ subText: "mit KI", // optional, accent color
+ accentColor: "#FF6B35",
+ textSide: "left", // gegenueber dem Gesicht
+ logoSrc: "logo.png", // optional
+ vignette: true,
+ accentGlow: true,
 }
 ```
 
@@ -226,17 +226,17 @@ Fallback: Apify Scraper oder WebSearch.
 
 ```
 workspace/{YYYY-MM-DD}/thumbnails/{video-slug}/
-  bg-a.png          ← Nano Banana Background A
-  bg-b.png          ← Nano Banana Background B
-  bg-c.png          ← Nano Banana Background C
-  bg-d.png          ← Nano Banana Background D
-  thumbnail-a.png   ← Final mit Remotion Text-Overlay
-  thumbnail-b.png
-  thumbnail-c.png
-  thumbnail-d.png
-  comparison.png    ← 2x2 Grid
-  v2.png            ← Iterationen
-  v3.png
+ bg-a.png ← Nano Banana Background A
+ bg-b.png ← Nano Banana Background B
+ bg-c.png ← Nano Banana Background C
+ bg-d.png ← Nano Banana Background D
+ thumbnail-a.png ← Final mit Remotion Text-Overlay
+ thumbnail-b.png
+ thumbnail-c.png
+ thumbnail-d.png
+ comparison.png ← 2x2 Grid
+ v2.png ← Iterationen
+ v3.png
 ```
 
 ## Troubleshooting

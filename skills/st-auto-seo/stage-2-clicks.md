@@ -30,29 +30,29 @@
 ```sql
 -- Seiten mit Position < 20 aber CTR < expected
 WITH expected_ctr AS (
-  SELECT pos, exp_ctr FROM (VALUES
-    (1, 28.0), (2, 15.0), (3, 11.0), (4, 8.0), (5, 6.0),
-    (6, 5.0), (7, 4.0), (8, 3.0), (9, 2.5), (10, 2.0)
-  ) AS t(pos, exp_ctr)
+ SELECT pos, exp_ctr FROM (VALUES
+ (1, 28.0), (2, 15.0), (3, 11.0), (4, 8.0), (5, 6.0),
+ (6, 5.0), (7, 4.0), (8, 3.0), (9, 2.5), (10, 2.0)
+ ) AS t(pos, exp_ctr)
 ),
 page_data AS (
-  SELECT
-    h.page,
-    ROUND(AVG(h.position)) as avg_pos_int,
-    AVG(h.position) as avg_pos,
-    SUM(h.impressions) as total_impr,
-    SUM(h.clicks) as total_clicks,
-    CASE WHEN SUM(h.impressions) > 0
-      THEN SUM(h.clicks)::numeric / SUM(h.impressions) * 100
-      ELSE 0 END as actual_ctr
-  FROM gsc_history h
-  WHERE h.domain = 'st-automatisierung.de'
-    AND h.date >= CURRENT_DATE - 14
-  GROUP BY h.page
-  HAVING AVG(h.position) < 20 AND SUM(h.impressions) >= 10
+ SELECT
+ h.page,
+ ROUND(AVG(h.position)) as avg_pos_int,
+ AVG(h.position) as avg_pos,
+ SUM(h.impressions) as total_impr,
+ SUM(h.clicks) as total_clicks,
+ CASE WHEN SUM(h.impressions) > 0
+ THEN SUM(h.clicks)::numeric / SUM(h.impressions) * 100
+ ELSE 0 END as actual_ctr
+ FROM gsc_history h
+ WHERE h.domain = 'st-automatisierung.de'
+ AND h.date >= CURRENT_DATE - 14
+ GROUP BY h.page
+ HAVING AVG(h.position) < 20 AND SUM(h.impressions) >= 10
 )
 SELECT pd.*, COALESCE(ec.exp_ctr, 1.5) as expected_ctr,
-  COALESCE(ec.exp_ctr, 1.5) - pd.actual_ctr as ctr_gap
+ COALESCE(ec.exp_ctr, 1.5) - pd.actual_ctr as ctr_gap
 FROM page_data pd
 LEFT JOIN expected_ctr ec ON ec.pos = pd.avg_pos_int
 WHERE pd.actual_ctr < COALESCE(ec.exp_ctr, 1.5)
@@ -68,11 +68,11 @@ Hoechste CTR-Gap × Impressions = potenziell meiste neue Klicks. **Cluster-Prio 
 
 ```sql
 SELECT query, SUM(impressions) as impr, SUM(clicks) as clicks,
-  ROUND(AVG(position)::numeric, 1) as pos
+ ROUND(AVG(position)::numeric, 1) as pos
 FROM gsc_queries
 WHERE domain = 'st-automatisierung.de'
-  AND page = '[problem-page-url]'
-  AND date >= CURRENT_DATE - 14
+ AND page = '[problem-page-url]'
+ AND date >= CURRENT_DATE - 14
 GROUP BY query
 ORDER BY impr DESC
 LIMIT 5;
@@ -135,22 +135,22 @@ Fuer JEDE der 3 Varianten den Score berechnen:
 
 ```json
 {
-  "variant": "A",
-  "title": "[neuer Title]",
-  "meta_description": "[neue Meta]",
-  "scores": {
-    "humanity": 90,
-    "specificity": 85,
-    "structure_balance": 80,
-    "seo": 95,
-    "readability": 85
-  },
-  "composite": 88.0,
-  "ai_phrase_hits": 0,
-  "em_dash_count": 0,
-  "title_length": 58,
-  "meta_length": 155,
-  "passed": true
+ "variant": "A",
+ "title": "[neuer Title]",
+ "meta_description": "[neue Meta]",
+ "scores": {
+ "humanity": 90,
+ "specificity": 85,
+ "structure_balance": 80,
+ "seo": 95,
+ "readability": 85
+ },
+ "composite": 88.0,
+ "ai_phrase_hits": 0,
+ "em_dash_count": 0,
+ "title_length": 58,
+ "meta_length": 155,
+ "passed": true
 }
 ```
 
@@ -168,25 +168,25 @@ Wenn keine Variante ≥80 → 2 Revisions → sonst manuelle Auswahl noetig.
 
 ```sql
 SELECT insert_changelog(
-  'st-automatisierung.de',
-  '/l/[slug]/',
-  'title',
-  '[alter Title]',
-  '[neuer Title]',
-  'Stage 2 CTR-Fix: Pos [X], [Y] Impr, [Z]% CTR -> Erwartung [W]%. Cluster: [BAFA/AI Act/...]. Composite Score: [N]',
-  NULL,
-  'claw-agent'
+ 'st-automatisierung.de',
+ '/l/[slug]/',
+ 'title',
+ '[alter Title]',
+ '[neuer Title]',
+ 'Stage 2 CTR-Fix: Pos [X], [Y] Impr, [Z]% CTR -> Erwartung [W]%. Cluster: [BAFA/AI Act/...]. Composite Score: [N]',
+ NULL,
+ 'claw-agent'
 );
 
 SELECT insert_changelog(
-  'st-automatisierung.de',
-  '/l/[slug]/',
-  'meta_desc',
-  '[alte Meta]',
-  '[neue Meta]',
-  'Stage 2 CTR-Fix synchron mit Title',
-  NULL,
-  'claw-agent'
+ 'st-automatisierung.de',
+ '/l/[slug]/',
+ 'meta_desc',
+ '[alte Meta]',
+ '[neue Meta]',
+ 'Stage 2 CTR-Fix synchron mit Title',
+ NULL,
+ 'claw-agent'
 );
 ```
 

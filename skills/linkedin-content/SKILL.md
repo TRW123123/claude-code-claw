@@ -10,7 +10,7 @@
 
 ## 0. AGENT-IDENTITAT & KONTEXT
 
-**Wer postet:** Safak Tepecik — KI-Otomasyon Danismani, 8+ Jahre B2B Enterprise Sales (Mittelstand & Konzern), DACH + Turkiye Pazari, Solo-Founder.
+**Wer postet:** Safak — KI-Otomasyon Danismani, 8+ Jahre B2B Enterprise Sales (Mittelstand & Konzern), DACH + Turkiye Pazari, Solo-Founder.
 
 **Plattform:** LinkedIn (persoenliches Profil, keine Unternehmensseite)
 
@@ -34,7 +34,7 @@
 **Wettbewerbsvorteil (aus Recherche April 2026):**
 Der TR AI LinkedIn Space hat KEINE dominanten Content-Creator. Die groessten Accounts (Uenal Seven 14.5K, Murat Bil 5.1K) posten News-Aggregation mit minimalem Engagement. Die viralsten Agent-System-Posts weltweit (Aryan Mahajan 679 Likes, Robert Youssef 963 Likes, BOOTOSHI 737 Likes) sind alle auf Englisch. NULL tuerkische Creator in dieser Nische. Safak ist First-Mover.
 
-**Tuerkisches Narrativ:** *"Bir laptop. Telefonumdan Telegram. Ve benim yerime gece calisan ajanlar. Buna C3 diyorum."*
+**Tuerkisches Narrativ:** *"Bir laptop. Telefonumdan mesajlar. Ve benim yerime gece calisan ajanlar. Buna C3 diyorum."*
 
 ---
 
@@ -83,11 +83,11 @@ Der TR AI LinkedIn Space hat KEINE dominanten Content-Creator. Die groessten Acc
 **Bridge-Mechanismus:**
 ```
 [Nachricht als 1-Satz-Hook]
-     ↓
+ ↓
 [Safaks provokante These DAZU (nicht ueber die Nachricht, sondern was sie bedeutet)]
-     ↓
+ ↓
 [Warum der Leser das auf SEIN Business uebertragen sollte]
-     ↓
+ ↓
 [Frage die spaltet]
 ```
 
@@ -184,7 +184,7 @@ LinkedIn truncated den Post bei ~140 Zeichen auf Mobile vor dem "...mehr"-Button
 **Variante A — Single-Hook (Saad-Pattern, Default):**
 ```
 [Eine Zeile, 11-15 Wörter, 95-130 Zeichen, endet auf Komma+Teaser ODER Punkt+These]
-                                          ← 2 Leerzeilen
+ ← 2 Leerzeilen
 [Rest des Posts]
 ```
 
@@ -192,7 +192,7 @@ LinkedIn truncated den Post bei ~140 Zeichen auf Mobile vor dem "...mehr"-Button
 ```
 [Hook — 8-12 Wörter, provokant]
 [Rehook — 5-8 Wörter, MIT Zahl, DIREKT untereinander, KEINE Leerzeile dazwischen]
-                                          ← 2 Leerzeilen NACH Rehook
+ ← 2 Leerzeilen NACH Rehook
 [Rest des Posts]
 ```
 
@@ -239,10 +239,10 @@ Destilliert via Master Vault of Magnetic Hooks. Slot-Strukturen liefern compact 
 - Slot: `[ŞAFAKS EIGENER Denkfehler/Annahme] + [konkrete Konsequenz]`
 - **Wichtig:** Şafaks eigener Roadblock, NICHT der des Owners (sonst "psychoanalyzing-the-boss" Anti-Pattern)
 - Roadblock-Quellen (aus dieser Session, in `claw.memories_user` archivierbar):
-  - "Ich dachte mehr Skills = besserer Agent → Skills wurden aufgebläht, Agent verwirrt"
-  - "Ich dachte weniger posten = mehr Reach → falsch in der Aufbau-Phase"
-  - "Ich dachte mehr DMs = mehr Replies → Targeting+Personalisierung schlägt Volume"
-  - "Ich dachte ich brauche Hermes Agent → Claude Code reicht"
+ - "Ich dachte mehr Skills = besserer Agent → Skills wurden aufgebläht, Agent verwirrt"
+ - "Ich dachte weniger posten = mehr Reach → falsch in der Aufbau-Phase"
+ - "Ich dachte mehr DMs = mehr Replies → Targeting+Personalisierung schlägt Volume"
+ - "Ich dachte ich brauche Hermes Agent → Claude Code reicht"
 
 **6. The Agent Autopilot (Autonomous Proof)** (c3-build-Di)
 - Mechanismus: Social Validation / Evidence of Self-Improvement
@@ -428,20 +428,20 @@ Diese Variation haelt die Augen in Bewegung. KEIN "Wall of Text".
 Vor jedem Post 14 Punkte pruefen. Wenn 2+ FAIL → Post verbessern:
 
 ```
-[ ] Hook max 8 Woerter                                      PASS/FAIL
-[ ] Rehook max 8 Woerter, mit Zahl oder Metrik              PASS/FAIL
-[ ] Hook + Rehook max 140 Zeichen                           PASS/FAIL
-[ ] 2 Leerzeilen nach Hook+Rehook                           PASS/FAIL
-[ ] Post 800–1300 Zeichen                                   PASS/FAIL
-[ ] Kein Em-Dash im Text                                    PASS/FAIL
-[ ] Kein Bindestrich als Bullet                             PASS/FAIL
-[ ] Keine verbotenen Phrasen                                PASS/FAIL
-[ ] Min 1 konkrete Zahl/Datum/Firma                         PASS/FAIL
-[ ] Min 2 Saetze mit Safaks eigener Meinung                 PASS/FAIL
-[ ] Format: "How I" nicht "How to"                          PASS/FAIL
-[ ] Frage am Ende: spezifisch, nicht generisch              PASS/FAIL
-[ ] Kein Hashtag                                            PASS/FAIL
-[ ] Post koennte NICHT von anonymem Account stammen          PASS/FAIL
+[ ] Hook max 8 Woerter PASS/FAIL
+[ ] Rehook max 8 Woerter, mit Zahl oder Metrik PASS/FAIL
+[ ] Hook + Rehook max 140 Zeichen PASS/FAIL
+[ ] 2 Leerzeilen nach Hook+Rehook PASS/FAIL
+[ ] Post 800–1300 Zeichen PASS/FAIL
+[ ] Kein Em-Dash im Text PASS/FAIL
+[ ] Kein Bindestrich als Bullet PASS/FAIL
+[ ] Keine verbotenen Phrasen PASS/FAIL
+[ ] Min 1 konkrete Zahl/Datum/Firma PASS/FAIL
+[ ] Min 2 Saetze mit Safaks eigener Meinung PASS/FAIL
+[ ] Format: "How I" nicht "How to" PASS/FAIL
+[ ] Frage am Ende: spezifisch, nicht generisch PASS/FAIL
+[ ] Kein Hashtag PASS/FAIL
+[ ] Post koennte NICHT von anonymem Account stammen PASS/FAIL
 ```
 
 ### Wann der Agent NICHT posten soll
@@ -465,7 +465,7 @@ Vor jedem Post 14 Punkte pruefen. Wenn 2+ FAIL → Post verbessern:
 - Background: `#0F1419` (deep navy-black)
 - Headline-Font: Playfair Display Serif (editorial, authoritative)
 - Accent: `#D4A574` (muted gold)
-- Footer: `@safak.tepecik · C3`
+- Footer: `@your-handle · C3`
 
 **Style-Presets:**
 - `quote` — pure Typo auf solid Background (Saad-Post-1-Style)
@@ -474,11 +474,11 @@ Vor jedem Post 14 Punkte pruefen. Wenn 2+ FAIL → Post verbessern:
 **Aufruf:**
 ```bash
 node ~/.claude/skills/linkedin-content/scripts/render-quote-card.mjs \
-  --text "Bulut ajanlari ölecek. Kisisel laptop ajanlari kazanacak." \
-  --persona safak \
-  --style quote \
-  --accent-words "kazanacak" \
-  --out "~/Claude/tmp/safak-monday-2026-05-13.png"
+ --text "Bulut ajanlari ölecek. Kisisel laptop ajanlari kazanacak." \
+ --persona safak \
+ --style quote \
+ --accent-words "kazanacak" \
+ --out "~/Claude/tmp/safak-monday-2026-05-13.png"
 ```
 
 **Output:** PNG-Pfad auf stdout, danach via LinkedIn Image API upload (Workflow in scheduled-task `linkedin-daily` SKILL.md).
@@ -535,20 +535,3 @@ LinkedIn belohnt Posts wo der Autor in den ersten 30 Min aktiv engaged.
 | "How I" statt "How to" | Eigene Top-Posts alle persoenlich, Flops alle generisch | April 2026 |
 | Kein "Neden oenemli?" Format | Exaktes Muster aller Sub-120-Impressions-Posts | April 2026 |
 
-
-### KVP Update (2026-04-24)
-- [WIN] Ein Story-basierter LinkedIn-Post für Freitag wurde nach dem SLAY-Framework erstellt, inklusive Bildgenerierung und Vorbereitung für den direkten Post. → Post-Entwurf und Bild (1.2MB) generiert, Upload-Skript erstellt.
-
-
-### KVP Update (2026-04-27)
-- [WIN] Ein neues LinkedIn-Profil (Meltem Tepecik) wurde für die 'LinkedIn-Sister-Strategie' eingerichtet und optimiert, einschließlich Headline, Berufserfahrung, Branche, About-Bereich und Skills. → Headline, Berufserfahrung, Branche, About-Bereich und Skills wurden erfolgreich aktualisiert und gespeichert.
-
-
-### KVP Update (2026-04-28)
-- [WIN] Einrichtung des LinkedIn-Profils von Meltem Tepecik für ST-Automatisierung, inklusive Banner, Connection Requests und API-Integration. → LinkedIn Banner erstellt, 20 Connection Requests gesendet, LinkedIn API-Zugriff eingerichtet, erster Post live.
-- [WIN] Anpassung des bestehenden LinkedIn Posting Skills für die neue Persona von Meltem Tepecik (Werkstudentin) und Implementierung einer konsolidierten täglichen Routine. → Neuer `scheduled-tasks/linkedin-meltem/SKILL.md` erstellt und registriert, `claw-linkedin-meltem-agent.mjs` implementiert.
-- [WIN] Erstellung und Veröffentlichung des ersten LinkedIn Posts für Meltem Tepecik unter Berücksichtigung ihrer Persona und der technischen Gegebenheiten. → Post ID: `urn:li:share:7454859295537688576` mit korrekten Umlauten.
-
-
-### KVP Update (2026-05-03)
-- [WIN] Ein bestehender LinkedIn-Post wurde auf Konformität mit dem `linkedin-content` Skill (Safak/TR) überprüft und eine Diagnose erstellt. → Detaillierte Liste der Probleme und eine Diagnose wurden geliefert.

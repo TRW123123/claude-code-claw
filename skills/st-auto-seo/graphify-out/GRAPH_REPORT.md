@@ -1,4 +1,4 @@
-# Graph Report - .  (2026-04-09)
+# Graph Report - . (2026-04-09)
 
 ## Corpus Check
 - Corpus is ~12,254 words - fits in a single context window. You may not need a graph.
@@ -21,16 +21,16 @@
 10. `Stage 0b: Link Building (Chrome Automation)` - 7 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Trust Signals (BAFA-Zulassung, Creditreform, IHK)` --semantically_similar_to--> `NAP Data (Name/Address/Phone - identical across directories)`  [INFERRED] [semantically similar]
-  st-auto-context.md → stage-0-link-building.md
-- `Competitor Backlink Gap Identification` --semantically_similar_to--> `3-Tier Directory List (Gelbe Seiten, WLW, BAFA Beraterliste)`  [INFERRED] [semantically similar]
-  stage-0-authority.md → stage-0-link-building.md
-- `Stage 2: Clicks CTR Optimization (Editor JSON Loop)` --references--> `Brand Voice (Sachlich, Sie-Form, kein Bro-Marketing)`  [EXTRACTED]
-  stage-2-clicks.md → st-auto-context.md
-- `Stage 0a: Domain Authority Tracking (weekly)` --shares_data_with--> `Stage 1: Impressionen (4-Phase Pipeline)`  [INFERRED]
-  stage-0-authority.md → stage-1-impressions.md
-- `Stage 1: Impressionen (4-Phase Pipeline)` --shares_data_with--> `Stage 2: Clicks CTR Optimization (Editor JSON Loop)`  [INFERRED]
-  stage-1-impressions.md → stage-2-clicks.md
+- `Trust Signals (BAFA-Zulassung, Creditreform, IHK)` --semantically_similar_to--> `NAP Data (Name/Address/Phone - identical across directories)` [INFERRED] [semantically similar]
+ st-auto-context.md → stage-0-link-building.md
+- `Competitor Backlink Gap Identification` --semantically_similar_to--> `3-Tier Directory List (Gelbe Seiten, WLW, BAFA Beraterliste)` [INFERRED] [semantically similar]
+ stage-0-authority.md → stage-0-link-building.md
+- `Stage 2: Clicks CTR Optimization (Editor JSON Loop)` --references--> `Brand Voice (Sachlich, Sie-Form, kein Bro-Marketing)` [EXTRACTED]
+ stage-2-clicks.md → st-auto-context.md
+- `Stage 0a: Domain Authority Tracking (weekly)` --shares_data_with--> `Stage 1: Impressionen (4-Phase Pipeline)` [INFERRED]
+ stage-0-authority.md → stage-1-impressions.md
+- `Stage 1: Impressionen (4-Phase Pipeline)` --shares_data_with--> `Stage 2: Clicks CTR Optimization (Editor JSON Loop)` [INFERRED]
+ stage-1-impressions.md → stage-2-clicks.md
 
 ## Hyperedges (group relationships)
 - **4-Stage SEO Funnel Flow** — stage_0_authority_tracking, stage_0_link_building, stage_1_impressions, stage_2_clicks, stage_3_conversions [EXTRACTED 1.00]
@@ -69,20 +69,20 @@ Nodes (7): Brand Identity (ST BERATUNG, UG, Schwerte NRW), Brand Voice (Sachlich
 
 ## Knowledge Gaps
 - **38 isolated node(s):** `Domain Config (st-automatisierung.de, Astro 5.1, Netlify)`, `Supabase Tables (claw schema)`, `15 Hard Rules (binding)`, `SEO Machine Repo Heritage (TheCraigHewitt/seomachine)`, `Zielgruppe Persona (GF/IT-Leiter, 10-250 MA, KMU DACH)` (+33 more)
-  These have ≤1 connection - possible missing edges or undocumented components.
+ These have ≤1 connection - possible missing edges or undocumented components.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Stage 1: Impressionen (4-Phase Pipeline)` connect `Community 3` to `Community 0`, `Community 1`, `Community 2`, `Community 4`, `Community 6`?**
-  _High betweenness centrality (0.454) - this node is a cross-community bridge._
+ _High betweenness centrality (0.454) - this node is a cross-community bridge._
 - **Why does `Stage 2: Clicks CTR Optimization (Editor JSON Loop)` connect `Community 2` to `Community 0`, `Community 1`, `Community 3`, `Community 6`?**
-  _High betweenness centrality (0.256) - this node is a cross-community bridge._
+ _High betweenness centrality (0.256) - this node is a cross-community bridge._
 - **Why does `Cluster-specific AEO/GEO Mandatory Blocks` connect `Community 4` to `Community 0`, `Community 3`?**
-  _High betweenness centrality (0.204) - this node is a cross-community bridge._
+ _High betweenness centrality (0.204) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `Stage 1: Impressionen (4-Phase Pipeline)` (e.g. with `Stage 0a: Domain Authority Tracking (weekly)` and `Stage 2: Clicks CTR Optimization (Editor JSON Loop)`) actually correct?**
-  _`Stage 1: Impressionen (4-Phase Pipeline)` has 2 INFERRED edges - model-reasoned connections that need verification._
+ _`Stage 1: Impressionen (4-Phase Pipeline)` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 2 inferred relationships involving `Stage 2: Clicks CTR Optimization (Editor JSON Loop)` (e.g. with `Stage 1: Impressionen (4-Phase Pipeline)` and `Stage 3: Conversions (CRO + GA4)`) actually correct?**
-  _`Stage 2: Clicks CTR Optimization (Editor JSON Loop)` has 2 INFERRED edges - model-reasoned connections that need verification._
+ _`Stage 2: Clicks CTR Optimization (Editor JSON Loop)` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Domain Config (st-automatisierung.de, Astro 5.1, Netlify)`, `Supabase Tables (claw schema)`, `15 Hard Rules (binding)` to the rest of the system?**
-  _38 weakly-connected nodes found - possible documentation gaps or missing edges._
+ _38 weakly-connected nodes found - possible documentation gaps or missing edges._

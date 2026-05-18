@@ -1,28 +1,28 @@
 {
-  "files": {
-    "code": [],
-    "document": [
-      "SKILL.md",
-      "st-auto-context.md",
-      "stage-0-authority.md",
-      "stage-0-link-building.md",
-      "stage-1-impressions.md",
-      "stage-2-clicks.md",
-      "stage-3-conversions.md",
-      "references\\aeo-geo-patterns.md",
-      "references\\anti-ai-writing-de.md",
-      "references\\content-scrubber.md",
-      "references\\opportunity-scoring.md",
-      "references\\plain-german-alternatives.md",
-      "references\\quality-gates.md"
-    ],
-    "paper": [],
-    "image": []
-  },
-  "total_files": 13,
-  "total_words": 12254,
-  "needs_graph": false,
-  "warning": "Corpus is ~12,254 words - fits in a single context window. You may not need a graph.",
-  "skipped_sensitive": [],
-  "graphifyignore_patterns": 0
+ "files": {
+ "code": [],
+ "document": [
+ "SKILL.md",
+ "st-auto-context.md",
+ "stage-0-authority.md",
+ "stage-0-link-building.md",
+ "stage-1-impressions.md",
+ "stage-2-clicks.md",
+ "stage-3-conversions.md",
+ "references\\aeo-geo-patterns.md",
+ "references\\anti-ai-writing-de.md",
+ "references\\content-scrubber.md",
+ "references\\opportunity-scoring.md",
+ "references\\plain-german-alternatives.md",
+ "references\\quality-gates.md"
+ ],
+ "paper": [],
+ "image": []
+ },
+ "total_files": 13,
+ "total_words": 12254,
+ "needs_graph": false,
+ "warning": "Corpus is ~12,254 words - fits in a single context window. You may not need a graph.",
+ "skipped_sensitive": [],
+ "graphifyignore_patterns": 0
 }

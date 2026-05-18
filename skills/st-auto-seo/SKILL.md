@@ -50,10 +50,10 @@ Diese Dateien MUESSEN als erstes geladen werden — keine Ausnahme:
 Der Plugin deckt den kompletten SEO-Funnel ab:
 
 ```
-Stage 0: Domain Authority    → Fundament (Backlinks, Entitaet, Trust)
-Stage 1: Impressionen        → Seiten bauen (Keywords → SERP-Gap → pSEO)
-Stage 2: Klicks              → Meta-Optimierung (CTR-Scanner → Impact)
-Stage 3: Conversions         → Kunden gewinnen (GA4 CRO → Lead-Tracking)
+Stage 0: Domain Authority → Fundament (Backlinks, Entitaet, Trust)
+Stage 1: Impressionen → Seiten bauen (Keywords → SERP-Gap → pSEO)
+Stage 2: Klicks → Meta-Optimierung (CTR-Scanner → Impact)
+Stage 3: Conversions → Kunden gewinnen (GA4 CRO → Lead-Tracking)
 ```
 
 Jede Stage hat eine eigene Datei mit detailliertem Workflow:

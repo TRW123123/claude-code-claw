@@ -32,8 +32,8 @@ description: Daily Routine fuer profilfoto-ki.de — baut jeden Tag 3 wirklich e
 - **Pages:** `astro-src/pages/<slug>/index.astro` (Wrapper)
 - **Build:** `npx astro build` → `astro-dist/`
 - **Supabase (CLAW):** Project `[your-supabase-project-id]`, Schema `claw`
-  - Tabelle `claw.unique_pages` (id, domain, slug, title, h1, outline, target_kw, unique_angle, built_by, build_log)
-  - RPCs: `unique_pages_upsert(...)`, `unique_pages_list(p_domain)`
+ - Tabelle `claw.unique_pages` (id, domain, slug, title, h1, outline, target_kw, unique_angle, built_by, build_log)
+ - RPCs: `unique_pages_upsert(...)`, `unique_pages_list(p_domain)`
 - **Env:** `~/Projects/AI UGC\remotion-app\.env` (SUPABASE_URL, SUPABASE_ANON_KEY, GEMINI_API_KEY, etc.)
 - **Scrapling:** `~/Claude/lead-discovery\` (venv mit Beispielen)
 - **DataForSEO:** via MCP `mcp__dataforseo__*`
@@ -48,21 +48,21 @@ description: Daily Routine fuer profilfoto-ki.de — baut jeden Tag 3 wirklich e
 
 ### STEP 0 — Setup
 - Lade Liste aller existierenden Pages aus Supabase:
-  ```bash
-  curl -s "${SUPABASE_URL}/rest/v1/rpc/unique_pages_list" \
-    -H "apikey: ${SUPABASE_ANON_KEY}" \
-    -H "Authorization: Bearer ${SUPABASE_ANON_KEY}" \
-    -H "Content-Type: application/json" \
-    -d '{"p_domain":"profilfoto-ki.de"}'
-  ```
+ ```bash
+ curl -s "${SUPABASE_URL}/rest/v1/rpc/unique_pages_list" \
+ -H "apikey: ${SUPABASE_ANON_KEY}" \
+ -H "Authorization: Bearer ${SUPABASE_ANON_KEY}" \
+ -H "Content-Type: application/json" \
+ -d '{"p_domain":"profilfoto-ki.de"}'
+ ```
 - Du hast jetzt alle slugs + titles + outlines im Kontext.
 
 ### STEP 1 — Keyword + Angle waehlen (Hard-Gate)
 - Pick ein Target-Keyword aus `DataForSEO keyword_suggestions` (seed: "profilbild" oder "bewerbungsfoto"), Filter: search_volume >= 100, KEINE Slug-Kollision mit bestehender Page.
 - Definiere `unique_angle`: Ein Satz der erklaert warum diese Page existiert und was sie liefert das KEINE andere Page liefert.
 - **GATE-CHECK:** Vergleiche `unique_angle` + geplanten Outline gegen ALLE bestehenden Page-Outlines.
-  - Wenn ein bestehender Outline > 60% der gleichen Substanz hat → Brief neu, anderer Angle, ggf. anderer Slug.
-  - Falls 3x in Folge Gate-Fail: dieses Keyword skippen, naechstes nehmen.
+ - Wenn ein bestehender Outline > 60% der gleichen Substanz hat → Brief neu, anderer Angle, ggf. anderer Slug.
+ - Falls 3x in Folge Gate-Fail: dieses Keyword skippen, naechstes nehmen.
 
 ### STEP 2 — Recherche (Scrapling)
 - **SERP Top 5** fuer Target-Keyword via `serp_organic_live_advanced` (DataForSEO MCP).
@@ -74,22 +74,22 @@ description: Daily Routine fuer profilfoto-ki.de — baut jeden Tag 3 wirklich e
 Spawne in einem Tool-Use-Block 3 Agenten parallel:
 
 - **Agent A (Body):** baut `astro-src/data/<slug>.json` mit elite-ui-ux Patterns
-  - **PFLICHT-LEKTUERE ZUERST:** `~/.claude/skills\elite-ui-ux\SKILL.md` lesen und befolgen
-  - elite-ui-ux Patterns die hier mindestens 2 davon vorkommen sollen:
-    Bento-Grid (asymmetrisches Layout), Sticky-Compare (Side-by-Side beim Scrollen),
-    Custom-CSS-Section (Hover-States, Gradient-Borders, Glow-Effekte),
-    Interactive Element (Slider/Toggle/Tabs), Visual-Skala (z.B. Groessen-Vergleich),
-    Skeleton-Loader-Strip, Custom-SVG-Decoration. KEIN reines Listicle-mit-FAQ-Layout.
-  - body HTML basiert auf Research-File (Quellen-Zitate eingebaut)
-  - JSON-LD: Article, FAQPage (mind. 4 Fragen), BreadcrumbList, Product
-  - meta: title (60ch), description (155ch), og*, twitter*, canonical, robots, lang=de-DE
-  - Pre-Footer CTA: "Erstes Foto kostenlos" — KEIN Geld-zurueck-Bewerben
+ - **PFLICHT-LEKTUERE ZUERST:** `~/.claude/skills\elite-ui-ux\SKILL.md` lesen und befolgen
+ - elite-ui-ux Patterns die hier mindestens 2 davon vorkommen sollen:
+ Bento-Grid (asymmetrisches Layout), Sticky-Compare (Side-by-Side beim Scrollen),
+ Custom-CSS-Section (Hover-States, Gradient-Borders, Glow-Effekte),
+ Interactive Element (Slider/Toggle/Tabs), Visual-Skala (z.B. Groessen-Vergleich),
+ Skeleton-Loader-Strip, Custom-SVG-Decoration. KEIN reines Listicle-mit-FAQ-Layout.
+ - body HTML basiert auf Research-File (Quellen-Zitate eingebaut)
+ - JSON-LD: Article, FAQPage (mind. 4 Fragen), BreadcrumbList, Product
+ - meta: title (60ch), description (155ch), og*, twitter*, canonical, robots, lang=de-DE
+ - Pre-Footer CTA: "Erstes Foto kostenlos" — KEIN Geld-zurueck-Bewerben
 
 - **Agent B (Visuals):** Hero + 2-4 Inline-Bilder via Nano Banana
-  - Hero: `public/images/hero-<slug>.png` + `.avif`
-  - Inline-Bilder: `public/images/<slug>-<section>.png` wo Body es braucht
-  - Alt-Texte mitgenerieren (a11y + SEO)
-  - Entscheidet selbst ob ein Bild auch als Remotion-Diagramm sinnvoll waere (z.B. Groessenvergleich) — wenn ja, renderStill aufrufen.
+ - Hero: `public/images/hero-<slug>.png` + `.avif`
+ - Inline-Bilder: `public/images/<slug>-<section>.png` wo Body es braucht
+ - Alt-Texte mitgenerieren (a11y + SEO)
+ - Entscheidet selbst ob ein Bild auch als Remotion-Diagramm sinnvoll waere (z.B. Groessenvergleich) — wenn ja, renderStill aufrufen.
 
 - **Agent C (Wrapper):** schreibt `astro-src/pages/<slug>/index.astro` (27 Zeilen, kopiert aus Template)
 
@@ -134,13 +134,13 @@ Spawne in einem Tool-Use-Block 3 Agenten parallel:
 - Push → Netlify Auto-Deploy.
 - IndexNow Ping fuer neue URL.
 - **REGISTRIERE in Supabase:**
-  ```bash
-  curl -s "${SUPABASE_URL}/rest/v1/rpc/unique_pages_upsert" \
-    -H "apikey: ${SUPABASE_ANON_KEY}" \
-    -H "Authorization: Bearer ${SUPABASE_ANON_KEY}" \
-    -H "Content-Type: application/json" \
-    -d '{"p_domain":"profilfoto-ki.de","p_slug":"<slug>","p_title":"...","p_h1":"...","p_outline":"H2: ...","p_target_kw":"...","p_unique_angle":"...","p_built_by":"daily-unique-page-builder"}'
-  ```
+ ```bash
+ curl -s "${SUPABASE_URL}/rest/v1/rpc/unique_pages_upsert" \
+ -H "apikey: ${SUPABASE_ANON_KEY}" \
+ -H "Authorization: Bearer ${SUPABASE_ANON_KEY}" \
+ -H "Content-Type: application/json" \
+ -d '{"p_domain":"profilfoto-ki.de","p_slug":"<slug>","p_title":"...","p_h1":"...","p_outline":"H2: ...","p_target_kw":"...","p_unique_angle":"...","p_built_by":"daily-unique-page-builder"}'
+ ```
 - Log nach `claw.activity_log` (domain: profilfoto-ki.de).
 
 ---

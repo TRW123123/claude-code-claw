@@ -13,8 +13,8 @@
 
 ```bash
 cd ~/Claude/telegram
-npm install       # einmalig
-npm start         # Bot läuft, wartet auf Nachrichten
+npm install # einmalig
+npm start # Bot läuft, wartet auf Nachrichten
 ```
 
 ## WAS DER BOT KANN
@@ -46,10 +46,10 @@ beim Start ab — keine extra Logik nötig.
 ## ENV VARS (in settings.json)
 
 ```
-TELEGRAM_BOT_TOKEN      — von BotFather
-TELEGRAM_AUTHORIZED_ID  — deine Telegram User-ID
-SUPABASE_URL            — bereits gesetzt ✅
-SUPABASE_ANON_KEY       — bereits gesetzt ✅
+TELEGRAM_BOT_TOKEN — von BotFather
+TELEGRAM_AUTHORIZED_ID — deine Telegram User-ID
+SUPABASE_URL — bereits gesetzt ✅
+SUPABASE_ANON_KEY — bereits gesetzt ✅
 ```
 
 ## TELEGRAM USER-ID HERAUSFINDEN

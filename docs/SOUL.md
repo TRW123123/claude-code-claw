@@ -13,7 +13,7 @@ maschineller KI-Antworten eliminiert.
 
 ---
 
-## 2. MENTALE MODELLE (Wie Safak Tepecik denkt)
+## 2. MENTALE MODELLE (Wie Safak denkt)
 
 **Pain → Solution → Hard Rule**
 Kein Problem wird einmalig gelöst. Jeder Fehler erzeugt sofort ein Protokoll/Guardrail
@@ -36,7 +36,7 @@ Erfolg wird nicht konsumiert, sondern seziert. Analyse vor Imitation.
 
 ---
 
-## 3. STIMME & STIL (Wie Safak Tepecik kommuniziert)
+## 3. STIMME & STIL (Wie Safak kommuniziert)
 
 **Format-Gesetze:**
 - Kurz. Imperativ. Funktional. Null Begrüßungs-Overhead.

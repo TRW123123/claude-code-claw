@@ -47,7 +47,7 @@ SECURITY DEFINER
 SET search_path = autohaus_video, public
 AS $$
 BEGIN
-  -- Insert in autohaus_video.leads, return id+slug
+ -- Insert in autohaus_video.leads, return id+slug
 END;
 $$;
 
@@ -98,9 +98,9 @@ Netlify Dashboard → Site → Site Settings → Build & deploy → Continuous d
 **Root Cause:** Custom Utility-Class hat hardcoded `color`:
 ```css
 .mono-caps {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 11px;
-    color: #4B4641;  /* ← überschreibt alle text-* Tailwind Utilities */
+ font-family: "JetBrains Mono", ui-monospace, monospace;
+ font-size: 11px;
+ color: #4B4641; /* ← überschreibt alle text-* Tailwind Utilities */
 }
 ```
 
@@ -111,7 +111,7 @@ CSS-Specificity: gleiche Klassen-Specificity, last-loaded wins. Tailwind text-* 
 **A) Inherit:**
 ```css
 .mono-caps {
-    /* color removed — inherits from parent */
+ /* color removed — inherits from parent */
 }
 ```
 Parent muss text-color setzen, kann auf hellem + dunklem Background passend sein.
@@ -124,8 +124,8 @@ Inline schlägt Klassen.
 
 **C) Dual-Variant:**
 ```css
-.mono-caps-light { color: #4B4641; }  /* on cream bg */
-.mono-caps-dark  { color: #FFF6F0; }  /* on ink/orange bg */
+.mono-caps-light { color: #4B4641; } /* on cream bg */
+.mono-caps-dark { color: #FFF6F0; } /* on ink/orange bg */
 ```
 
 **Generelles Pattern:** Custom Utilities die auf hellen UND dunklen Backgrounds erscheinen, NIE hardcoded color setzen.
@@ -164,7 +164,7 @@ color: #FFFFFF; /* nicht #FFF6F0 */
 **Fix:** `role="img"` oder semantisches Element verwenden:
 ```html
 <div class="flex" role="img" aria-label="5 von 5 Sternen">
-  <!-- 5 SVG-Sterne -->
+ <!-- 5 SVG-Sterne -->
 </div>
 ```
 
@@ -188,8 +188,8 @@ import * as webpDecode from "https://esm.sh/@jsquash/webp@1.4.0/decode";
 import * as jpegEncode from "https://esm.sh/@jsquash/jpeg@1.4.0/encode";
 
 async function convertWebpToJpeg(buffer: Uint8Array) {
-  const imageData = await webpDecode.default(buffer);
-  return await jpegEncode.default(imageData, { quality: 85 });
+ const imageData = await webpDecode.default(buffer);
+ return await jpegEncode.default(imageData, { quality: 85 });
 }
 ```
 Achtung: jsquash hat WASM-Dependencies, ~500KB Function-Size.
@@ -238,8 +238,8 @@ grep -P '[—–]' src/*.html
 **Fix:** Inline-Style aspect-ratio ZUSÄTZLICH zur Klasse:
 ```html
 <div class="overflow-hidden rounded-sm bg-ink"
-     style="aspect-ratio: 3 / 4; border: 1.5px solid #1A1715;">
-  <img src="..." width="600" height="800" decoding="async" class="h-full w-full object-cover">
+ style="aspect-ratio: 3 / 4; border: 1.5px solid #1A1715;">
+ <img src="..." width="600" height="800" decoding="async" class="h-full w-full object-cover">
 </div>
 ```
 
@@ -272,15 +272,15 @@ Das `aspect-ratio: 3 / 4` Inline-Style ist ab erstem HTML-Parse aktiv, auch ohne
 **Fix:** Pflicht: jede Edge Function als File im Project-Repo:
 ```
 project-root/
-  supabase/
-    functions/
-      autohaus-submit/
-        index.ts          ← single source of truth
-      autohaus-get-lead/
-        index.ts
-    migrations/
-      20260427_extend_leads.sql
-      20260427_rpc_bridge.sql
+ supabase/
+ functions/
+ autohaus-submit/
+ index.ts ← single source of truth
+ autohaus-get-lead/
+ index.ts
+ migrations/
+ 20260427_extend_leads.sql
+ 20260427_rpc_bridge.sql
 ```
 
 Workflow:
@@ -328,9 +328,9 @@ Master-Skill fragt vorher: "Pure Landing-Page (2A) / Full Web-App (2B) / Microse
 
 **Fix:** Vor erstem Hero-Code:
 1. 2-3 Mood-Boards skizzieren als ASCII oder Beschreibung:
-   - **Option A — Industrial/Garage:** Cream + Ink + Werkzeug-Orange, scharf, Space Grotesk + JetBrains Mono
-   - **Option B — Premium/Editorial:** Schwarz + Weiß + Gold-Akzent, Serif-Display, weite Abstände
-   - **Option C — Tech/Cyber:** Dark + Neon-Grün, Mono-only Typography, Grid-Texturen
+ - **Option A — Industrial/Garage:** Cream + Ink + Werkzeug-Orange, scharf, Space Grotesk + JetBrains Mono
+ - **Option B — Premium/Editorial:** Schwarz + Weiß + Gold-Akzent, Serif-Display, weite Abstände
+ - **Option C — Tech/Cyber:** Dark + Neon-Grün, Mono-only Typography, Grid-Texturen
 2. User wählt EINE
 3. Innerhalb der Direction: max 2 Iterations → wenn dann nicht passt, NICHT pivot, sondern Direction wechseln und neu skizzieren
 

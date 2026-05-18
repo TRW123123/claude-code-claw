@@ -12,22 +12,22 @@ Everything else in this repo is infrastructure that gives Claude persistence, sc
 
 ```
 ┌──────────────────────────────────────────────────────────┐
-│                     Claude Code (agent)                  │
+│ Claude Code (agent) │
 └────────┬────────────┬────────────┬───────────────────────┘
-         │            │            │
-    Hooks           Skills     Scheduled Tasks
-         │            │            │
-         ▼            ▼            ▼
+ │ │ │
+ Hooks Skills Scheduled Tasks
+ │ │ │
+ ▼ ▼ ▼
  ┌──────────────┐ ┌─────────┐ ┌──────────────┐
- │   scripts/   │ │ skills/ │ │ scheduled-   │
- │  (.mjs/.py)  │ │  *.md   │ │   tasks/     │
+ │ scripts/ │ │ skills/ │ │ scheduled- │
+ │ (.mjs/.py) │ │ *.md │ │ tasks/ │
  └──────┬───────┘ └─────────┘ └──────┬───────┘
-        │                            │
-        ▼                            ▼
+ │ │
+ ▼ ▼
  ┌──────────────────────────────────────────┐
- │  Supabase (activity_log, task_queue,     │
- │  learnings)                              │
- │  Pinecone (curated knowledge, READ-ONLY) │
+ │ Supabase (activity_log, task_queue, │
+ │ learnings) │
+ │ Pinecone (curated knowledge, READ-ONLY) │
  └──────────────────────────────────────────┘
 ```
 
