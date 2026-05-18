@@ -5,6 +5,10 @@ settings.local.json
 .env.local
 .env.*.local
 
+# --- Private blocklist (operator-specific PII patterns, never commit) ---
+.secret-blocklist.txt
+.private-blocklist.txt
+
 # --- Session artifacts (contain conversation transcripts) ---
 sessions/
 agent-log-*
